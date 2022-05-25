@@ -10,22 +10,68 @@ import java.awt.Image;
  */
 public class Tile {
     //attributes
+    //Hitbox: false = die
     private boolean hitbox;
     private int x, y;
-    private Image texture;
-    
+    private int texture;
+    /**
+     * primary constructor
+     * no parameters
+     * attributes set to default
+     */
     public Tile(){
         hitbox = false;
         x = 0;
         y = 0;
-        texture = null;
+        texture = 0;
     } 
-    
-    public Tile(boolean hitbox, int x, int y, Image texture){
+    /**
+     * Secondary constructor
+     * @param hitbox - boolean for whether the player will die
+     * @param x - x position of the tile
+     * @param y - y position of the tile
+     * @param texture - image texture of the tile
+     */
+    public Tile(boolean hitbox, int x, int y, int texture){
+        this();
         this.hitbox = hitbox;
         this.x = x;
         this.y = y;
         this.texture = texture;
     }
-     //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
+    /**
+     * accessor for hitbox status
+     * @return 
+     */
+    public boolean getHitbox(){
+        return hitbox;
+    }
+    
+    public int getX(){
+        return x;
+    }
+    
+    public int getY(){
+        return y;
+    }
+    
+    public int getTexture(){
+        return texture;
+    }
+    
+    public void setHitbox(boolean h){
+        hitbox = h;
+    }
+    
+    public void setX(int n){
+        x = n;
+    }
+    
+    public void setY(int n){
+        y = n;
+    }
+    
+    public void setTexture(Image t){
+        texture = t;
+    }
 }
