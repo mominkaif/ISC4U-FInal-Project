@@ -4,6 +4,13 @@
  */
 package isc4u.pkgfinal.project_kaif.david.dieter;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author kaifm
@@ -15,6 +22,7 @@ public class Intro extends javax.swing.JFrame {
      */
     public Intro() {
         initComponents();
+        loadLevelLayouts();
     }
 
     /**
@@ -172,4 +180,11 @@ public class Intro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JButton start;
     // End of variables declaration//GEN-END:variables
+
+    private void loadLevelLayouts() {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("FirstLevelLayout.txt"));
+        } catch (IOException e) {
+        }
+    }
 }
