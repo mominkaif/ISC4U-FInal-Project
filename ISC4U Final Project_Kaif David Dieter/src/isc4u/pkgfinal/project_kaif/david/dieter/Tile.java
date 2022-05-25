@@ -19,7 +19,7 @@ public class Tile {
         x = 0;
         y = 0;
         texture = null;
-    }
+    } 
     
     public Tile(boolean hitbox, int x, int y, Image texture){
         this.hitbox = hitbox;
