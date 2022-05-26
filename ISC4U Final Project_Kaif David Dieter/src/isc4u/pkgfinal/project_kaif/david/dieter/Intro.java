@@ -22,7 +22,7 @@ public class Intro extends javax.swing.JFrame {
      */
     public Intro() {
         initComponents();
-        loadLevelLayouts();
+        loadLevelLayouts("FirstLevelLayout");
     }
 
     /**
@@ -181,9 +181,16 @@ public class Intro extends javax.swing.JFrame {
     private javax.swing.JButton start;
     // End of variables declaration//GEN-END:variables
 
-    private void loadLevelLayouts() {
+    private void loadLevelLayouts(String fileName) {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("FirstLevelLayout.txt"));
+            BufferedReader br = new BufferedReader(new FileReader(fileName));
+            String currentLine = br.readLine();
+            while(currentLine != null){
+                if(currentLine.isEmpty()){
+                    continue;
+                }
+                
+            }
         } catch (IOException e) {
         }
     }
