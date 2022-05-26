@@ -1,4 +1,6 @@
 /* Tile class
+Attributes: hitbox, x, y, and texture
+hitbox: false = die
  */
 package isc4u.pkgfinal.project_kaif.david.dieter;
 
@@ -41,37 +43,58 @@ public class Tile {
     }
     /**
      * accessor for hitbox status
-     * @return 
+     * @return - hitbox status (false = die)
      */
     public boolean getHitbox(){
         return hitbox;
     }
-    
+    /**
+     * accessor for the x position
+     * @return - x value
+     */
     public int getX(){
         return x;
     }
-    
+    /**
+     * accessor for y position
+     * @return - y value
+     */
     public int getY(){
         return y;
     }
-    
+    /**
+     * accessor for the texture number
+     * @return - texture number
+     */
     public int getTexture(){
         return texture;
     }
-    
+    /**
+     * mutator for the hitbox status
+     * @param h - hitbox status: false = die
+     */
     public void setHitbox(boolean h){
         hitbox = h;
     }
-    
+    /**
+     * mutator for the x position
+     * @param n - the new x position
+     */
     public void setX(int n){
         x = n;
     }
-    
+    /**
+     * mutator for the y position
+     * @param n - the new y position
+     */
     public void setY(int n){
         y = n;
     }
-    
-    public void setTexture(Image t){
+    /**
+     * mutator for the texture number
+     * @param t - new texture number
+     */
+    public void setTexture(int t){
         texture = t;
     }
 }
