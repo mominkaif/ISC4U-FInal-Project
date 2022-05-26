@@ -4,8 +4,6 @@ hitbox: false = die
  */
 package isc4u.pkgfinal.project_kaif.david.dieter;
 
-import java.awt.Image;
-
 /**
  *
  * @author dieter
