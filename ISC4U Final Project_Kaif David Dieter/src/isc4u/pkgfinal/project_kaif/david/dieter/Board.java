@@ -23,7 +23,7 @@ public class Board {
     
     public Board(Sound soundtrack, ArrayList entityList){
         this();
-        this.soundtrack = soundtrack;
+        this.soundtrack = soundtrack; 
         this.entityList = entityList;
     }
     
