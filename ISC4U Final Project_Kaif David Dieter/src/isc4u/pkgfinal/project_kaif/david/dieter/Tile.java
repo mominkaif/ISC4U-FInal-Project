@@ -97,4 +97,29 @@ public class Tile {
     public void setTexture(int t){
         texture = t;
     }
+    /**
+     * equals method checks if two tiles are the same
+     * they are the same if all attributes are the same
+     * @param t - tile being checked
+     * @return - whether or not they are the same
+     */
+    public boolean equals(Tile t){
+        return hitbox == t.getHitbox() && x == t.getX() && y == t.getY() && texture == t.getTexture();
+    }
+    /**
+     * clone method returns an identical tile
+     * @return - an identical tile
+     */
+    public Tile clone(){
+        Tile t = new Tile(hitbox, x, y, texture);
+        return t;
+    }
+    /**
+     * toString method returns a string listing the tile's attributes
+     * @return - the string
+     */
+    public String toString(){
+        String message = "Hitbox: " + hitbox +"\nX: " + x + "\nY: " + y + "\nTexture: " + texture;
+        return message;
+    }
 }
