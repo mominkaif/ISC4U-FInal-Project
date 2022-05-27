@@ -21,8 +21,9 @@ public class Board {
         entityList = new ArrayList();
     }
     
-    public Board(Sound soundtrack, ArrayList entityList){
+    public Board(Tile[][] tM, Sound soundtrack, ArrayList entityList){
         this();
+        this.tilemap = tM;
         this.soundtrack = soundtrack; 
         this.entityList = entityList;
     }
