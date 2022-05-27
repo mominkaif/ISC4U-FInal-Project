@@ -16,20 +16,21 @@ import javax.swing.SwingUtilities;
  *
  * @author kaifm
  */
-public class DrawBoard extends JFrame{
+public class DrawBoard extends JFrame {
+
     public Tile[][] map;
-    
-    public DrawBoard(){
+
+    public DrawBoard() {
         initUI();
-        map = new Tile[10][15];
+        map = new Tile[20][30];
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {
-                map[i][j] = new Tile(false, 0, 0, 1);
+                map[i][j] = new Tile(false, i * 32, j * 32, 1);
             }
         }
-        
+
     }
-    
+
     private void initUI() {
         //set title of the JFrame
         setTitle("Level 1");
@@ -42,8 +43,7 @@ public class DrawBoard extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
     }
-    
-    
+
     public class DrawingSurface extends JPanel {
 
         /**
@@ -55,10 +55,16 @@ public class DrawBoard extends JFrame{
             //the Graphics2D class is the class that handles all the drawing
             //must be casted from older Graphics class in order to have access to some newer methods
             Graphics2D g2d = (Graphics2D) g;
-            
+
             Image dirt = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/1.png")).getImage();
+
             
-            g2d.drawImage(dirt, 0, 0,null);
+
+            for (int i = 0; i < map.length; i++) {
+                for (int j = 0; j < map[i].length; j++) {
+                    g2d.drawImage(dirt, i * 32, j * 32, null);
+                }
+            }
         }
 
         @Override
