@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -17,6 +18,11 @@ import java.util.logging.Logger;
  */
 public class Intro extends javax.swing.JFrame {
 
+    Board level1;
+    Board level2;
+    Board level3;
+    Board level4;
+    Board level5;
     /**
      * Creates new form Intro
      */
@@ -132,7 +138,8 @@ public class Intro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
-        // TODO add your handling code here:
+        DrawBoard level1 = new DrawBoard();
+        level1.setVisible(true);
     }//GEN-LAST:event_startActionPerformed
 
     /**
@@ -168,6 +175,14 @@ public class Intro extends javax.swing.JFrame {
                 new Intro().setVisible(true);
             }
         });
+        
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                //instantiate the main window
+                DrawBoard windowFrame = new DrawBoard();
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -182,6 +197,7 @@ public class Intro extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void loadLevelLayouts(String fileName) {
+        
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
             String currentLine = br.readLine();
