@@ -141,13 +141,13 @@ public class Intro extends javax.swing.JFrame {
         DrawBoard level1 = new DrawBoard("1");
         level1.setVisible(true);
         DrawBoard level2 = new DrawBoard("2");
-        level1.setVisible(true);
+        level1.setVisible(false);
         DrawBoard level3 = new DrawBoard("3");
-        level1.setVisible(true);
+        level1.setVisible(false);
         DrawBoard level4 = new DrawBoard("4");
-        level1.setVisible(true);
+        level1.setVisible(false);
         DrawBoard level5 = new DrawBoard("5");
-        level1.setVisible(true);
+        level1.setVisible(false);
     }//GEN-LAST:event_startActionPerformed
 
     /**
