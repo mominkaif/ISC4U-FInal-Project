@@ -138,7 +138,7 @@ public class Intro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
-        DrawBoard level1 = new DrawBoard();
+        DrawBoard level1 = new DrawBoard("1");
         level1.setVisible(true);
     }//GEN-LAST:event_startActionPerformed
 
@@ -180,7 +180,7 @@ public class Intro extends javax.swing.JFrame {
             @Override
             public void run() {
                 //instantiate the main window
-                DrawBoard windowFrame = new DrawBoard();
+                DrawBoard windowFrame = new DrawBoard("");
             }
         });
     }

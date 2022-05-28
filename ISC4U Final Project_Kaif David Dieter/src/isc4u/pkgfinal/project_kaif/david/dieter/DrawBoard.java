@@ -20,20 +20,20 @@ public class DrawBoard extends JFrame {
 
     public Tile[][] map;
 
-    public DrawBoard() {
-        initUI();
+    public DrawBoard(String levelNum) {
+        initUI(levelNum);
         map = new Tile[20][30];
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {
-                map[i][j] = new Tile(false, i * 32, j * 32, 1);
+                map[i][j] = new Tile(false, i * 32, j * 32, 5);
             }
         }
 
     }
 
-    private void initUI() {
+    private void initUI(String LN) {
         //set title of the JFrame
-        setTitle("Level 1");
+        setTitle("Level "+ LN);
         //add a custom JPanel to draw on
         add(new DrawingSurface());
         //set the size of the window
@@ -66,7 +66,17 @@ public class DrawBoard extends JFrame {
 
             for (int i = 0; i < map.length; i++) {
                 for (int j = 0; j < map[i].length; j++) {
-                    g2d.drawImage(dirt, i * 32, j * 32, null);
+                    if(map[i][j].getTexture() == 1){
+                        g2d.drawImage(dirt, i * 32, j * 32, null);   
+                    }else if(map[i][j].getTexture() == 2){
+                        g2d.drawImage(grass, i * 32, j * 32, null); 
+                    }else if(map[i][j].getTexture() == 3){
+                        g2d.drawImage(water, i * 32, j * 32, null); 
+                    }else if(map[i][j].getTexture() == 4){
+                        g2d.drawImage(lightStone, i * 32, j * 32, null); 
+                    }else if(map[i][j].getTexture() == 5){
+                        g2d.drawImage(darkStone, i * 32, j * 32, null); 
+                    }
                 }
             }
         }
