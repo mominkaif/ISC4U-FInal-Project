@@ -7,6 +7,11 @@ package isc4u.pkgfinal.project_kaif.david.dieter;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,22 +23,60 @@ import javax.swing.SwingUtilities;
  */
 public class DrawBoard extends JFrame {
 
-    public Tile[][] map;
+    public Tile[][] map1;
+    public Tile[][] map2;
+    public Tile[][] map3;
+    public Tile[][] map4;
+    public Tile[][] map5;
 
+//    public Board board1;
+//    public Board board2;
+//    public Board board3;
+//    public Board board4;
+//    public Board board5;
     public DrawBoard(String levelNum) {
         initUI(levelNum);
-        map = new Tile[20][30];
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[i].length; j++) {
-                map[i][j] = new Tile(false, i * 32, j * 32, 5);
+
+        map1 = new Tile[20][30];
+        int tileType = 0;
+        int LN = Integer.parseInt(levelNum);
+
+        if (LN == 1) {
+
+            try {
+                File f = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\FirstLevelLayout.txt");
+                Scanner scan = new Scanner(f);
+
+                while (scan.hasNextLine()) {
+                    while (scan.hasNextInt()) {
+                        tileType = scan.nextInt();
+                        System.out.println(tileType);
+                        for (int i = 0; i < map1.length; i++) {
+                            for (int j = 0; j < map1[i].length; j++) {
+                                map1[i][j] = new Tile(false, i * 32, j * 32, tileType);
+                            }
+                        }
+                    }
+                }
+            } catch (FileNotFoundException ex) {
+                System.out.println("ERROR");
             }
+
+        } else if (LN == 2) {
+
+        } else if (LN == 3) {
+
+        } else if (LN == 4) {
+
+        } else if (LN == 5) {
+
         }
 
     }
 
     private void initUI(String LN) {
         //set title of the JFrame
-        setTitle("Level "+ LN);
+        setTitle("Level " + LN);
         //add a custom JPanel to draw on
         add(new DrawingSurface());
         //set the size of the window
@@ -62,20 +105,18 @@ public class DrawBoard extends JFrame {
             Image lightStone = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/4.png")).getImage();
             Image darkStone = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/5.png")).getImage();
 
-            
-
-            for (int i = 0; i < map.length; i++) {
-                for (int j = 0; j < map[i].length; j++) {
-                    if(map[i][j].getTexture() == 1){
-                        g2d.drawImage(dirt, i * 32, j * 32, null);   
-                    }else if(map[i][j].getTexture() == 2){
-                        g2d.drawImage(grass, i * 32, j * 32, null); 
-                    }else if(map[i][j].getTexture() == 3){
-                        g2d.drawImage(water, i * 32, j * 32, null); 
-                    }else if(map[i][j].getTexture() == 4){
-                        g2d.drawImage(lightStone, i * 32, j * 32, null); 
-                    }else if(map[i][j].getTexture() == 5){
-                        g2d.drawImage(darkStone, i * 32, j * 32, null); 
+            for (int i = 0; i < map1.length; i++) {
+                for (int j = 0; j < map1[i].length; j++) {
+                    if (map1[i][j].getTexture() == 1) {
+                        g2d.drawImage(dirt, i * 32, j * 32, null);
+                    } else if (map1[i][j].getTexture() == 2) {
+                        g2d.drawImage(grass, i * 32, j * 32, null);
+                    } else if (map1[i][j].getTexture() == 3) {
+                        g2d.drawImage(water, i * 32, j * 32, null);
+                    } else if (map1[i][j].getTexture() == 4) {
+                        g2d.drawImage(lightStone, i * 32, j * 32, null);
+                    } else if (map1[i][j].getTexture() == 5) {
+                        g2d.drawImage(darkStone, i * 32, j * 32, null);
                     }
                 }
             }
