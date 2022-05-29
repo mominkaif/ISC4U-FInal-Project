@@ -23,12 +23,6 @@ import javax.swing.SwingUtilities;
  */
 public class DrawBoard extends JFrame {
 
-    public Tile[][] map1;
-    public Tile[][] map2;
-    public Tile[][] map3;
-    public Tile[][] map4;
-    public Tile[][] map5;
-
 //    public Board board1;
 //    public Board board2;
 //    public Board board3;
@@ -36,43 +30,6 @@ public class DrawBoard extends JFrame {
 //    public Board board5;
     public DrawBoard(String levelNum) {
         initUI(levelNum);
-
-        map1 = new Tile[30][20];
-        int tileType = 0;
-        int LN = Integer.parseInt(levelNum);
-
-        if (LN == 1) {
-
-            try {
-                File f = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\FirstLevelLayout.txt");
-                Scanner scan = new Scanner(f);
-
-                while (scan.hasNextLine()) {
-                    while (scan.hasNextInt()) {
-                        //System.out.println(tileType);
-                        for (int i = 0; i < map1.length; i++) {
-                            for (int j = 0; j < map1[i].length; j++) {
-
-                                tileType = scan.nextInt();
-//                                  System.out.println(tileType);
-                                map1[i][j] = new Tile(false, i * 32, j * 32, tileType);
-                            }
-                        }
-                    }
-                }
-            } catch (FileNotFoundException ex) {
-                System.out.println("ERROR");
-            }
-
-        } else if (LN == 2) {
-
-        } else if (LN == 3) {
-
-        } else if (LN == 4) {
-
-        } else if (LN == 5) {
-
-        }
 
     }
 

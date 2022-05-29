@@ -82,6 +82,13 @@ public class Board {
     public void setEntity(Entity e, int i){
         entityList.set(i,e);
     }
+    
+    
+    public void drawBoard(String level){
+        
+    }
+    
+    
     /**
      * equals method checks if two boards are the same
      * @param b - board being checked

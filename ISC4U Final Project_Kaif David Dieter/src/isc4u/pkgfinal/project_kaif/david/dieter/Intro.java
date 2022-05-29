@@ -5,9 +5,11 @@
 package isc4u.pkgfinal.project_kaif.david.dieter;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
@@ -23,6 +25,11 @@ public class Intro extends javax.swing.JFrame {
     Board level3;
     Board level4;
     Board level5;
+
+    public Tile[][] map = new Tile[30][20];
+
+    public Tile[][][] allLevels = new Tile[30][20][5];
+
     /**
      * Creates new form Intro
      */
@@ -138,16 +145,21 @@ public class Intro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
+
+        this.setVisible(false);
+
+        createBoardArray();
+
         DrawBoard level1 = new DrawBoard("1");
         level1.setVisible(true);
 //        DrawBoard level2 = new DrawBoard("2");
-//        level2.setVisible(false);
+//        level2.setVisible(true);
 //        DrawBoard level3 = new DrawBoard("3");
-//        level3.setVisible(false);
+//        level3.setVisible(true);
 //        DrawBoard level4 = new DrawBoard("4");
-//        level4.setVisible(false);
+//        level4.setVisible(true);
 //        DrawBoard level5 = new DrawBoard("5");
-//        level5.setVisible(false);
+//        level5.setVisible(true);
     }//GEN-LAST:event_startActionPerformed
 
     /**
@@ -183,7 +195,7 @@ public class Intro extends javax.swing.JFrame {
                 new Intro().setVisible(true);
             }
         });
-        
+
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -205,17 +217,52 @@ public class Intro extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void loadLevelLayouts(String fileName) {
-        
+
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
             String currentLine = br.readLine();
-            while(currentLine != null){
-                if(currentLine.isEmpty()){
+            while (currentLine != null) {
+                if (currentLine.isEmpty()) {
                     continue;
                 }
-                
+
             }
         } catch (IOException e) {
         }
+    }
+
+    private void createBoardArray() {
+        int tileType = 0;
+        String fileName = "";
+        File f;
+
+        for (int l = 0; l < 5; l++) {
+            fileName = "src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Layout"+(l+1)+".txt";
+            
+            try {
+                f = new File(fileName);
+                Scanner scan = new Scanner(f);
+
+                while (scan.hasNextLine()) {
+                    while (scan.hasNextInt()) {
+                        //System.out.println(tileType);
+                        for (int i = 0; i < map.length; i++) {
+                            for (int j = 0; j < map[i].length; j++) {
+
+                                tileType = scan.nextInt();
+//                                  System.out.println(tileType);
+                                map[i][j] = new Tile(false, i * 32, j * 32, tileType);
+                            }
+                        }
+                    }
+                }
+            } catch (FileNotFoundException ex) {
+                System.out.println("ERROR");
+            }
+            
+            allLevels[l] = map;
+
+        }
+
     }
 }
