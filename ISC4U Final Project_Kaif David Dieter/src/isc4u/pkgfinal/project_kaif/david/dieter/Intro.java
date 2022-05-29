@@ -28,7 +28,7 @@ public class Intro extends javax.swing.JFrame {
 
     public Tile[][] map = new Tile[30][20];
 
-    public Tile[][][] allLevels = new Tile[30][20][5];
+    public Tile[][][] allLevels = new Tile[5][30][20];
 
     /**
      * Creates new form Intro
@@ -251,26 +251,25 @@ public class Intro extends javax.swing.JFrame {
                 f = new File(fileName);
                 Scanner scan = new Scanner(f);
 
-                while (scan.hasNextLine()) {
-                    while (scan.hasNextInt()) {
-                        //System.out.println(tileType);
-
-                        for (int i = 0; i < map.length; i++) {
-                            for (int j = 0; j < map[i].length; j++) {
-
-                                tileType = scan.nextInt();
-                                //System.out.println(tileType);
-                                map[i][j] = new Tile(false, i * 32, j * 32, tileType);
-                            }
-                        }
+                for (int y = 0; y < allLevels[0].length; y++) {
+                    for (int x = 0; x < allLevels[0][0].length; x++) {
+                        tileType = scan.nextInt();
+                        allLevels[k][y][x] = new Tile(false, x * 32, y * 32, tileType);
+                        // System.out.println(tileType);
                     }
                 }
             } catch (FileNotFoundException ex) {
                 System.out.println("ERROR");
             }
-
-            allLevels[k] = map;
-
+        }
+        
+        for (int y = 0; y < 5; y++) {
+            for (int i = 0; i < allLevels[y].length; ++i) {
+                for (int j = 0; j < allLevels[y][0].length; j++) {
+                    System.out.print(allLevels[y][i][j].getTexture() + " ");
+                }
+                System.out.println("");
+            }
         }
 
     }
