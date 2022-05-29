@@ -149,8 +149,9 @@ public class Intro extends javax.swing.JFrame {
         this.setVisible(false);
 
         createBoardArray();
+        
 
-        DrawBoard level1 = new DrawBoard("1");
+        DrawBoard level1 = new DrawBoard(1, allLevels[0]);
         level1.setVisible(true);
 //        DrawBoard level2 = new DrawBoard("2");
 //        level2.setVisible(true);
@@ -200,7 +201,7 @@ public class Intro extends javax.swing.JFrame {
             @Override
             public void run() {
                 //instantiate the main window
-                DrawBoard windowFrame = new DrawBoard("0");
+                DrawBoard windowFrame = new DrawBoard(0, null);
             }
         });
     }
@@ -238,6 +239,7 @@ public class Intro extends javax.swing.JFrame {
 
         for (int l = 0; l < 5; l++) {
             fileName = "src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Layout"+(l+1)+".txt";
+            System.out.println(fileName);
             
             try {
                 f = new File(fileName);
@@ -250,7 +252,7 @@ public class Intro extends javax.swing.JFrame {
                             for (int j = 0; j < map[i].length; j++) {
 
                                 tileType = scan.nextInt();
-//                                  System.out.println(tileType);
+                                //System.out.println(tileType);
                                 map[i][j] = new Tile(false, i * 32, j * 32, tileType);
                             }
                         }
