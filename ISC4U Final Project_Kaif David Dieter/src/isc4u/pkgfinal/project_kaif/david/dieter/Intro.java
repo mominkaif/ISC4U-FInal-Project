@@ -140,14 +140,14 @@ public class Intro extends javax.swing.JFrame {
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
         DrawBoard level1 = new DrawBoard("1");
         level1.setVisible(true);
-        DrawBoard level2 = new DrawBoard("2");
-        level2.setVisible(true);
-        DrawBoard level3 = new DrawBoard("3");
-        level3.setVisible(true);
-        DrawBoard level4 = new DrawBoard("4");
-        level4.setVisible(true);
-        DrawBoard level5 = new DrawBoard("5");
-        level5.setVisible(true);
+//        DrawBoard level2 = new DrawBoard("2");
+//        level2.setVisible(false);
+//        DrawBoard level3 = new DrawBoard("3");
+//        level3.setVisible(false);
+//        DrawBoard level4 = new DrawBoard("4");
+//        level4.setVisible(false);
+//        DrawBoard level5 = new DrawBoard("5");
+//        level5.setVisible(false);
     }//GEN-LAST:event_startActionPerformed
 
     /**
@@ -188,7 +188,7 @@ public class Intro extends javax.swing.JFrame {
             @Override
             public void run() {
                 //instantiate the main window
-                DrawBoard windowFrame = new DrawBoard("");
+                DrawBoard windowFrame = new DrawBoard("0");
             }
         });
     }

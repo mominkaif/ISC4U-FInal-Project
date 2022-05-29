@@ -37,7 +37,7 @@ public class DrawBoard extends JFrame {
     public DrawBoard(String levelNum) {
         initUI(levelNum);
 
-        map1 = new Tile[20][30];
+        map1 = new Tile[30][20];
         int tileType = 0;
         int LN = Integer.parseInt(levelNum);
 
@@ -49,10 +49,12 @@ public class DrawBoard extends JFrame {
 
                 while (scan.hasNextLine()) {
                     while (scan.hasNextInt()) {
-                        tileType = scan.nextInt();
-                        System.out.println(tileType);
+                        //System.out.println(tileType);
                         for (int i = 0; i < map1.length; i++) {
                             for (int j = 0; j < map1[i].length; j++) {
+
+                                tileType = scan.nextInt();
+//                                  System.out.println(tileType);
                                 map1[i][j] = new Tile(false, i * 32, j * 32, tileType);
                             }
                         }
@@ -105,18 +107,25 @@ public class DrawBoard extends JFrame {
             Image lightStone = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/4.png")).getImage();
             Image darkStone = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/5.png")).getImage();
 
+            for (int i = 0; i < map1.length; ++i) {
+                for (int j = 0; j < map1[0].length; j++) {
+                    System.out.print(map1[i][j].getTexture() + " ");
+                }
+                System.out.println("");
+            }
+            
             for (int i = 0; i < map1.length; i++) {
                 for (int j = 0; j < map1[i].length; j++) {
                     if (map1[i][j].getTexture() == 1) {
-                        g2d.drawImage(dirt, i * 32, j * 32, null);
+                        g2d.drawImage(dirt, j * 32, i * 32, null);
                     } else if (map1[i][j].getTexture() == 2) {
-                        g2d.drawImage(grass, i * 32, j * 32, null);
+                        g2d.drawImage(grass, j * 32, i * 32, null);
                     } else if (map1[i][j].getTexture() == 3) {
-                        g2d.drawImage(water, i * 32, j * 32, null);
+                        g2d.drawImage(water, j * 32, i * 32, null);
                     } else if (map1[i][j].getTexture() == 4) {
-                        g2d.drawImage(lightStone, i * 32, j * 32, null);
+                        g2d.drawImage(lightStone, j * 32, i * 32, null);
                     } else if (map1[i][j].getTexture() == 5) {
-                        g2d.drawImage(darkStone, i * 32, j * 32, null);
+                        g2d.drawImage(darkStone, j * 32, i * 32, null);
                     }
                 }
             }
