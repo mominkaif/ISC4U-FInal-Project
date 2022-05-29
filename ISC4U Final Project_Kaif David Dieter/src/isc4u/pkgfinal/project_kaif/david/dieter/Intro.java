@@ -148,19 +148,19 @@ public class Intro extends javax.swing.JFrame {
 
         this.setVisible(false);
 
+        //createBoardArray method is called
         createBoardArray();
-        
 
         DrawBoard level1 = new DrawBoard(1, allLevels[0]);
         level1.setVisible(true);
-//        DrawBoard level2 = new DrawBoard("2");
-//        level2.setVisible(true);
-//        DrawBoard level3 = new DrawBoard("3");
-//        level3.setVisible(true);
-//        DrawBoard level4 = new DrawBoard("4");
-//        level4.setVisible(true);
-//        DrawBoard level5 = new DrawBoard("5");
-//        level5.setVisible(true);
+        DrawBoard level2 = new DrawBoard(2, allLevels[1]);
+        level2.setVisible(true);
+        DrawBoard level3 = new DrawBoard(3, allLevels[2]);
+        level3.setVisible(true);
+        DrawBoard level4 = new DrawBoard(4, allLevels[3]);
+        level4.setVisible(true);
+        DrawBoard level5 = new DrawBoard(5, allLevels[4]);
+        level5.setVisible(true);
     }//GEN-LAST:event_startActionPerformed
 
     /**
@@ -232,15 +232,21 @@ public class Intro extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * This method creates 5 2D arrays (one for each level) and places them into
+     * the allLevels array
+     */
     private void createBoardArray() {
         int tileType = 0;
         String fileName = "";
         File f;
 
+        //run five times for the five levels
         for (int l = 0; l < 5; l++) {
-            fileName = "src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Layout"+(l+1)+".txt";
-            System.out.println(fileName);
-            
+            //change file name based on the level its reading
+            fileName = "src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Layout" + (l + 1) + ".txt";
+            System.out.println(fileName); //to check if the string is creates correctly
+
             try {
                 f = new File(fileName);
                 Scanner scan = new Scanner(f);
@@ -248,6 +254,8 @@ public class Intro extends javax.swing.JFrame {
                 while (scan.hasNextLine()) {
                     while (scan.hasNextInt()) {
                         //System.out.println(tileType);
+
+
                         for (int i = 0; i < map.length; i++) {
                             for (int j = 0; j < map[i].length; j++) {
 
@@ -256,12 +264,19 @@ public class Intro extends javax.swing.JFrame {
                                 map[i][j] = new Tile(false, i * 32, j * 32, tileType);
                             }
                         }
+                        
+                        for (int i = 0; i < map.length; ++i) {
+                            for (int j = 0; j < map[0].length; j++) {
+                                System.out.print(map[i][j].getTexture() + " ");
+                            }
+                            System.out.println("");
+                        }
                     }
                 }
             } catch (FileNotFoundException ex) {
                 System.out.println("ERROR");
             }
-            
+
             allLevels[l] = map;
 
         }
