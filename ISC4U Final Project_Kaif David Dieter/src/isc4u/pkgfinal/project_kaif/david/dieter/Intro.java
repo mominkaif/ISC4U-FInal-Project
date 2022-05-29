@@ -242,9 +242,9 @@ public class Intro extends javax.swing.JFrame {
         File f;
 
         //run five times for the five levels
-        for (int l = 0; l < 5; l++) {
+        for (int k = 0; k < 5; k++) {
             //change file name based on the level its reading
-            fileName = "src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Layout" + (l + 1) + ".txt";
+            fileName = "src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Layout" + (k + 1) + ".txt";
             System.out.println(fileName); //to check if the string is creates correctly
 
             try {
@@ -255,7 +255,6 @@ public class Intro extends javax.swing.JFrame {
                     while (scan.hasNextInt()) {
                         //System.out.println(tileType);
 
-
                         for (int i = 0; i < map.length; i++) {
                             for (int j = 0; j < map[i].length; j++) {
 
@@ -264,20 +263,13 @@ public class Intro extends javax.swing.JFrame {
                                 map[i][j] = new Tile(false, i * 32, j * 32, tileType);
                             }
                         }
-                        
-                        for (int i = 0; i < map.length; ++i) {
-                            for (int j = 0; j < map[0].length; j++) {
-                                System.out.print(map[i][j].getTexture() + " ");
-                            }
-                            System.out.println("");
-                        }
                     }
                 }
             } catch (FileNotFoundException ex) {
                 System.out.println("ERROR");
             }
 
-            allLevels[l] = map;
+            allLevels[k] = map;
 
         }
 
