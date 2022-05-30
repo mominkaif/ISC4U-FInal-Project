@@ -14,7 +14,6 @@ public class Board {
     private ArrayList <Entity> entityList;
     private static final int width = 20;
     private static final int height = 30;
-    private DrawBoard board;
     
     /**
      * primary board constructor
