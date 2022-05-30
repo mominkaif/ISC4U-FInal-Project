@@ -7,6 +7,8 @@ package isc4u.pkgfinal.project_kaif.david.dieter;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -50,6 +52,7 @@ public class DrawBoard extends JFrame {
         //this is important if our application has multiple windows
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+       
     }
 
     public class DrawingSurface extends JPanel {
@@ -95,6 +98,7 @@ public class DrawBoard extends JFrame {
         public void paintComponent(Graphics g) {
             super.paintComponent(g);//does the necessary work to prepare the panel for drawing
             doDrawing(g); //invoke our custom drawing method
+            super.repaint();
         }
     }
 }
