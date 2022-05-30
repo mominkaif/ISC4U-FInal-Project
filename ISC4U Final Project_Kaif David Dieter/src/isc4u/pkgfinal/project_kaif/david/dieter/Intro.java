@@ -202,7 +202,7 @@ public class Intro extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form *
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Intro().setVisible(true);
@@ -251,7 +251,11 @@ public class Intro extends javax.swing.JFrame {
                 for (int y = 0; y < allLevels[0].length; y++) {
                     for (int x = 0; x < allLevels[0][0].length; x++) {
                         tileType = scan.nextInt();
-                        allLevels[k][y][x] = new Tile(false, x * 32, y * 32, tileType);
+                        if(tileType == 3){
+                            allLevels[k][y][x] = new Tile(false, x * 32, y * 32, tileType);
+                        }else{
+                            allLevels[k][y][x] = new Tile(true, x * 32, y * 32, tileType);
+                        }
                         // System.out.println(tileType);
                     }
                 }
