@@ -20,11 +20,11 @@ import javax.swing.SwingUtilities;
  */
 public class Intro extends javax.swing.JFrame {
 
-    Board level1;
-    Board level2;
-    Board level3;
-    Board level4;
-    Board level5;
+    public DrawBoard level1;
+    public DrawBoard level2;
+    public DrawBoard level3;
+    public DrawBoard level4;
+    public DrawBoard level5;
 
     public Tile[][] map = new Tile[30][20];
 
@@ -35,7 +35,11 @@ public class Intro extends javax.swing.JFrame {
      */
     public Intro() {
         initComponents();
-        loadLevelLayouts("FirstLevelLayout");
+        level1 = new DrawBoard(1, allLevels[0]);
+        level2 = new DrawBoard(2, allLevels[1]);
+        level3 = new DrawBoard(3, allLevels[2]);
+        level4 = new DrawBoard(4, allLevels[3]);
+        level5 = new DrawBoard(5, allLevels[4]);
     }
 
     /**
@@ -151,15 +155,10 @@ public class Intro extends javax.swing.JFrame {
         //createBoardArray method is called
         createBoardArray();
 
-        DrawBoard level1 = new DrawBoard(1, allLevels[0]);
         level1.setVisible(true);
-        DrawBoard level2 = new DrawBoard(2, allLevels[1]);
         level2.setVisible(true);
-        DrawBoard level3 = new DrawBoard(3, allLevels[2]);
         level3.setVisible(true);
-        DrawBoard level4 = new DrawBoard(4, allLevels[3]);
         level4.setVisible(true);
-        DrawBoard level5 = new DrawBoard(5, allLevels[4]);
         level5.setVisible(true);
     }//GEN-LAST:event_startActionPerformed
 
@@ -216,21 +215,6 @@ public class Intro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JButton start;
     // End of variables declaration//GEN-END:variables
-
-    private void loadLevelLayouts(String fileName) {
-
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(fileName));
-            String currentLine = br.readLine();
-            while (currentLine != null) {
-                if (currentLine.isEmpty()) {
-                    continue;
-                }
-
-            }
-        } catch (IOException e) {
-        }
-    }
 
     /**
      * This method creates 5 2D arrays (one for each level) and places them into
