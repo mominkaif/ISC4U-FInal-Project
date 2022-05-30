@@ -13,7 +13,7 @@ public class Tile {
     //Hitbox: false = die
     private boolean hitbox;
     private int x, y;
-    private int texture;
+    private int imageID;
     /**
      * primary constructor
      * no parameters
@@ -23,7 +23,7 @@ public class Tile {
         hitbox = false;
         x = 0;
         y = 0;
-        texture = 0;
+        imageID = 0;
     } 
     /**
      * Secondary constructor
@@ -37,7 +37,7 @@ public class Tile {
         this.hitbox = hitbox;
         this.x = x;
         this.y = y;
-        this.texture = texture;
+        this.imageID = texture;
     }
     /**
      * accessor for hitbox status
@@ -65,7 +65,7 @@ public class Tile {
      * @return - texture number
      */
     public int getTexture(){
-        return texture;
+        return imageID;
     }
     /**
      * mutator for the hitbox status
@@ -93,7 +93,7 @@ public class Tile {
      * @param t - new texture number
      */
     public void setTexture(int t){
-        texture = t;
+        imageID = t;
     }
     /**
      * equals method checks if two tiles are the same
@@ -102,14 +102,14 @@ public class Tile {
      * @return - whether or not they are the same
      */
     public boolean equals(Tile t){
-        return hitbox == t.getHitbox() && x == t.getX() && y == t.getY() && texture == t.getTexture();
+        return hitbox == t.getHitbox() && x == t.getX() && y == t.getY() && imageID == t.getTexture();
     }
     /**
      * clone method returns an identical tile
      * @return - an identical tile
      */
     public Tile clone(){
-        Tile t = new Tile(hitbox, x, y, texture);
+        Tile t = new Tile(hitbox, x, y, imageID);
         return t;
     }
     /**
@@ -117,7 +117,7 @@ public class Tile {
      * @return - the string
      */
     public String toString(){
-        String message = "Hitbox: " + hitbox +"\nX: " + x + "\nY: " + y + "\nTexture: " + texture;
+        String message = "Hitbox: " + hitbox +"\nX: " + x + "\nY: " + y + "\nTexture: " + imageID;
         return message;
     }
 }
