@@ -48,12 +48,6 @@ public class Intro extends javax.swing.JFrame {
         level3 = new DrawBoard(3, allLevels[2]);
         level4 = new DrawBoard(4, allLevels[3]);
         level5 = new DrawBoard(5, allLevels[4]);
-        
-        board1 = new Board(allLevels[0], null, null);
-        board2 = new Board(allLevels[1], null, null);
-        board3 = new Board(allLevels[2], null, null);
-        board4 = new Board(allLevels[3], null, null);
-        board5 = new Board(allLevels[4], null, null);
     }
 
     /**
@@ -165,9 +159,7 @@ public class Intro extends javax.swing.JFrame {
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
 
         this.setVisible(false);
-
         
-
         level1.setVisible(true);
         level2.setVisible(true);
         level3.setVisible(true);
