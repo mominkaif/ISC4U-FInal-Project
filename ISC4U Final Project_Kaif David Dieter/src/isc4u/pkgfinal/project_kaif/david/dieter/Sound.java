@@ -43,10 +43,14 @@ public class Sound {
     
     public void play(){
         try{
-            AudioInputStream ais = AudioSystem.getAudioInputStream(file);
-            Clip clip = AudioSystem.getClip();
-            clip.open(ais);
-            clip.start();
+            if (file.exists()) {
+                AudioInputStream ais = AudioSystem.getAudioInputStream(file);
+                Clip clip = AudioSystem.getClip();
+                clip.open(ais);
+                System.out.println("playing clip");
+                clip.start();
+            }
+            
         }catch(Exception e){
             
         }
