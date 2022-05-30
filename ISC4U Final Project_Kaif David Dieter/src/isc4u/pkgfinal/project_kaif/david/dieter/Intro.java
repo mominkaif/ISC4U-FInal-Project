@@ -25,6 +25,12 @@ public class Intro extends javax.swing.JFrame {
     public DrawBoard level3;
     public DrawBoard level4;
     public DrawBoard level5;
+    
+    public Board board1;
+    public Board board2;
+    public Board board3;
+    public Board board4;
+    public Board board5;
 
     public Tile[][] map = new Tile[30][20];
 
@@ -34,12 +40,20 @@ public class Intro extends javax.swing.JFrame {
      * Creates new form Intro
      */
     public Intro() {
+        //createBoardArray method is called
+        createBoardArray();
         initComponents();
         level1 = new DrawBoard(1, allLevels[0]);
         level2 = new DrawBoard(2, allLevels[1]);
         level3 = new DrawBoard(3, allLevels[2]);
         level4 = new DrawBoard(4, allLevels[3]);
         level5 = new DrawBoard(5, allLevels[4]);
+        
+        board1 = new Board(allLevels[0], null, null);
+        board2 = new Board(allLevels[1], null, null);
+        board3 = new Board(allLevels[2], null, null);
+        board4 = new Board(allLevels[3], null, null);
+        board5 = new Board(allLevels[4], null, null);
     }
 
     /**
@@ -152,8 +166,7 @@ public class Intro extends javax.swing.JFrame {
 
         this.setVisible(false);
 
-        //createBoardArray method is called
-        createBoardArray();
+        
 
         level1.setVisible(true);
         level2.setVisible(true);

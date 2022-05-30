@@ -24,12 +24,14 @@ import javax.swing.SwingUtilities;
 public class DrawBoard extends JFrame {
 
     public Tile[][] map = new Tile[30][20];
+    
+    public DrawBoard level1;
+    public DrawBoard level2;
+    public DrawBoard level3;
+    public DrawBoard level4;
+    public DrawBoard level5;
 
-//    public Board board1;
-//    public Board board2;
-//    public Board board3;
-//    public Board board4;
-//    public Board board5;
+
     public DrawBoard(int l, Tile[][] t) {
         map = t;
 
