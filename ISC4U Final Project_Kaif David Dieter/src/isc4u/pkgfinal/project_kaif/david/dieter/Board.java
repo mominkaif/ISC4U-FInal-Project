@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Board {
     private Tile[][] tilemap;
     private Sound soundtrack;
-    private ArrayList <entity> entityList;
+    private ArrayList <Entity> entityList;
     private static final int width = 20;
     private static final int height = 30;
     /**
@@ -20,7 +20,7 @@ public class Board {
      */
     public Board(){
         tilemap = new Tile[width][height];
-        sountrack = null;
+        soundtrack = null;
         entityList = new ArrayList();
     }
     /**
@@ -95,7 +95,7 @@ public class Board {
      * @return - whether or not they are the same
      */
     public boolean equals(Board b){
-        return b.getTile().equals(tilemap) && b.getSoundtrack().equals(soundtrack) && b.getEntity().equals(entityList);
+        return b.getTile().equals(tilemap) && b.getSoundtrack().equals(soundtrack) && b.getEntityList().equals(entityList);
     }
     /**
      * clone method returns a cloned board
