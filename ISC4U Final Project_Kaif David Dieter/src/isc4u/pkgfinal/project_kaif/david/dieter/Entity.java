@@ -9,11 +9,11 @@ package isc4u.pkgfinal.project_kaif.david.dieter;
  * @author daxu2195
  */
 public abstract class Entity {
-    private int imageID;
-    private int x;
-    private int y;
-    private int xSpeed;
-    private int ySpeed;
+    protected int imageID;
+    protected int x;
+    protected int y;
+    protected int xSpeed;
+    protected int ySpeed;
     
     public Entity(){
         imageID = 0;
