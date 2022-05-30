@@ -34,13 +34,13 @@ public class Player extends Entity{
         return MOVE_DISTANCE;
     }
     
-    @Override
-    public void move() {
+   // @Override
+    /**public void move() {
         switch (keyPressed){
             case UP
         }
     }
-
+*/
     @Override
     /**
      * Compares all attributes (moveDistance, imageID, x, y, xSpeed, ySpeed)
@@ -69,6 +69,11 @@ public class Player extends Entity{
         return "Move Distance: " + MOVE_DISTANCE + "\nImage ID: " + imageID + 
                "\nX Position: " + x + "\nY Position: " + y + "\nX Speed: " + 
                 xSpeed + "\nY Speed: " + ySpeed;
+    }
+
+    @Override
+    public void move() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
