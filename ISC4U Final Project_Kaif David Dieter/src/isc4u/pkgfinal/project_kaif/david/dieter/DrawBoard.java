@@ -7,6 +7,8 @@ package isc4u.pkgfinal.project_kaif.david.dieter;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
@@ -55,8 +57,22 @@ public class DrawBoard extends JFrame {
        
     }
 
-    public class DrawingSurface extends JPanel {
+    public class DrawingSurface extends JPanel implements ActionListener{
+        private Player player;
+        private final int DELAY = 10;
+        
+        public DrawingSurface(){
+            initDrawingSurface();
+        }
+        private void initDrawingSurface() {
+            addKeyListener(new TAdapter());
+            setFocusable(true);
+            
+            player = new Player();
+            timer = new Timer(DELAY, this);
+            timer.start();
 
+        }
         /**
          * Does the actual drawing
          *
@@ -98,7 +114,17 @@ public class DrawBoard extends JFrame {
         public void paintComponent(Graphics g) {
             super.paintComponent(g);//does the necessary work to prepare the panel for drawing
             doDrawing(g); //invoke our custom drawing method
-            super.repaint();
         }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            step();
+        }
+
+        private void step() {
+            player.move();
+        }
+
+        
     }
 }
