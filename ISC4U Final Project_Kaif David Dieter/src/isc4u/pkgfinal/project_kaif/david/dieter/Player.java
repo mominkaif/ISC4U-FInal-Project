@@ -2,12 +2,13 @@
  */
 package isc4u.pkgfinal.project_kaif.david.dieter;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author dieter
  */
 public class Player extends Entity{
-    static final int MOVE_DISTANCE = 5;
     /**
      * Primary Player Constructor, chain with super to initialize values
      */
@@ -30,9 +31,6 @@ public class Player extends Entity{
      * Accessor for moveDistance of player
      * @return - moveDistance
      */
-    public int getMoveDistance(){
-        return MOVE_DISTANCE;
-    }
     
    // @Override
     /**public void move() {
@@ -66,14 +64,60 @@ public class Player extends Entity{
 
     @Override
     public String toString() {
-        return "Move Distance: " + MOVE_DISTANCE + "\nImage ID: " + imageID + 
+        return "Image ID: " + imageID + 
                "\nX Position: " + x + "\nY Position: " + y + "\nX Speed: " + 
                 xSpeed + "\nY Speed: " + ySpeed;
     }
 
-    @Override
+   
     public void move() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        x += xSpeed;
+        y += ySpeed;
+    }
+    
+    /**
+     *
+     * @param e
+     */
+    public void keyPressed(KeyEvent e){
+        int key = e.getKeyCode();
+        switch(key){
+            case KeyEvent.VK_LEFT -> xSpeed = -32;
+            
+            case KeyEvent.VK_RIGHT -> xSpeed = +32;
+            
+            case KeyEvent.VK_DOWN -> ySpeed = +32;
+            
+            case KeyEvent.VK_UP -> xSpeed = -32;
+            
+            case KeyEvent.VK_A -> xSpeed = -32;
+            
+            case KeyEvent.VK_D -> xSpeed = +32;
+            
+            case KeyEvent.VK_S -> ySpeed = +32;
+            
+            case KeyEvent.VK_W -> xSpeed = -32;
+        }
+    }
+    public void keyReleased(KeyEvent e){
+        int key = e.getKeyCode();
+        switch(key){
+            case KeyEvent.VK_LEFT -> xSpeed = 0;
+            
+            case KeyEvent.VK_RIGHT -> xSpeed = 0;
+            
+            case KeyEvent.VK_DOWN -> ySpeed = 0;
+            
+            case KeyEvent.VK_UP -> xSpeed = 0;
+            
+            case KeyEvent.VK_A -> xSpeed = 0;
+            
+            case KeyEvent.VK_D -> xSpeed = 0;
+            
+            case KeyEvent.VK_S -> ySpeed = 0;
+            
+            case KeyEvent.VK_W -> xSpeed = 0;
+        }
     }
     
 }
