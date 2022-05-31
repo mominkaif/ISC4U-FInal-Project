@@ -25,7 +25,7 @@ public class Intro extends javax.swing.JFrame {
     public DrawBoard level3;
     public DrawBoard level4;
     public DrawBoard level5;
-    
+
     public Board board1;
     public Board board2;
     public Board board3;
@@ -48,6 +48,10 @@ public class Intro extends javax.swing.JFrame {
         level3 = new DrawBoard(3, allLevels[2]);
         level4 = new DrawBoard(4, allLevels[3]);
         level5 = new DrawBoard(5, allLevels[4]);
+
+        File s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\menu.wav");
+        Sound sound = new Sound(s, false);
+        sound.play();
     }
 
     /**
@@ -159,7 +163,7 @@ public class Intro extends javax.swing.JFrame {
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
 
         this.setVisible(false);
-        
+
         level1.setVisible(true);
         level2.setVisible(true);
         level3.setVisible(true);
@@ -197,7 +201,7 @@ public class Intro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Intro().setVisible(true);                
+                new Intro().setVisible(true);
             }
         });
 
@@ -243,9 +247,9 @@ public class Intro extends javax.swing.JFrame {
                 for (int y = 0; y < allLevels[0].length; y++) {
                     for (int x = 0; x < allLevels[0][0].length; x++) {
                         tileType = scan.nextInt();
-                        if(tileType == 3){
+                        if (tileType == 3) {
                             allLevels[k][y][x] = new Tile(false, x * 32, y * 32, tileType);
-                        }else{
+                        } else {
                             allLevels[k][y][x] = new Tile(true, x * 32, y * 32, tileType);
                         }
                         // System.out.println(tileType);
@@ -255,7 +259,7 @@ public class Intro extends javax.swing.JFrame {
                 System.out.println("ERROR");
             }
         }
-        
+
         for (int y = 0; y < 5; y++) {
             for (int i = 0; i < allLevels[y].length; ++i) {
                 for (int j = 0; j < allLevels[y][0].length; j++) {
