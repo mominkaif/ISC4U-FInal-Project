@@ -1,15 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/* abstract entity
  */
 package isc4u.pkgfinal.project_kaif.david.dieter;
+
+import java.awt.Image;
 
 /**
  *
  * @author daxu2195
  */
 public abstract class Entity {
-    protected int imageID;
+    protected Image image;
     protected int x;
     protected int y;
     protected int xSpeed;
@@ -19,7 +19,7 @@ public abstract class Entity {
      * no parameters
      */
     public Entity(){
-        imageID = 0;
+        image = null;
         x = 0;
         y = 0;
         xSpeed = 0;
@@ -34,9 +34,9 @@ public abstract class Entity {
      * @param xSpeed - xspeed
      * @param ySpeed - yspeed
      */
-    public Entity(int imageID, int x, int y, int xSpeed, int ySpeed){
+    public Entity(Image image, int x, int y, int xSpeed, int ySpeed){
         this();
-        this.imageID = imageID;
+        this.image = image;
         this.x = x;
         this.y = y;
         this.xSpeed = xSpeed;
@@ -46,8 +46,8 @@ public abstract class Entity {
      * accessor for the image id number
      * @return - image id number
      */
-    public int getImageID(){
-        return imageID;
+    public Image getImage(){
+        return image;
     }
     /**
      * accessor for the x position
@@ -81,8 +81,8 @@ public abstract class Entity {
      * mutator for the image id
      * @param other - new image id
      */
-    public void setImageID(int other){
-        imageID = other;
+    public void setImage(Image other){
+        image = other;
     }
     /**
      * mutator for the x position
