@@ -197,7 +197,7 @@ public class Intro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Intro().setVisible(true);
+                new Intro().setVisible(true);                
             }
         });
 
