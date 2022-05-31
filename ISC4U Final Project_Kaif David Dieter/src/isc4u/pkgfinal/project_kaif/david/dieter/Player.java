@@ -77,7 +77,7 @@ public class Player extends Entity{
             
             case KeyEvent.VK_DOWN -> ySpeed = +32;
             
-            case KeyEvent.VK_UP -> xSpeed = -32;
+            case KeyEvent.VK_UP -> ySpeed = -32;
             
             case KeyEvent.VK_A -> xSpeed = -32;
             
