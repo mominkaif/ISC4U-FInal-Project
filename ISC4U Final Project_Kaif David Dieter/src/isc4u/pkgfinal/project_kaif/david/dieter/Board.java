@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class Board {
     private Tile[][] tilemap;
     private Sound soundtrack;
+    private DrawBoard board;
     private ArrayList <Entity> entityList;
     private static final int width = 20;
     private static final int height = 30;
@@ -85,8 +86,9 @@ public class Board {
     }
     
     
-    public void drawBoard(){
-        
+    public void drawBoard(Tile[][] t){
+        board = new DrawBoard(1, t);
+        board.setVisible(true);
     }
     
     
