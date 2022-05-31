@@ -86,9 +86,13 @@ public class Board {
     }
     
     
-    public void drawBoard(Tile[][] t){
-        board = new DrawBoard(1, t);
+    public void drawBoard(int level){
+        board = new DrawBoard(level, tilemap);
         board.setVisible(true);
+    }
+    
+    public void playSound(){
+        soundtrack.play();
     }
     
     

@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,11 +21,7 @@ import javax.swing.SwingUtilities;
  */
 public class Intro extends javax.swing.JFrame {
 
-    public DrawBoard level1;
-    public DrawBoard level2;
-    public DrawBoard level3;
-    public DrawBoard level4;
-    public DrawBoard level5;
+    public boolean play = true;
 
     public Board board1;
     public Board board2;
@@ -43,15 +40,10 @@ public class Intro extends javax.swing.JFrame {
         //createBoardArray method is called
         createBoardArray();
         initComponents();
-        level1 = new DrawBoard(1, allLevels[0]);
-        level2 = new DrawBoard(2, allLevels[1]);
-        level3 = new DrawBoard(3, allLevels[2]);
-        level4 = new DrawBoard(4, allLevels[3]);
-        level5 = new DrawBoard(5, allLevels[4]);
 
-        File s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\menu.wav");
-        Sound sound = new Sound(s, false);
-        sound.play();
+//        File s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\menu.wav");
+//        Sound sound = new Sound(s, false);
+//        sound.play();
     }
 
     /**
@@ -164,11 +156,16 @@ public class Intro extends javax.swing.JFrame {
 
         this.setVisible(false);
 
-        level1.setVisible(true);
-        level2.setVisible(true);
-        level3.setVisible(true);
-        level4.setVisible(true);
-        level5.setVisible(true);
+        File s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\beach-trap-beat.wav");
+        Sound sound1 = new Sound(s, false);
+
+        board1 = new Board(allLevels[0], sound1, null);
+        board2 = new Board(allLevels[1], null, null);
+        board3 = new Board(allLevels[2], null, null);
+        board4 = new Board(allLevels[3], null, null);
+        board5 = new Board(allLevels[4], null, null);
+
+        playGame();
     }//GEN-LAST:event_startActionPerformed
 
     /**
@@ -270,4 +267,33 @@ public class Intro extends javax.swing.JFrame {
         }
 
     }
+
+    private void playGame() {
+        int currentLevel = 5;
+        switch (currentLevel) {
+            case 1:
+                board1.drawBoard(1);
+                board1.playSound();
+                break;
+            case 2:
+                board2.drawBoard(2);
+                board2.playSound();
+                break;
+            case 3:
+                board3.drawBoard(3);
+                board3.playSound();
+                break;
+            case 4:
+                board4.drawBoard(4);
+                board4.playSound();
+                break;
+            case 5:
+                board5.drawBoard(5);
+                board5.playSound();
+                break;
+            default:
+                break;
+        }
+    }
+
 }

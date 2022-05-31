@@ -47,9 +47,7 @@ public class DrawBoard extends JFrame {
         loadImage();
         initUI(l);
         //testing sound
-            File s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\beach-trap-beat.wav");
-            Sound sound = new Sound(s, false);
-            sound.play();
+            
 
     }
 
