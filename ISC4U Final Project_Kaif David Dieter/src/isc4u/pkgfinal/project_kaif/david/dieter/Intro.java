@@ -28,6 +28,9 @@ public class Intro extends javax.swing.JFrame {
     public Board board3;
     public Board board4;
     public Board board5;
+    
+    public File s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\menu.wav");
+    public Sound menuSound = new Sound(s, false);
 
     public Tile[][] map = new Tile[30][20];
 
@@ -40,6 +43,9 @@ public class Intro extends javax.swing.JFrame {
         //createBoardArray method is called
         createBoardArray();
         initComponents();
+        
+        
+        menuSound.play();
 
 //        File s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\menu.wav");
 //        Sound sound = new Sound(s, false);
@@ -153,7 +159,8 @@ public class Intro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
-
+        
+        menuSound.stop();
         this.setVisible(false);
 
         File s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\beach-trap-beat.wav");
@@ -269,7 +276,7 @@ public class Intro extends javax.swing.JFrame {
     }
 
     private void playGame() {
-        int currentLevel = 5;
+        int currentLevel = 1;
         switch (currentLevel) {
             case 1:
                 board1.drawBoard(1);
