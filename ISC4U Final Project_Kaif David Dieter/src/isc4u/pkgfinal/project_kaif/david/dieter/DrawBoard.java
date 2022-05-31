@@ -7,8 +7,11 @@ package isc4u.pkgfinal.project_kaif.david.dieter;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
@@ -20,12 +23,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 /**
  *
  * @author kaifm
  */
 public class DrawBoard extends JFrame {
+    
+    private Image dirt, grass, water, lightStone, darkStone, sprite;
 
     public Tile[][] map = new Tile[30][20];
     
@@ -38,7 +44,7 @@ public class DrawBoard extends JFrame {
 
     public DrawBoard(int l, Tile[][] t) {
         map = t;
-
+        loadImage();
         initUI(l);
 
     }
@@ -50,6 +56,7 @@ public class DrawBoard extends JFrame {
         add(new DrawingSurface());
         //set the size of the window
         setSize(640, 960);
+        setResizable(false);
         //tell the JFrame what to do when closed
         //this is important if our application has multiple windows
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,8 +64,20 @@ public class DrawBoard extends JFrame {
        
     }
 
+    private void loadImage() {
+        //load tile images
+        dirt = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/1.png")).getImage();
+        grass = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/2.png")).getImage();
+        water = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/3.png")).getImage();
+        lightStone = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/4.png")).getImage();
+        darkStone = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/5.png")).getImage();
+        //load sprite object image
+        sprite = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/Sprite.png")).getImage();
+    }
+
     public class DrawingSurface extends JPanel implements ActionListener{
         private Player player;
+        private Timer timer;
         private final int DELAY = 10;
         
         public DrawingSurface(){
@@ -69,6 +88,7 @@ public class DrawBoard extends JFrame {
             setFocusable(true);
             
             player = new Player();
+            
             timer = new Timer(DELAY, this);
             timer.start();
 
@@ -82,13 +102,14 @@ public class DrawBoard extends JFrame {
             //the Graphics2D class is the class that handles all the drawing
             //must be casted from older Graphics class in order to have access to some newer methods
             Graphics2D g2d = (Graphics2D) g;
+            
+            RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
+                                RenderingHints.VALUE_ANTIALIAS_ON);
 
-            Image dirt = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/1.png")).getImage();
-            Image grass = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/2.png")).getImage();
-            Image water = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/3.png")).getImage();
-            Image lightStone = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/4.png")).getImage();
-            Image darkStone = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/5.png")).getImage();
+            rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 
+            g2d.setRenderingHints(rh)
+                    ;
             for (int i = 0; i < map.length; i++) {
                 for (int j = 0; j < map[i].length; j++) {
                     if (map[i][j].getTexture() == 1) {
@@ -104,6 +125,8 @@ public class DrawBoard extends JFrame {
                     }
                 }
             }
+            g2d.drawImage(sprite, player.getXPos(), player.getYPos(), this);
+            
         }
 
         @Override
@@ -114,6 +137,7 @@ public class DrawBoard extends JFrame {
         public void paintComponent(Graphics g) {
             super.paintComponent(g);//does the necessary work to prepare the panel for drawing
             doDrawing(g); //invoke our custom drawing method
+            Toolkit.getDefaultToolkit().sync();
         }
 
         @Override
@@ -123,6 +147,18 @@ public class DrawBoard extends JFrame {
 
         private void step() {
             player.move();
+            repaint();
+        }
+        
+        private class TAdapter extends KeyAdapter{
+            
+            public void keyReleased(KeyEvent e){
+                player.keyReleased(e);
+            }
+            
+            public void keyPressed(KeyEvent e){
+                player.keyPressed(e);
+            }
         }
 
         
