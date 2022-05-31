@@ -27,18 +27,7 @@ public class Player extends Entity{
     public Player (int imageID, int x, int y, int xSpeed, int ySpeed){
         super(imageID, x, y, xSpeed, ySpeed);
     }
-    /**
-     * Accessor for moveDistance of player
-     * @return - moveDistance
-     */
-    
-   // @Override
-    /**public void move() {
-        switch (keyPressed){
-            case UP
-        }
-    }
-*/
+
     @Override
     /**
      * Compares all attributes (moveDistance, imageID, x, y, xSpeed, ySpeed)
