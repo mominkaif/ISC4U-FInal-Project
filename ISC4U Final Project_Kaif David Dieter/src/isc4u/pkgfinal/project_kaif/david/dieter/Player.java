@@ -2,6 +2,7 @@
  */
 package isc4u.pkgfinal.project_kaif.david.dieter;
 
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 
 /**
@@ -18,14 +19,14 @@ public class Player extends Entity{
     /**
      * 
      * @param moveDistance
-     * @param imageID
+     * @param image
      * @param x
      * @param y
      * @param xSpeed
      * @param ySpeed 
      */
-    public Player (int imageID, int x, int y, int xSpeed, int ySpeed){
-        super(imageID, x, y, xSpeed, ySpeed);
+    public Player (Image image, int x, int y, int xSpeed, int ySpeed){
+        super(image, x, y, xSpeed, ySpeed);
     }
 
     @Override
@@ -36,7 +37,7 @@ public class Player extends Entity{
      * return - true or false 
      */
     public boolean equals(Entity other) {
-        return imageID == ((Player)other).getImageID() || x == ((Player)other).getXPos() ||
+        return x == ((Player)other).getXPos() ||
                 y == ((Player)other).getYPos() || xSpeed == ((Player)other).getXSpeed()
                 || ySpeed == ((Player)other).getYSpeed();
     }
@@ -47,14 +48,13 @@ public class Player extends Entity{
      */
     public Entity clone() {
         Entity p2;
-        p2 = new Player(imageID, x, y, xSpeed, ySpeed);
+        p2 = new Player(image, x, y, xSpeed, ySpeed);
         return p2;
     }
 
     @Override
     public String toString() {
-        return "Image ID: " + imageID + 
-               "\nX Position: " + x + "\nY Position: " + y + "\nX Speed: " + 
+        return "\nX Position: " + x + "\nY Position: " + y + "\nX Speed: " + 
                 xSpeed + "\nY Speed: " + ySpeed;
     }
 
