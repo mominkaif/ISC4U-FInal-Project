@@ -46,6 +46,10 @@ public class DrawBoard extends JFrame {
         map = t;
         loadImage();
         initUI(l);
+        //testing sound
+            File s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\beach-trap-beat.wav");
+            Sound sound = new Sound(s, false);
+            sound.play();
 
     }
 
@@ -99,10 +103,7 @@ public class DrawBoard extends JFrame {
          * @param g - the Graphics object to draw with
          */
         private void doDrawing(Graphics g) {
-            //testing sound
-            File s = new File("/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/beach-trap-beat.wav");
-            Sound sound = new Sound(s, false);
-            sound.play();
+            
             
             
             //the Graphics2D class is the class that handles all the drawing
