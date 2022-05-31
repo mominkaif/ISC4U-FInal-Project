@@ -12,51 +12,52 @@ import javax.sound.sampled.Clip;
  * @author Dieter
  */
 public class Sound {
+
     private File file;
     private boolean loop;
+    private Clip clip;
     
-    public Sound(){
+    public Sound() {
         file = null;
         loop = false;
     }
     
-    public Sound(File file, boolean loop){
+    public Sound(File file, boolean loop) {
         this.file = file;
         this.loop = loop;
     }
     
-    public File getFile(){
+    public File getFile() {
         return file;
     }
     
-    public boolean getLoop(){
+    public boolean getLoop() {
         return loop;
     }
     
-    public void setFile(File f){
+    public void setFile(File f) {
         file = f;
     }
     
-    public void setLoop(boolean l){
+    public void setLoop(boolean l) {
         loop = l;
     }
     
-    public void play(){
-        try{
-            if (file.exists()) {
-                AudioInputStream ais = AudioSystem.getAudioInputStream(file);
-                Clip clip = AudioSystem.getClip();
-                clip.open(ais);
-                System.out.println("playing clip");
-                clip.start();
+    public void play() {
+        try {
+            AudioInputStream ais = AudioSystem.getAudioInputStream(file);
+            clip = AudioSystem.getClip();
+            clip.open(ais);
+            clip.start();
+            if (loop) {
+                clip.loop(clip.LOOP_CONTINUOUSLY);
             }
-            
-        }catch(Exception e){
+        } catch (Exception e) {
             
         }
     }
     
-    public void stop(){
-        
+    public void stop() {
+        clip.stop();
     }
 }
