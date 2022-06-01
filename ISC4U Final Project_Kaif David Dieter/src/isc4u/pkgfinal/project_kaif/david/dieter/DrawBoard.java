@@ -94,6 +94,8 @@ public class DrawBoard extends JFrame {
         private final int Y_INITIAL = DS_HEIGHT - 50;
         
         private Thread animator;        
+        
+        private boolean moving = false;
        
         public DrawingSurface(){
             initDrawingSurface();
