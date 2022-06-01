@@ -85,7 +85,7 @@ public class Player extends Entity{
             
             case KeyEvent.VK_S -> ySpeed = +32;
             
-            case KeyEvent.VK_W -> xSpeed = -32;
+            case KeyEvent.VK_W -> ySpeed = -32;
         }
     }
     public void keyReleased(KeyEvent e){
@@ -105,7 +105,7 @@ public class Player extends Entity{
             
             case KeyEvent.VK_S -> ySpeed = 0;
             
-            case KeyEvent.VK_W -> xSpeed = 0;
+            case KeyEvent.VK_W -> ySpeed = 0;
         }
     }
     
