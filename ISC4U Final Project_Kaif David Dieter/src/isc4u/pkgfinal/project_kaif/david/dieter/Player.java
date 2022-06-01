@@ -60,14 +60,31 @@ public class Player extends Entity{
 
    
     public void move() {
-        //if(x < 0 + 20 || x > 640 - 20){
-           // xSpeed = 0;
-       // } else if (y < 0 + 20 || y > 960 - 20){
-        //    ySpeed = 0;
-        //} else {
+        if(x>=0){
             x+=xSpeed;
+        }else{
+            x = 0;
+        }
+        
+        if(x<=592){
+            x+=xSpeed;
+        }else{
+            x = 592;
+        }
+        
+        if(y>=0){
             y+=ySpeed;
-       //s }
+        }else{
+            y = 0;
+        }
+        
+        if(y<=894){
+            y+=ySpeed;
+        }else{
+            y = 894;
+        }
+            
+            
         
     }
     

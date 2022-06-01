@@ -151,6 +151,7 @@ public class DrawBoard extends JFrame {
         }
 
         private void step() {
+            
             player.move();
             repaint();
         }
