@@ -45,7 +45,7 @@ public class Intro extends javax.swing.JFrame {
         
         createBoardArray();
         initComponents();
-        background.setIcon(new ImageIcon("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\introBack.png"));
+        background.setIcon(new ImageIcon("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Tiles\\introBack.png"));
         
         menuSound.play();
 
