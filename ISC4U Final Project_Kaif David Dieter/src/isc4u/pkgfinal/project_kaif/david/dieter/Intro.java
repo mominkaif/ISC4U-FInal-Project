@@ -108,7 +108,7 @@ public class Intro extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(325, 325, 325)
                         .addComponent(jLabel1)))
-                .addContainerGap(329, Short.MAX_VALUE))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,7 +123,7 @@ public class Intro extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(162, 162, 162)
                 .addComponent(start)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(575, Short.MAX_VALUE))
         );
 
         pack();
