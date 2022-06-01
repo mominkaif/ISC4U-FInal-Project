@@ -86,7 +86,7 @@ public class Board {
     }
     
     
-    public void drawBoard(int level){
+    public void doDrawing(int level){
         board = new DrawBoard(level, tilemap);
         board.setVisible(true);
     }

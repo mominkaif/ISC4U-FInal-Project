@@ -279,23 +279,23 @@ public class Intro extends javax.swing.JFrame {
         int currentLevel = 1;
         switch (currentLevel) {
             case 1:
-                board1.drawBoard(1);
+                board1.doDrawing(1);
                 board1.playSound();
                 break;
             case 2:
-                board2.drawBoard(2);
+                board2.doDrawing(2);
                 board2.playSound();
                 break;
             case 3:
-                board3.drawBoard(3);
+                board3.doDrawing(3);
                 board3.playSound();
                 break;
             case 4:
-                board4.drawBoard(4);
+                board4.doDrawing(4);
                 board4.playSound();
                 break;
             case 5:
-                board5.drawBoard(5);
+                board5.doDrawing(5);
                 board5.playSound();
                 break;
             default:
