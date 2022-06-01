@@ -22,7 +22,7 @@ public class Enemy extends Entity{
         
     }
     
-    public boolean equals(){
+    public boolean equals(Entity e){
         return false;
     }
     
