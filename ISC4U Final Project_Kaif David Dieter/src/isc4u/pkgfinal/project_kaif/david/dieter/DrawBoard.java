@@ -96,6 +96,8 @@ public class DrawBoard extends JFrame {
         private Thread animator;        
         
         private boolean moving = false;
+        
+        private int pixelCounter = 0;
        
         public DrawingSurface(){
             initDrawingSurface();
@@ -175,6 +177,7 @@ public class DrawBoard extends JFrame {
 
         private void step() {
             player.move();
+            }
         }
 
         @Override
