@@ -66,10 +66,10 @@ public class Player extends Entity{
             x = 0;
         }
         
-        if(x<=592){
+        if(x<=608){
             x+=xSpeed;
         }else{
-            x = 592;
+            x = 608;
         }
         
         if(y>=0){
@@ -78,10 +78,10 @@ public class Player extends Entity{
             y = 0;
         }
         
-        if(y<=894){
+        if(y<=928){
             y+=ySpeed;
         }else{
-            y = 894;
+            y = 928;
         }
             
             

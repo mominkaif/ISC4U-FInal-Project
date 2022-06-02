@@ -227,7 +227,7 @@ public class Intro extends javax.swing.JFrame {
     }
 
     private void playGame() {
-        int currentLevel = 1;
+        int currentLevel = 5;
         switch (currentLevel) {
             case 1:
                 board1.doDrawing(1);
