@@ -66,10 +66,10 @@ public class Player extends Entity{
             x = 0;
         }
         
-        if(x<=608){
+        if(x<=19){
             x+=xSpeed;
         }else{
-            x = 608;
+            x = 19;
         }
         
         if(y>=0){
@@ -78,10 +78,10 @@ public class Player extends Entity{
             y = 0;
         }
         
-        if(y<=928){
+        if(y<=29){
             y+=ySpeed;
         }else{
-            y = 928;
+            y = 29;
         }
             
             
@@ -95,21 +95,21 @@ public class Player extends Entity{
     public void keyPressed(KeyEvent e){
         int key = e.getKeyCode();
         switch(key){
-            case KeyEvent.VK_LEFT -> xSpeed = -32;
+            case KeyEvent.VK_LEFT -> xSpeed = -1;
             
-            case KeyEvent.VK_RIGHT -> xSpeed = +32;
+            case KeyEvent.VK_RIGHT -> xSpeed = +1;
             
-            case KeyEvent.VK_DOWN -> ySpeed = +32;
+            case KeyEvent.VK_DOWN -> ySpeed = +1;
             
-            case KeyEvent.VK_UP -> ySpeed = -32;
+            case KeyEvent.VK_UP -> ySpeed = -1;
             
-            case KeyEvent.VK_A -> xSpeed = -32;
+            case KeyEvent.VK_A -> xSpeed = -1;
             
-            case KeyEvent.VK_D -> xSpeed = +32;
+            case KeyEvent.VK_D -> xSpeed = +1;
             
-            case KeyEvent.VK_S -> ySpeed = +32;
+            case KeyEvent.VK_S -> ySpeed = +1;
             
-            case KeyEvent.VK_W -> ySpeed = -32;
+            case KeyEvent.VK_W -> ySpeed = -1;
         }
     }
     public void keyReleased(KeyEvent e){

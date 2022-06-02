@@ -19,6 +19,33 @@ public class Enemy extends Entity{
     }
     
     public void move(){
+        if(x>=0){
+            x+=xSpeed;
+        }else{
+            //move to other side
+            x = 608;
+        }
+        
+        if(x<=608){
+            x+=xSpeed;
+        }else{
+            //move to other side
+            x = 0;
+        }
+        
+        if(y>=0){
+            y+=ySpeed;
+        }else{
+            //move to other side
+            y = 928;
+        }
+        
+        if(y<=928){
+            y+=ySpeed;
+        }else{
+            //move to other side
+            y = 0;
+        }
         
     }
     

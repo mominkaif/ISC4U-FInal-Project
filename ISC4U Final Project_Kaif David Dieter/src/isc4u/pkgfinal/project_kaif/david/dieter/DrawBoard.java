@@ -153,7 +153,7 @@ public class DrawBoard extends JFrame {
                     }
                 }
             }
-            g2d.drawImage(sprite, player.getXPos(), player.getYPos(), this);
+            g2d.drawImage(sprite, player.getXPos()*32, player.getYPos()*32, this);
             
         }
 
