@@ -10,6 +10,9 @@ import java.awt.event.KeyEvent;
  * @author dieter
  */
 public class Player extends Entity{
+    
+    boolean movingLeft, movingRight, movingUp, movingDown, movingW, movingS,
+            movingD, movingA;
     /**
      * Primary Player Constructor, chain with super to initialize values
      */
@@ -29,6 +32,39 @@ public class Player extends Entity{
         super(image, x, y, xSpeed, ySpeed);
     }
 
+    public boolean getMovingLeft(){
+        return movingLeft;
+    }
+    
+    public boolean getMovingRight(){
+        return movingRight;
+    }
+    
+    public boolean getMovingUp(){
+        return movingUp;
+    }
+    
+    public boolean getMovingDown(){
+        return movingDown;
+    }
+    
+    public void setMovingLeft(boolean trueFalse){
+        movingLeft = trueFalse;
+    }
+    
+    public void setMovingRight(boolean trueFalse){
+        movingRight = trueFalse;
+    }
+    
+    public void setMovingUp(boolean trueFalse){
+        movingUp = trueFalse;
+    }
+    
+    public void setMovingDown(boolean trueFalse){
+        movingDown = trueFalse;
+    }
+    
+    
     @Override
     /**
      * Compares all attributes (moveDistance, imageID, x, y, xSpeed, ySpeed)
@@ -94,42 +130,55 @@ public class Player extends Entity{
      */
     public void keyPressed(KeyEvent e){
         int key = e.getKeyCode();
-        switch(key){
-            case KeyEvent.VK_LEFT -> xSpeed = -1;
+       
+            if(key == KeyEvent.VK_LEFT && movingLeft == false){
+                xSpeed = -1;
+                movingLeft = true;
+            }
+                
             
-            case KeyEvent.VK_RIGHT -> xSpeed = +1;
+            if(key == KeyEvent.VK_RIGHT && movingRight == false){
+                xSpeed = +1;
+                                    movingRight = true;
+            }
             
-            case KeyEvent.VK_DOWN -> ySpeed = +1;
+            case KeyEvent.VK_DOWN: ySpeed = +1;
+                                   movingDown = true; 
             
-            case KeyEvent.VK_UP -> ySpeed = -1;
+            case KeyEvent.VK_UP: ySpeed = -1;
+                                 movingUp = true;
+                                 
+            case KeyEvent.VK_A: xSpeed = -1;
             
-            case KeyEvent.VK_A -> xSpeed = -1;
+            case KeyEvent.VK_D: xSpeed = +1;
             
-            case KeyEvent.VK_D -> xSpeed = +1;
+            case KeyEvent.VK_S: ySpeed = +1;
             
-            case KeyEvent.VK_S -> ySpeed = +1;
-            
-            case KeyEvent.VK_W -> ySpeed = -1;
+            case KeyEvent.VK_W: ySpeed = -1;
         }
     }
     public void keyReleased(KeyEvent e){
         int key = e.getKeyCode();
         switch(key){
-            case KeyEvent.VK_LEFT -> xSpeed = 0;
+            case KeyEvent.VK_LEFT: xSpeed = 0;
+            movingLeft = false;
             
-            case KeyEvent.VK_RIGHT -> xSpeed = 0;
+            case KeyEvent.VK_RIGHT: xSpeed = 0;
+            movingRight = false;
             
-            case KeyEvent.VK_DOWN -> ySpeed = 0;
+            case KeyEvent.VK_DOWN: ySpeed = 0;
+            movingDown = false; 
             
-            case KeyEvent.VK_UP -> ySpeed = 0;
+            case KeyEvent.VK_UP: ySpeed = 0;
+            movingUp = false;
             
-            case KeyEvent.VK_A -> xSpeed = 0;
+            case KeyEvent.VK_A: xSpeed = 0;
             
-            case KeyEvent.VK_D -> xSpeed = 0;
+            case KeyEvent.VK_D: xSpeed = 0;
             
-            case KeyEvent.VK_S -> ySpeed = 0;
+            case KeyEvent.VK_S: ySpeed = 0;
             
-            case KeyEvent.VK_W -> ySpeed = 0;
+            case KeyEvent.VK_W: ySpeed = 0;
         }
     }
     
