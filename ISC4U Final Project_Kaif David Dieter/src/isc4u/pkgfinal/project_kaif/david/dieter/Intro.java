@@ -117,12 +117,20 @@ public class Intro extends javax.swing.JFrame {
 
         File s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\beach-trap-beat.wav");
         Sound sound1 = new Sound(s, false);
+        s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\sega-playboicarti.wav");
+        Sound sound2 = new Sound(s, false);
+        s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\choir-type-beat.wav");
+        Sound sound3 = new Sound(s, false);
+        s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\Migos - Walk It Talk It ft. Drake (Instrumental) (Culture 2).wav");
+        Sound sound4 = new Sound(s, false);
+        s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\Plug Walk Instrumental (Best Version).wav");
+        Sound sound5 = new Sound(s, false);
 
         board1 = new Board(allLevels[0], sound1, null);
-        board2 = new Board(allLevels[1], null, null);
-        board3 = new Board(allLevels[2], null, null);
-        board4 = new Board(allLevels[3], null, null);
-        board5 = new Board(allLevels[4], null, null);
+        board2 = new Board(allLevels[1], sound2, null);
+        board3 = new Board(allLevels[2], sound3, null);
+        board4 = new Board(allLevels[3], sound4, null);
+        board5 = new Board(allLevels[4], sound5, null);
 
         playGame();
     }//GEN-LAST:event_startActionPerformed
@@ -227,7 +235,7 @@ public class Intro extends javax.swing.JFrame {
     }
 
     private void playGame() {
-        int currentLevel = 5;
+        int currentLevel = 2;
         switch (currentLevel) {
             case 1:
                 board1.doDrawing(1);
