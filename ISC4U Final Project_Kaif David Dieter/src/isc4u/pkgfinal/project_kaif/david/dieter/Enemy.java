@@ -23,7 +23,7 @@ public class Enemy extends Entity{
             x+=xSpeed;
         }else{
             //move to other side
-            x = 608;
+            x = 19;
         }
         
         if(x<=608){
@@ -37,20 +37,22 @@ public class Enemy extends Entity{
             y+=ySpeed;
         }else{
             //move to other side
-            y = 928;
+            y = 29;
         }
         
-        if(y<=928){
+        if(y<=29){
             y+=ySpeed;
         }else{
             //move to other side
             y = 0;
-        }
-        
+        }      
     }
     
-    public boolean equals(Entity e){
-        return false;
+    
+    public boolean equals(Entity other){
+        return x == (other).getXPos() ||
+                y == (other).getYPos() || xSpeed == (other).getXSpeed()
+                || ySpeed == (other).getYSpeed();
     }
     
     public Entity clone(){

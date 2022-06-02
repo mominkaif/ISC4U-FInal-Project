@@ -73,9 +73,9 @@ public class Player extends Entity{
      * return - true or false 
      */
     public boolean equals(Entity other) {
-        return x == ((Player)other).getXPos() ||
-                y == ((Player)other).getYPos() || xSpeed == ((Player)other).getXSpeed()
-                || ySpeed == ((Player)other).getYSpeed();
+        return x == (other).getXPos() ||
+                y == (other).getYPos() || xSpeed == (other).getXSpeed()
+                || ySpeed == (other).getYSpeed();
     }
 
     @Override
