@@ -209,11 +209,17 @@ public class DrawBoard extends JFrame {
         private class TAdapter extends KeyAdapter{
             @Override
             public void keyPressed(KeyEvent e){
-                player.keyPressed(e);
+                if(player.getIsMoving() == false){
+                    player.keyPressed(e);
+                }
+                
             }
             @Override
             public void keyReleased(KeyEvent e){
-                player.keyReleased(e);
+                if(player.getIsMoving() == true){
+                    player.keyReleased(e);
+                }
+                
             }
         }
 
