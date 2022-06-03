@@ -27,29 +27,28 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 //test change
+
 /**
  *
  * @author kaifm
  */
 public class DrawBoard extends JFrame {
-   
+
     private Image dirt, grass, water, lightStone, darkStone, sprite;
 
     public Tile[][] map = new Tile[30][20];
-   
+
     public DrawBoard level1;
     public DrawBoard level2;
     public DrawBoard level3;
     public DrawBoard level4;
     public DrawBoard level5;
 
-
     public DrawBoard(int l, Tile[][] t) {
         map = t;
         loadImage();
         initUI(l);
         //testing sound
-           
 
     }
 
@@ -62,12 +61,12 @@ public class DrawBoard extends JFrame {
         setSize(640, 960);
         setResizable(false);
         pack(); //for the thread
-       
+
         //tell the JFrame what to do when closed
         //this is important if our application has multiple windows
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-       
+
     }
 
     private void loadImage() {
@@ -81,63 +80,63 @@ public class DrawBoard extends JFrame {
         sprite = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/Sprite.png")).getImage();
     }
 
-    public class DrawingSurface extends JPanel implements ActionListener, Runnable{
+    public class DrawingSurface extends JPanel implements ActionListener, Runnable {
+
         private Player player;
         //private Timer timer;
-       
+
         private final int DELAY = 10;
-       
+
         private final int DS_HEIGHT = 960;
         private final int DS_WIDTH = 640;
-       
+
         private final int X_INITIAL = DS_WIDTH / 2;
         private final int Y_INITIAL = DS_HEIGHT - 50;
-       
-        private Thread animator;        
-       
+
+        private Thread animator;
+
         private boolean moving = false;
-       
-        public DrawingSurface(){
+
+        public DrawingSurface() {
             initDrawingSurface();
         }
+
         private void initDrawingSurface() {
             addKeyListener(new TAdapter());
             setFocusable(true);
             setPreferredSize(new Dimension(DS_WIDTH, DS_HEIGHT));
             player = new Player();
-           
+
             //timer = new Timer(DELAY, this);
             //timer.start();
-
         }
+
         @Override
-        public void addNotify(){
+        public void addNotify() {
             super.addNotify();
-           
+
             animator = new Thread(this);
             animator.start();
-           
+
         }
+
         /**
          * Does the actual drawing
          *
          * @param g - the Graphics object to draw with
          */
         private void doDrawing(Graphics g) {
-           
-           
-           
+
             //the Graphics2D class is the class that handles all the drawing
             //must be casted from older Graphics class in order to have access to some newer methods
             Graphics2D g2d = (Graphics2D) g;
-           
+
             RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
-                                RenderingHints.VALUE_ANTIALIAS_ON);
+                    RenderingHints.VALUE_ANTIALIAS_ON);
 
             rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 
-            g2d.setRenderingHints(rh)
-                    ;
+            g2d.setRenderingHints(rh);
             for (int i = 0; i < map.length; i++) {
                 for (int j = 0; j < map[i].length; j++) {
                     if (map[i][j].getTexture() == 1) {
@@ -153,8 +152,8 @@ public class DrawBoard extends JFrame {
                     }
                 }
             }
-            g2d.drawImage(sprite, player.getXPos()*32, player.getYPos()*32, this);
-           
+            g2d.drawImage(sprite, player.getXPos() * 32, player.getYPos() * 32, this);
+
         }
 
         @Override
@@ -180,49 +179,66 @@ public class DrawBoard extends JFrame {
         @Override
         public void run() {
             long beforeTime, timeDiff, sleep;
-           
+
             beforeTime = System.currentTimeMillis();
-           
-            while (true){
+
+            while (true) {
                 step();
                 repaint();
-               
+
                 timeDiff = System.currentTimeMillis() - beforeTime;
                 sleep = DELAY - timeDiff;
-               
-                if(sleep < 0){
+
+                if (sleep < 0) {
                     sleep = 2;
                 }
-               
-                try{
+
+                try {
                     Thread.sleep(sleep);
-                } catch(InterruptedException e){
+                } catch (InterruptedException e) {
                     String msg = String.format("Thread Interrupted: %'s", e.getMessage());
-                   
+
                     JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
                 }
-               
+
                 beforeTime = System.currentTimeMillis();
             }
         }
-       
-        private class TAdapter extends KeyAdapter{
+
+        private class TAdapter extends KeyAdapter {
+
             @Override
-            public void keyPressed(KeyEvent e){
-                if(player.getIsMoving() == false){
+            public void keyPressed(KeyEvent e) {
+                if (player.getIsMoving() == false) {
                     player.keyPressed(e);
+                    
+                    player.setIsMoving(true);
+                    
+                    player.setMovingLeft(true);
+                    player.setMovingRight(true);
+                    player.setMovingUp(true);
+                    player.setMovingDown(true);
+                    
                 }
-                
+
             }
+
             @Override
-            public void keyReleased(KeyEvent e){
+            public void keyReleased(KeyEvent e) {
                 if(player.getIsMoving() == true){
                     player.keyReleased(e);
+                    
+                    player.setIsMoving(false);
+                    
+                    player.setMovingLeft(false);
+                    player.setMovingRight(false);
+                    player.setMovingUp(false);
+                    player.setMovingDown(false);
                 }
                 
+
             }
         }
 
-       
     }
 }

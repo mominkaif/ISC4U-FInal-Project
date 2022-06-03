@@ -40,10 +40,13 @@ public class Player extends Entity{
         movingD = false;
         movingA = false;
     }
+   public boolean getIsMoving(){
+       return isMoving;
+   }
    
-    public boolean getIsMoving(){
-        return isMoving;
-    }
+   public void setIsMoving(boolean other){
+       isMoving = other;
+   }
     
     public boolean getMovingLeft(){
         return movingLeft;
@@ -109,6 +112,18 @@ public class Player extends Entity{
 
    
     public void move() {
+        
+       if (movingLeft == true){
+           x+=xSpeed;
+           movingLeft = false;
+       } else if (movingRight == true){
+           x+=xSpeed;
+           movingRight = false;
+       }
+        
+        
+        
+       /** 
         if(x>=0){
             x+=xSpeed;
         }else{
@@ -132,7 +147,9 @@ public class Player extends Entity{
         }else{
             y = 29;
         }
-            
+        */
+        
+        
             
         
     }
@@ -147,43 +164,51 @@ public class Player extends Entity{
         if (key == KeyEvent.VK_LEFT && movingLeft == false) {
             xSpeed = -1;
             movingLeft = true;
+            isMoving = true;
         }
 
         if (key == KeyEvent.VK_RIGHT && movingRight == false) {
             xSpeed = +1;
             movingRight = true;
+            isMoving = true;
         }
 
         if (key == KeyEvent.VK_DOWN && movingDown == false) {
             ySpeed = +1;
             movingDown = true;
+            isMoving = true;
         }
 
         if (key == KeyEvent.VK_UP && movingUp == false) {
             movingUp = true;
             ySpeed = -1;
+            isMoving = true;
         }
 
         if (key == KeyEvent.VK_A && movingA == false) {
             movingA = true;
             xSpeed = -1;
+            isMoving = true;
         }
 
         if (key == KeyEvent.VK_D && movingD == false) {
             movingA = true;
             xSpeed = +1;
+            isMoving = true;
         }
 
         if (key == KeyEvent.VK_W && movingW == false) {
             movingW = true;
             ySpeed = -1;
+            isMoving = true;
         }
 
         if (key == KeyEvent.VK_S && movingS == false) {
             movingS = true;
             ySpeed = +1;
+            isMoving = true;
         }
-        isMoving = true;
+        
     }
     public void keyReleased(KeyEvent e){
         int key = e.getKeyCode();
@@ -191,43 +216,51 @@ public class Player extends Entity{
         if(key == KeyEvent.VK_LEFT && movingLeft == true){
             movingLeft = false;
             xSpeed = 0;
+            isMoving = false;
         }
         
         if(key == KeyEvent.VK_RIGHT && movingRight == true){
             movingRight = false;
             xSpeed = 0;
+            isMoving = false;
         }
         
         if(key == KeyEvent.VK_DOWN && movingDown == true){
             movingDown = false;
             ySpeed = 0;
+            isMoving = false;
         }
         
         if(key == KeyEvent.VK_UP && movingUp == true){
             movingUp = false;
             ySpeed = 0;
+            isMoving = false;
         }
         
         if(key == KeyEvent.VK_A && movingA == true){
             movingA = false;
             xSpeed = 0;
+            isMoving = false;
         }
         
         if(key == KeyEvent.VK_D && movingD == true){
             movingD = false;
             xSpeed = 0;
+            isMoving = false;
         }
         
         if(key == KeyEvent.VK_W && movingW == true){
             movingW = false;
             ySpeed = 0;
+            isMoving = false;
         }
         
         if(key == KeyEvent.VK_S && movingS == true){
             movingS = false;
             ySpeed = 0;
+            isMoving = false;
         }
-        isMoving = false;
+        
     }
     
 }
