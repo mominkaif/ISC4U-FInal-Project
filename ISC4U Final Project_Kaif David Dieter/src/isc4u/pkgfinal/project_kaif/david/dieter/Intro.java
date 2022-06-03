@@ -30,7 +30,7 @@ public class Intro extends javax.swing.JFrame {
     public Board board4;
     public Board board5;
     
-    public File s = new File("");
+    public File s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/sega-playboicarti.wav");
     public Sound menuSound = new Sound(s, false);
 
     public Tile[][] map = new Tile[30][20];
@@ -49,9 +49,9 @@ public class Intro extends javax.swing.JFrame {
         
         menuSound.play();
 
-        File s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/sega-playboicarti.wav");
-        Sound sound = new Sound(s, false);
-        sound.play();
+        //File s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/sega-playboicarti.wav");
+        //Sound sound = new Sound(s, false);
+        //sound.play();
     }
 
     /**
