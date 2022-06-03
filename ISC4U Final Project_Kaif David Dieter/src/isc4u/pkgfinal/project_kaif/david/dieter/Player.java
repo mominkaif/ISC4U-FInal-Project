@@ -115,10 +115,22 @@ public class Player extends Entity{
         
        if (movingLeft == true){
            x+=xSpeed;
+           ySpeed = ySpeed;
            movingLeft = false;
        } else if (movingRight == true){
            x+=xSpeed;
+           ySpeed = ySpeed;
            movingRight = false;
+       } 
+       
+       if (movingUp == true){
+           y+=ySpeed;
+           xSpeed = xSpeed;
+           movingUp = false;
+       } else if (movingDown == true){
+           y+=ySpeed;
+           xSpeed = xSpeed;
+           movingDown = false;
        }
         
         
@@ -180,8 +192,8 @@ public class Player extends Entity{
         }
 
         if (key == KeyEvent.VK_UP && movingUp == false) {
-            movingUp = true;
             ySpeed = -1;
+            movingUp = true;
             isMoving = true;
         }
 
