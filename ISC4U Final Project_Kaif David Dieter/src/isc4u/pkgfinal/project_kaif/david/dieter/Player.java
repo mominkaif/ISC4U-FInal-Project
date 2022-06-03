@@ -11,7 +11,7 @@ import java.awt.event.KeyEvent;
  */
 public class Player extends Entity{
     
-    boolean movingLeft, movingRight, movingUp, movingDown, movingW, movingS,
+    boolean isMoving, movingLeft, movingRight, movingUp, movingDown, movingW, movingS,
             movingD, movingA;
     /**
      * Primary Player Constructor, chain with super to initialize values
@@ -30,8 +30,21 @@ public class Player extends Entity{
      */
     public Player (Image image, int x, int y, int xSpeed, int ySpeed){
         super(image, x, y, xSpeed, ySpeed);
+        isMoving = false;
+        movingLeft = false;
+        movingRight = false;
+        movingUp = false;
+        movingDown = false;
+        movingW = false;
+        movingS = false;
+        movingD = false;
+        movingA = false;
     }
-
+   
+    public boolean getIsMoving(){
+        return isMoving;
+    }
+    
     public boolean getMovingLeft(){
         return movingLeft;
     }
@@ -170,6 +183,7 @@ public class Player extends Entity{
             movingS = true;
             ySpeed = +1;
         }
+        isMoving = true;
     }
     public void keyReleased(KeyEvent e){
         int key = e.getKeyCode();
@@ -213,6 +227,7 @@ public class Player extends Entity{
             movingS = false;
             ySpeed = 0;
         }
+        isMoving = false;
     }
     
 }
