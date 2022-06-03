@@ -32,11 +32,11 @@ import javax.swing.Timer;
  * @author kaifm
  */
 public class DrawBoard extends JFrame {
-    
+   
     private Image dirt, grass, water, lightStone, darkStone, sprite;
 
     public Tile[][] map = new Tile[30][20];
-    
+   
     public DrawBoard level1;
     public DrawBoard level2;
     public DrawBoard level3;
@@ -49,7 +49,7 @@ public class DrawBoard extends JFrame {
         loadImage();
         initUI(l);
         //testing sound
-            
+           
 
     }
 
@@ -62,7 +62,7 @@ public class DrawBoard extends JFrame {
         setSize(640, 960);
         setResizable(false);
         pack(); //for the thread
-        
+       
         //tell the JFrame what to do when closed
         //this is important if our application has multiple windows
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,20 +84,18 @@ public class DrawBoard extends JFrame {
     public class DrawingSurface extends JPanel implements ActionListener, Runnable{
         private Player player;
         //private Timer timer;
-        
+       
         private final int DELAY = 10;
-        
+       
         private final int DS_HEIGHT = 960;
         private final int DS_WIDTH = 640;
-        
+       
         private final int X_INITIAL = DS_WIDTH / 2;
         private final int Y_INITIAL = DS_HEIGHT - 50;
-        
+       
         private Thread animator;        
-        
+       
         private boolean moving = false;
-        
-        private int pixelCounter = 0;
        
         public DrawingSurface(){
             initDrawingSurface();
@@ -107,7 +105,7 @@ public class DrawBoard extends JFrame {
             setFocusable(true);
             setPreferredSize(new Dimension(DS_WIDTH, DS_HEIGHT));
             player = new Player();
-            
+           
             //timer = new Timer(DELAY, this);
             //timer.start();
 
@@ -115,10 +113,10 @@ public class DrawBoard extends JFrame {
         @Override
         public void addNotify(){
             super.addNotify();
-            
+           
             animator = new Thread(this);
             animator.start();
-            
+           
         }
         /**
          * Does the actual drawing
@@ -126,13 +124,13 @@ public class DrawBoard extends JFrame {
          * @param g - the Graphics object to draw with
          */
         private void doDrawing(Graphics g) {
-            
-            
-            
+           
+           
+           
             //the Graphics2D class is the class that handles all the drawing
             //must be casted from older Graphics class in order to have access to some newer methods
             Graphics2D g2d = (Graphics2D) g;
-            
+           
             RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
                                 RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -156,7 +154,7 @@ public class DrawBoard extends JFrame {
                 }
             }
             g2d.drawImage(sprite, player.getXPos()*32, player.getYPos()*32, this);
-            
+           
         }
 
         @Override
@@ -177,38 +175,37 @@ public class DrawBoard extends JFrame {
 
         private void step() {
             player.move();
-            }
         }
 
         @Override
         public void run() {
             long beforeTime, timeDiff, sleep;
-            
+           
             beforeTime = System.currentTimeMillis();
-            
+           
             while (true){
                 step();
                 repaint();
-                
+               
                 timeDiff = System.currentTimeMillis() - beforeTime;
                 sleep = DELAY - timeDiff;
-                
+               
                 if(sleep < 0){
                     sleep = 2;
                 }
-                
+               
                 try{
                     Thread.sleep(sleep);
                 } catch(InterruptedException e){
                     String msg = String.format("Thread Interrupted: %'s", e.getMessage());
-                    
+                   
                     JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
                 }
-                
+               
                 beforeTime = System.currentTimeMillis();
             }
         }
-        
+       
         private class TAdapter extends KeyAdapter{
             @Override
             public void keyPressed(KeyEvent e){
@@ -220,6 +217,6 @@ public class DrawBoard extends JFrame {
             }
         }
 
-        
+       
     }
 }
