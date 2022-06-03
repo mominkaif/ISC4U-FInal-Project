@@ -30,7 +30,7 @@ public class Intro extends javax.swing.JFrame {
     public Board board4;
     public Board board5;
     
-    public File s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\menu.wav");
+    public File s = new File("");
     public Sound menuSound = new Sound(s, false);
 
     public Tile[][] map = new Tile[30][20];
@@ -45,13 +45,13 @@ public class Intro extends javax.swing.JFrame {
         
         createBoardArray();
         initComponents();
-        background.setIcon(new ImageIcon("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Tiles\\introBack.png"));
+        background.setIcon(new ImageIcon("src/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/introBack.png"));
         
         menuSound.play();
 
-//        File s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\menu.wav");
-//        Sound sound = new Sound(s, false);
-//        sound.play();
+        File s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/sega-playboicarti.wav");
+        Sound sound = new Sound(s, false);
+        sound.play();
     }
 
     /**
@@ -115,15 +115,15 @@ public class Intro extends javax.swing.JFrame {
         menuSound.stop();
         this.setVisible(false);
 
-        File s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\beach-trap-beat.wav");
+        File s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/beach-trap-beat.wav");
         Sound sound1 = new Sound(s, false);
-        s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\sega-playboicarti.wav");
+        s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/winter-trap-beat.wav");
         Sound sound2 = new Sound(s, false);
-        s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\choir-type-beat.wav");
+        s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/choir-type-beat.wav");
         Sound sound3 = new Sound(s, false);
-        s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\Migos - Walk It Talk It ft. Drake (Instrumental) (Culture 2).wav");
+        s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/Migos - Walk It Talk It ft. Drake (Instrumental) (Culture 2).wav");
         Sound sound4 = new Sound(s, false);
-        s = new File("src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Sounds\\Plug Walk Instrumental (Best Version).wav");
+        s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/Plug Walk Instrumental (Best Version).wav");
         Sound sound5 = new Sound(s, false);
 
         board1 = new Board(allLevels[0], sound1, null);
@@ -200,7 +200,7 @@ public class Intro extends javax.swing.JFrame {
         //run five times for the five levels
         for (int k = 0; k < 5; k++) {
             //change file name based on the level its reading
-            fileName = "src\\isc4u\\pkgfinal\\project_kaif\\david\\dieter\\Layout" + (k + 1) + ".txt";
+            fileName = "src/isc4u/pkgfinal/project_kaif/david/dieter/Layout" + (k + 1) + ".txt";
             System.out.println(fileName); //to check if the string is creates correctly
 
             try {
