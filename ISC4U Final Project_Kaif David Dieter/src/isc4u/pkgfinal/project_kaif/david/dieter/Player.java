@@ -131,54 +131,87 @@ public class Player extends Entity{
     public void keyPressed(KeyEvent e){
         int key = e.getKeyCode();
        
-            if(key == KeyEvent.VK_LEFT && movingLeft == false){
-                xSpeed = -1;
-                movingLeft = true;
-            }
-                
-            
-            if(key == KeyEvent.VK_RIGHT && movingRight == false){
-                xSpeed = +1;
-                                    movingRight = true;
-            }
-            
-            case KeyEvent.VK_DOWN: ySpeed = +1;
-                                   movingDown = true; 
-            
-            case KeyEvent.VK_UP: ySpeed = -1;
-                                 movingUp = true;
-                                 
-            case KeyEvent.VK_A: xSpeed = -1;
-            
-            case KeyEvent.VK_D: xSpeed = +1;
-            
-            case KeyEvent.VK_S: ySpeed = +1;
-            
-            case KeyEvent.VK_W: ySpeed = -1;
+        if (key == KeyEvent.VK_LEFT && movingLeft == false) {
+            xSpeed = -1;
+            movingLeft = true;
+        }
+
+        if (key == KeyEvent.VK_RIGHT && movingRight == false) {
+            xSpeed = +1;
+            movingRight = true;
+        }
+
+        if (key == KeyEvent.VK_DOWN && movingDown == false) {
+            ySpeed = +1;
+            movingDown = true;
+        }
+
+        if (key == KeyEvent.VK_UP && movingUp == false) {
+            movingUp = true;
+            ySpeed = -1;
+        }
+
+        if (key == KeyEvent.VK_A && movingA == false) {
+            movingA = true;
+            xSpeed = -1;
+        }
+
+        if (key == KeyEvent.VK_D && movingD == false) {
+            movingA = true;
+            xSpeed = +1;
+        }
+
+        if (key == KeyEvent.VK_W && movingW == false) {
+            movingW = true;
+            ySpeed = -1;
+        }
+
+        if (key == KeyEvent.VK_S && movingS == false) {
+            movingS = true;
+            ySpeed = +1;
         }
     }
     public void keyReleased(KeyEvent e){
         int key = e.getKeyCode();
-        switch(key){
-            case KeyEvent.VK_LEFT: xSpeed = 0;
+        
+        if(key == KeyEvent.VK_LEFT && movingLeft == true){
             movingLeft = false;
-            
-            case KeyEvent.VK_RIGHT: xSpeed = 0;
+            xSpeed = 0;
+        }
+        
+        if(key == KeyEvent.VK_RIGHT && movingRight == true){
             movingRight = false;
-            
-            case KeyEvent.VK_DOWN: ySpeed = 0;
-            movingDown = false; 
-            
-            case KeyEvent.VK_UP: ySpeed = 0;
+            xSpeed = 0;
+        }
+        
+        if(key == KeyEvent.VK_DOWN && movingDown == true){
+            movingDown = false;
+            ySpeed = 0;
+        }
+        
+        if(key == KeyEvent.VK_UP && movingUp == true){
             movingUp = false;
-            
-            case KeyEvent.VK_A: xSpeed = 0;
-            
-            case KeyEvent.VK_D: xSpeed = 0;
-            
-            case KeyEvent.VK_S: ySpeed = 0;
-            
-            case KeyEvent.VK_W: ySpeed = 0;
+            ySpeed = 0;
+        }
+        
+        if(key == KeyEvent.VK_A && movingA == true){
+            movingA = false;
+            xSpeed = 0;
+        }
+        
+        if(key == KeyEvent.VK_D && movingD == true){
+            movingD = false;
+            xSpeed = 0;
+        }
+        
+        if(key == KeyEvent.VK_W && movingW == true){
+            movingW = false;
+            ySpeed = 0;
+        }
+        
+        if(key == KeyEvent.VK_S && movingS == true){
+            movingS = false;
+            ySpeed = 0;
         }
     }
     
