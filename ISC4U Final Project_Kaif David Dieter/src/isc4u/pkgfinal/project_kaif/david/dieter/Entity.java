@@ -20,8 +20,8 @@ public abstract class Entity {
      */
     public Entity(){
         image = null;
-        x = 0;
-        y = 0;
+        x = 10;
+        y = 29;
         xSpeed = 0;
         ySpeed = 0; 
     }
