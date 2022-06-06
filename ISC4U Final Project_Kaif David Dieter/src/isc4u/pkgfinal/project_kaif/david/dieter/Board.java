@@ -89,6 +89,7 @@ public class Board {
     public void doDrawing(int level){
         board = new DrawBoard(level, tilemap);
         board.setVisible(true);
+        
     }
     
     public void playSound(){

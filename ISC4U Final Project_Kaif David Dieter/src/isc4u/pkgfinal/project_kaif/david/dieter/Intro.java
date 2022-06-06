@@ -4,15 +4,11 @@
  */
 package isc4u.pkgfinal.project_kaif.david.dieter;
 
-import java.io.BufferedReader;
+import java.awt.Image;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
@@ -114,6 +110,8 @@ public class Intro extends javax.swing.JFrame {
         
         menuSound.stop();
         this.setVisible(false);
+        
+        
 
         File s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/beach-trap-beat.wav");
         Sound sound1 = new Sound(s, false);

@@ -21,8 +21,8 @@ public class Enemy extends Entity{
      * @param imageID - image number
      * @param x - x location
      * @param y - y location
-     * @param xSpeed - xspeed
-     * @param ySpeed - yspeed
+     * @param xSpeed - x speed
+     * @param ySpeed - y speed
      */
     public Enemy(Image image, int x, int y, int xSpeed, int ySpeed){
         super(image, x, y, xSpeed, ySpeed);
@@ -40,7 +40,7 @@ public class Enemy extends Entity{
             x = 19;
         }
         
-        if(x<=608){
+        if(x<=19){
             x+=xSpeed;
         }else{
             //move to other side

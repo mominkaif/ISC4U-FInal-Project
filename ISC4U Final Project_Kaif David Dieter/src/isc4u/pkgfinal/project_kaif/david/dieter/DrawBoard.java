@@ -14,18 +14,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.Timer;
 //test change
 
 /**
@@ -34,22 +27,24 @@ import javax.swing.Timer;
  */
 public class DrawBoard extends JFrame {
 
-    private Image dirt, grass, water, lightStone, darkStone, sprite;
+    private Image dirt, grass, water, lightStone, darkStone, sprite, knightIcon;
 
     public Tile[][] map = new Tile[30][20];
-
+    
+    /**
     public DrawBoard level1;
     public DrawBoard level2;
     public DrawBoard level3;
     public DrawBoard level4;
     public DrawBoard level5;
-
+    **/
+    
     public DrawBoard(int l, Tile[][] t) {
         map = t;
         loadImage();
         initUI(l);
         //testing sound
-
+        
     }
 
     private void initUI(int l) {
@@ -78,11 +73,14 @@ public class DrawBoard extends JFrame {
         darkStone = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/5.png")).getImage();
         //load sprite object image
         sprite = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/Sprite.png")).getImage();
+        knightIcon = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/knight.png")).getImage();
     }
 
     public class DrawingSurface extends JPanel implements ActionListener, Runnable {
 
         private Player player;
+        private Enemy knight;
+        
         //private Timer timer;
 
         private final int DELAY = 10;
@@ -106,7 +104,7 @@ public class DrawBoard extends JFrame {
             setFocusable(true);
             setPreferredSize(new Dimension(DS_WIDTH, DS_HEIGHT));
             player = new Player();
-
+            knight = new Enemy(knightIcon, 10, 10, 1, 0);
             //timer = new Timer(DELAY, this);
             //timer.start();
         }
@@ -152,9 +150,9 @@ public class DrawBoard extends JFrame {
                     }
                 }
             }
-            
+            //use image attribute from player class instead
             g2d.drawImage(sprite, player.getXPos() * 32, player.getYPos() * 32, this);
-
+            g2d.drawImage(knight.getImage(), knight.getXPos() * 32, knight.getYPos() * 32, this);
         }
 
         @Override
@@ -175,6 +173,7 @@ public class DrawBoard extends JFrame {
 
         private void step() {
             player.move();
+            knight.move();
         }
 
         @Override
