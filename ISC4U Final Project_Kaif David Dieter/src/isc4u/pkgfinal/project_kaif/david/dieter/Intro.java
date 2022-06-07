@@ -110,7 +110,7 @@ public class Intro extends javax.swing.JFrame {
         s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/Plug Walk Instrumental (Best Version).wav");
         Sound sound5 = new Sound(s, false);
 
-        playGame();
+        DrawBoard.playGame(1);
     }//GEN-LAST:event_startActionPerformed
 
     /**
