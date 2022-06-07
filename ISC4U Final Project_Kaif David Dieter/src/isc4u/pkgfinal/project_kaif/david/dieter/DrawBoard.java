@@ -14,7 +14,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -31,6 +34,8 @@ public class DrawBoard extends JFrame {
 
     public Tile[][] map = new Tile[30][20];
     
+    public static Board[] allBoards = new Board[5];
+    
     /**
     public DrawBoard level1;
     public DrawBoard level2;
@@ -40,6 +45,10 @@ public class DrawBoard extends JFrame {
     **/
     
     public DrawBoard(int l, Tile[][] t) {
+        for(int i = 0; i < 5; i++){
+            allBoards[i] = new Board();
+        }
+        createBoardArray();
         map = t;
         loadImage();
         initUI(l);
@@ -62,6 +71,60 @@ public class DrawBoard extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
+    }
+    
+    /**
+     * This method creates 5 2D arrays (one for each level) and places them into
+     * the allLevels array
+     */
+    private void createBoardArray() {
+        Tile[][] map = new Tile[30][20];
+        int tileType = 0;
+        String fileName = "";
+        File f;
+
+        //run five times for the five levels
+        for (int k = 0; k < allBoards.length; k++) {
+            //change file name based on the level its reading
+            fileName = "src/isc4u/pkgfinal/project_kaif/david/dieter/Layout" + (k+1) + ".txt";
+            System.out.println(fileName); //to check if the string is creates correctly
+
+            try {
+                f = new File(fileName);
+                Scanner scan = new Scanner(f);
+
+                for (int y = 0; y < 30; y++) {
+                    for (int x = 0; x < 20; x++) {
+                        tileType = scan.nextInt();
+                        if (tileType == 3) {
+                            map[y][x] = new Tile(false, x, y, tileType);
+                        } else {
+                            map[y][x] = new Tile(true, x, y, tileType);
+                        }
+                    }
+                }
+                allBoards[k].setTileMap(map);
+            } catch (FileNotFoundException ex) {
+                System.out.println("ERROR");
+            }
+        }
+
+        for (int y = 0; y < 5; y++) {
+            for (int i = 0; i < 30; ++i) {
+                for (int j = 0; j < 20; j++) {
+                    System.out.print(allBoards[y].getTileMap()[i][j].getTexture()+ " ");
+                }
+                System.out.println("");
+            }
+        }
+
+    }
+    
+    public static void playGame(int level) {
+        
+        allBoards[level].doDrawing(level);
+        //allBoards[1].playSound();
+        
     }
 
     private void loadImage() {

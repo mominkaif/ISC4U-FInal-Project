@@ -42,7 +42,7 @@ public class Board {
      * accessor for the tilemap
      * @return - 2d tile array
      */
-    public Tile[][] getTile(){
+    public Tile[][] getTileMap(){
         return tilemap;
     }
     /**
@@ -66,8 +66,8 @@ public class Board {
      * @param x - x location
      * @param y - y location
      */
-    public void setTile(Tile t, int x, int y){
-        tilemap[x][y] = t;
+    public void setTileMap(Tile[][] t){
+        tilemap = t;
     }
     /**
      * mutator for the soundtrack
@@ -103,7 +103,7 @@ public class Board {
      * @return - whether or not they are the same
      */
     public boolean equals(Board b){
-        return b.getTile().equals(tilemap) && b.getSoundtrack().equals(soundtrack) && b.getEntityList().equals(entityList);
+        return b.getTileMap().equals(tilemap) && b.getSoundtrack().equals(soundtrack) && b.getEntityList().equals(entityList);
     }
     /**
      * clone method returns a cloned board
