@@ -30,35 +30,33 @@ import javax.swing.JPanel;
  */
 public class DrawBoard extends JFrame {
 
+    //images of the tiles
     private Image dirt, grass, water, lightStone, darkStone, sprite, knightIcon;
 
+    //will store active map 
     public Tile[][] map = new Tile[30][20];
     
+    //array of five boards
     public static Board[] allBoards = new Board[5];
     
     /**
-    public DrawBoard level1;
-    public DrawBoard level2;
-    public DrawBoard level3;
-    public DrawBoard level4;
-    public DrawBoard level5;
-    **/
-    
-    public DrawBoard(int l, Tile[][] t) {
-        for(int i = 0; i < 5; i++){
-            allBoards[i] = new Board();
-        }
+     * Primary Constructor
+     * @param l - level number
+     */
+    public DrawBoard(int l) {
+        
+        //method that will create the boards
         createBoardArray();
-        map = t;
+        
+        //method to load images
         loadImage();
         initUI(l);
-        //testing sound
         
     }
 
-    private void initUI(int l) {
+    private void initUI(int lev) {
         //set title of the JFrame
-        setTitle("Pogger Level " + l);
+        setTitle("Pogger Level " + lev);
         //add a custom JPanel to draw on
         add(new DrawingSurface());
         //set the size of the window
@@ -78,13 +76,13 @@ public class DrawBoard extends JFrame {
      * the allLevels array
      */
     private void createBoardArray() {
-        Tile[][] map = new Tile[30][20];
         int tileType = 0;
         String fileName = "";
         File f;
 
         //run five times for the five levels
         for (int k = 0; k < allBoards.length; k++) {
+            
             //change file name based on the level its reading
             fileName = "src/isc4u/pkgfinal/project_kaif/david/dieter/Layout" + (k+1) + ".txt";
             System.out.println(fileName); //to check if the string is creates correctly
@@ -103,7 +101,7 @@ public class DrawBoard extends JFrame {
                         }
                     }
                 }
-                allBoards[k].setTileMap(map);
+                allBoards[k] = new Board(map,null,null);
             } catch (FileNotFoundException ex) {
                 System.out.println("ERROR");
             }

@@ -58,7 +58,7 @@ public class Intro extends javax.swing.JFrame {
 
         title.setFont(new java.awt.Font("Ravie", 2, 48)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        title.setText(" Pogger.");
+        title.setText(" Pogger");
         getContentPane().add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 100));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -67,7 +67,7 @@ public class Intro extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 230, 50));
 
         start.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 48)); // NOI18N
-        start.setText("PLAY.");
+        start.setText("PLAY");
         start.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startActionPerformed(evt);
@@ -151,7 +151,7 @@ public class Intro extends javax.swing.JFrame {
             @Override
             public void run() {
                 //instantiate the main window
-                DrawBoard windowFrame = new DrawBoard(0, null);
+                DrawBoard windowFrame = new DrawBoard(0);
             }
         });
     }
