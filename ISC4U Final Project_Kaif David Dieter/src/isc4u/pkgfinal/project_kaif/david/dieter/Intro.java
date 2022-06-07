@@ -12,6 +12,7 @@ import java.util.Scanner;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
+
 /**
  *
  * @author kaifm
@@ -19,32 +20,17 @@ import javax.swing.SwingUtilities;
 public class Intro extends javax.swing.JFrame {
 
     public boolean play = true;
-
-    public Board board1;
-    public Board board2;
-    public Board board3;
-    public Board board4;
-    public Board board5;
     
     public File s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/sega-playboicarti.wav");
     public Sound menuSound = new Sound(s, false);
-
-    public Tile[][] map = new Tile[30][20];
-
-    public Tile[][][] allLevels = new Tile[5][30][20];
-
+    
     /**
      * Creates new form Intro
      */
     public Intro() {
-        //createBoardArray method is called
-        
-        createBoardArray();
         initComponents();
         background.setIcon(new ImageIcon("src/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/introBack.png"));
-        
         menuSound.play();
-
         //File s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/sega-playboicarti.wav");
         //Sound sound = new Sound(s, false);
         //sound.play();
@@ -124,12 +110,6 @@ public class Intro extends javax.swing.JFrame {
         s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/Plug Walk Instrumental (Best Version).wav");
         Sound sound5 = new Sound(s, false);
 
-        board1 = new Board(allLevels[0], sound1, null);
-        board2 = new Board(allLevels[1], sound2, null);
-        board3 = new Board(allLevels[2], sound3, null);
-        board4 = new Board(allLevels[3], sound4, null);
-        board5 = new Board(allLevels[4], sound5, null);
-
         playGame();
     }//GEN-LAST:event_startActionPerformed
 
@@ -186,78 +166,8 @@ public class Intro extends javax.swing.JFrame {
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 
-    /**
-     * This method creates 5 2D arrays (one for each level) and places them into
-     * the allLevels array
-     */
-    private void createBoardArray() {
-        int tileType = 0;
-        String fileName = "";
-        File f;
+    
 
-        //run five times for the five levels
-        for (int k = 0; k < 5; k++) {
-            //change file name based on the level its reading
-            fileName = "src/isc4u/pkgfinal/project_kaif/david/dieter/Layout" + (k + 1) + ".txt";
-            System.out.println(fileName); //to check if the string is creates correctly
-
-            try {
-                f = new File(fileName);
-                Scanner scan = new Scanner(f);
-
-                for (int y = 0; y < allLevels[0].length; y++) {
-                    for (int x = 0; x < allLevels[0][0].length; x++) {
-                        tileType = scan.nextInt();
-                        if (tileType == 3) {
-                            allLevels[k][y][x] = new Tile(false, x * 32, y * 32, tileType);
-                        } else {
-                            allLevels[k][y][x] = new Tile(true, x * 32, y * 32, tileType);
-                        }
-                        // System.out.println(tileType);
-                    }
-                }
-            } catch (FileNotFoundException ex) {
-                System.out.println("ERROR");
-            }
-        }
-
-        for (int y = 0; y < 5; y++) {
-            for (int i = 0; i < allLevels[y].length; ++i) {
-                for (int j = 0; j < allLevels[y][0].length; j++) {
-                    System.out.print(allLevels[y][i][j].getTexture() + " ");
-                }
-                System.out.println("");
-            }
-        }
-
-    }
-
-    private void playGame() {
-        int currentLevel = 2;
-        switch (currentLevel) {
-            case 1:
-                board1.doDrawing(1);
-                board1.playSound();
-                break;
-            case 2:
-                board2.doDrawing(2);
-                board2.playSound();
-                break;
-            case 3:
-                board3.doDrawing(3);
-                board3.playSound();
-                break;
-            case 4:
-                board4.doDrawing(4);
-                board4.playSound();
-                break;
-            case 5:
-                board5.doDrawing(5);
-                board5.playSound();
-                break;
-            default:
-                break;
-        }
-    }
+    
 
 }
