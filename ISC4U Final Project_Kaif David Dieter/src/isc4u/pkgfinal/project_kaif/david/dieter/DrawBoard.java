@@ -209,34 +209,15 @@ public class DrawBoard extends JFrame {
 
             @Override
             public void keyPressed(KeyEvent e) {
-                if (player.getIsMoving() == false) {
                     player.keyPressed(e);
-                    
-                    player.setIsMoving(true);
-                    
-                    player.setMovingLeft(true);
-                    player.setMovingRight(true);
-                    player.setMovingUp(true);
-                    player.setMovingDown(true);
-                    
+
                 }
 
-            }
+            
 
             @Override
             public void keyReleased(KeyEvent e) {
-                if(player.getIsMoving() == true){
                     player.keyReleased(e);
-                    
-                    player.setIsMoving(false);
-                    
-                    player.setMovingLeft(false);
-                    player.setMovingRight(false);
-                    player.setMovingUp(false);
-                    player.setMovingDown(false);
-                }
-                
-
             }
         }
 
