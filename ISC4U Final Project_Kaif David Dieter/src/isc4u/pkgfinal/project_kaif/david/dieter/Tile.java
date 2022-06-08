@@ -4,6 +4,8 @@ hitbox: false = die
  */
 package isc4u.pkgfinal.project_kaif.david.dieter;
 
+import java.awt.Image;
+
 /**
  *
  * @author dieter
@@ -13,7 +15,7 @@ public class Tile {
     //Hitbox: false = die
     private boolean hitbox;
     private int x, y;
-    private int imageID;
+    private Image image;
     /**
      * primary constructor
      * no parameters
@@ -23,7 +25,7 @@ public class Tile {
         hitbox = false;
         x = 0;
         y = 0;
-        imageID = 0;
+        image = null;
     } 
     /**
      * Secondary constructor
@@ -32,12 +34,12 @@ public class Tile {
      * @param y - y position of the tile
      * @param texture - image texture of the tile
      */
-    public Tile(boolean hitbox, int x, int y, int texture){
+    public Tile(boolean hitbox, int x, int y, Image texture){
         this();
         this.hitbox = hitbox;
         this.x = x;
         this.y = y;
-        this.imageID = texture;
+        this.image = texture;
     }
     /**
      * accessor for hitbox status
@@ -64,8 +66,8 @@ public class Tile {
      * accessor for the texture number
      * @return - texture number
      */
-    public int getTexture(){
-        return imageID;
+    public Image getImage(){
+        return image;
     }
     /**
      * mutator for the hitbox status
@@ -92,8 +94,8 @@ public class Tile {
      * mutator for the texture number
      * @param t - new texture number
      */
-    public void setTexture(int t){
-        imageID = t;
+    public void setImage(Image i){
+        image = i;
     }
     /**
      * equals method checks if two tiles are the same
@@ -102,14 +104,14 @@ public class Tile {
      * @return - whether or not they are the same
      */
     public boolean equals(Tile t){
-        return hitbox == t.getHitbox() && x == t.getX() && y == t.getY() && imageID == t.getTexture();
+        return hitbox == t.getHitbox() && x == t.getX() && y == t.getY() && image == t.getImage();
     }
     /**
      * clone method returns an identical tile
      * @return - an identical tile
      */
     public Tile clone(){
-        Tile t = new Tile(hitbox, x, y, imageID);
+        Tile t = new Tile(hitbox, x, y, image);
         return t;
     }
     /**
@@ -117,7 +119,7 @@ public class Tile {
      * @return - the string
      */
     public String toString(){
-        String message = "Hitbox: " + hitbox +"\nX: " + x + "\nY: " + y + "\nTexture: " + imageID;
+        String message = "Hitbox: " + hitbox +"\nX: " + x + "\nY: " + y + "\nTexture: " + image;
         return message;
     }
 }
