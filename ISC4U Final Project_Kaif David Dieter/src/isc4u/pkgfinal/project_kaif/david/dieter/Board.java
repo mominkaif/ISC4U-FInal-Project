@@ -97,12 +97,13 @@ public class Board {
     public void setEntity(Entity e, int i) {
         entityList.set(i, e);
     }
-
+/*
     public void doDrawing(int level) {
         board = new DrawBoard(level);
         board.setVisible(true);
 
     }
+    */
 
     public void playSound() {
         soundtrack.play();
