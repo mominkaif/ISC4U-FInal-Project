@@ -98,7 +98,7 @@ public class Intro extends javax.swing.JFrame {
         this.setVisible(false);
         
         
-
+        /*
         File s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/beach-trap-beat.wav");
         Sound sound1 = new Sound(s, false);
         s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/winter-trap-beat.wav");
@@ -109,6 +109,7 @@ public class Intro extends javax.swing.JFrame {
         Sound sound4 = new Sound(s, false);
         s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/Plug Walk Instrumental (Best Version).wav");
         Sound sound5 = new Sound(s, false);
+        */
 
         DrawBoard.playGame(1);
     }//GEN-LAST:event_startActionPerformed

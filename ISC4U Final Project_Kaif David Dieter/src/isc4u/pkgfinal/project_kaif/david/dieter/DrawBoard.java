@@ -30,8 +30,7 @@ import javax.swing.JPanel;
  */
 public class DrawBoard extends JFrame {
 
-    //images of the tiles
-    private Image dirt, grass, water, lightStone, darkStone, sprite, knightIcon;
+    
 
     //will store active map 
     public Tile[][] map = new Tile[30][20];
@@ -49,7 +48,8 @@ public class DrawBoard extends JFrame {
         createBoardArray();
         
         //method to load images
-        loadImage();
+        //loadImage();
+        //unnecesary
         initUI(l);
         
     }
@@ -90,14 +90,16 @@ public class DrawBoard extends JFrame {
             try {
                 f = new File(fileName);
                 Scanner scan = new Scanner(f);
-
+                Image tile;
                 for (int y = 0; y < 30; y++) {
                     for (int x = 0; x < 20; x++) {
                         tileType = scan.nextInt();
+                        //sets Image object to the tile image attribute
+                        tile = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/"+tileType+".png")).getImage();
                         if (tileType == 3) {
-                            map[y][x] = new Tile(false, x, y, tileType);
+                            map[y][x] = new Tile(false, x, y, tile);
                         } else {
-                            map[y][x] = new Tile(true, x, y, tileType);
+                            map[y][x] = new Tile(true, x, y, tile);
                         }
                     }
                 }
@@ -110,7 +112,7 @@ public class DrawBoard extends JFrame {
         for (int y = 0; y < 5; y++) {
             for (int i = 0; i < 30; ++i) {
                 for (int j = 0; j < 20; j++) {
-                    System.out.print(allBoards[y].getTileMap()[i][j].getTexture()+ " ");
+                    System.out.print(allBoards[y].getTileMap()[i][j].getImage()+ " ");
                 }
                 System.out.println("");
             }
@@ -120,11 +122,12 @@ public class DrawBoard extends JFrame {
     
     public static void playGame(int level) {
         
-        allBoards[level].doDrawing(level);
+        DrawBoard board = new DrawBoard(level);
+        board.setVisible(true);
         //allBoards[1].playSound();
         
     }
-
+/*
     private void loadImage() {
         //load tile images
         dirt = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/1.png")).getImage();
@@ -136,11 +139,14 @@ public class DrawBoard extends JFrame {
         sprite = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/Sprite.png")).getImage();
         knightIcon = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/knight.png")).getImage();
     }
+    
+    this method is obsolete because we are no longer using global variables to store images
+    
+    */
 
     public class DrawingSurface extends JPanel implements ActionListener, Runnable {
 
         private Player player;
-        private Enemy knight;
         
         //private Timer timer;
 
@@ -164,10 +170,10 @@ public class DrawBoard extends JFrame {
             addKeyListener(new TAdapter());
             setFocusable(true);
             setPreferredSize(new Dimension(DS_WIDTH, DS_HEIGHT));
-            player = new Player();
-            knight = new Enemy(knightIcon, 10, 10, 1, 0);
-            //timer = new Timer(DELAY, this);
-            //timer.start();
+            //gets image for the player
+            Image sprite = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/Sprite.png")).getImage();
+            //creates player object
+            player = new Player(sprite, 0, 0, 0, 0);
         }
 
         @Override
@@ -198,22 +204,28 @@ public class DrawBoard extends JFrame {
             g2d.setRenderingHints(rh);
             for (int i = 0; i < map.length; i++) {
                 for (int j = 0; j < map[i].length; j++) {
-                    if (map[i][j].getTexture() == 1) {
+                    //new: changed it to draw straight form the tile's image attriute
+                    g2d.drawImage(map[i][j].getImage(), j * 32, i * 32, null);
+                    /*
+                    if (map[i][j].getImage() == 1) {
                         g2d.drawImage(dirt, j * 32, i * 32, null);
-                    } else if (map[i][j].getTexture() == 2) {
+                    } else if (map[i][j].getImage() == 2) {
                         g2d.drawImage(grass, j * 32, i * 32, null);
-                    } else if (map[i][j].getTexture() == 3) {
+                    } else if (map[i][j].getImage() == 3) {
                         g2d.drawImage(water, j * 32, i * 32, null);
-                    } else if (map[i][j].getTexture() == 4) {
+                    } else if (map[i][j].getImage() == 4) {
                         g2d.drawImage(lightStone, j * 32, i * 32, null);
                     } else if (map[i][j].getTexture() == 5) {
                         g2d.drawImage(darkStone, j * 32, i * 32, null);
                     }
+                    obsolete^^^
+                    use image attribute instead
+                    */
+                    
                 }
             }
             //use image attribute from player class instead
-            g2d.drawImage(sprite, player.getXPos() * 32, player.getYPos() * 32, this);
-            g2d.drawImage(knight.getImage(), knight.getXPos() * 32, knight.getYPos() * 32, this);
+            g2d.drawImage(player.getImage(), player.getXPos() * 32, player.getYPos() * 32, this);
         }
 
         @Override
@@ -234,7 +246,6 @@ public class DrawBoard extends JFrame {
 
         private void step() {
             player.move();
-            knight.move();
         }
 
         @Override
