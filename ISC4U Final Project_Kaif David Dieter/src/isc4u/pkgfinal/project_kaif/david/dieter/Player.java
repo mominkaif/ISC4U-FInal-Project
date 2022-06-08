@@ -11,8 +11,10 @@ import java.awt.event.KeyEvent;
  */
 public class Player extends Entity{
     
-    boolean isMoving, movingLeft, movingRight, movingUp, movingDown, movingW, movingS,
-            movingD, movingA;
+    //private boolean attributes for various moving directions, all initially
+    //false since instance variables
+    private boolean movingLeft, movingRight, movingUp, movingDown, 
+            movingW, movingS, movingD, movingA;
     /**
      * Primary Player Constructor, chain with super to initialize values
      */
@@ -20,62 +22,70 @@ public class Player extends Entity{
         super();
     }
     /**
-     * 
-     * @param moveDistance
-     * @param image
-     * @param x
-     * @param y
-     * @param xSpeed
-     * @param ySpeed 
+     * Secondary Player Constructor, chains with super (Entities) to initialize 
+     * and assign values. Set all boolean attributes to false.
+     * @param image - image of sprite (player)
+     * @param x - xPosition 
+     * @param y - yPosition
+     * @param xSpeed - x Speed
+     * @param ySpeed - y Speed
      */
     public Player (Image image, int x, int y, int xSpeed, int ySpeed){
         super(image, x, y, xSpeed, ySpeed);
-        isMoving = false;
-        movingLeft = false;
-        movingRight = false;
-        movingUp = false;
-        movingDown = false;
-        movingW = false;
-        movingS = false;
-        movingD = false;
-        movingA = false;
     }
-   public boolean getIsMoving(){
-       return isMoving;
-   }
-   
-   public void setIsMoving(boolean other){
-       isMoving = other;
-   }
-    
+    /**
+     * Accessor for movingLeft boolean
+     * @return - true or false
+     */
     public boolean getMovingLeft(){
         return movingLeft;
     }
-    
+    /**
+     * Accessor for movingRight boolean
+     * @return - true or false
+     */
     public boolean getMovingRight(){
         return movingRight;
     }
-    
+    /**
+     * Accessor for movingUp boolean
+     * @return - true or false
+     */
     public boolean getMovingUp(){
         return movingUp;
     }
-    
+    /**
+     * Accessor for movingDown boolean
+     * @return - true or false
+     */
     public boolean getMovingDown(){
         return movingDown;
     }
-    
+    /**
+     * Mutator fo moving left boolean
+     * @param trueFalse 
+     */
     public void setMovingLeft(boolean trueFalse){
         movingLeft = trueFalse;
     }
-    
+    /**
+     * Mutator fo movingRight boolean
+     * @param trueFalse 
+     */
     public void setMovingRight(boolean trueFalse){
         movingRight = trueFalse;
     }
-    
+    /**
+     * Mutator fo movingUp boolean
+     * @param trueFalse 
+     */
     public void setMovingUp(boolean trueFalse){
         movingUp = trueFalse;
     }
-    
+    /**
+     * Mutator fo movingDown boolean
+     * @param trueFalse 
+     */
     public void setMovingDown(boolean trueFalse){
         movingDown = trueFalse;
     }
