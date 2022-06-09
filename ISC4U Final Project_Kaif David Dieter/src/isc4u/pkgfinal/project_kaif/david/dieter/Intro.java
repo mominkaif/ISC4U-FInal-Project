@@ -31,6 +31,7 @@ public class Intro extends javax.swing.JFrame {
         initComponents();
         background.setIcon(new ImageIcon("src/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/introBack.png"));
         menuSound.play();
+        setLocationRelativeTo(null);
         //File s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/sega-playboicarti.wav");
         //Sound sound = new Sound(s, false);
         //sound.play();
