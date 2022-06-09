@@ -122,39 +122,20 @@ public class Player extends Entity{
 
    
     public void move() {
-        
-       if (movingUp == true){
-           y+=ySpeed;
-           //xSpeed = 0;
-           movingUp = false;
-       }else{
-           ySpeed = 0;
-       }
-       
-       if (movingDown == true){
-           y+=ySpeed;
-           //xSpeed = 0;
-           movingDown = false;
-       } else{
-           ySpeed = 0;
-       }
-       
-       if (movingLeft == true){
-           x+=xSpeed;
-           //ySpeed = 0;
-           movingLeft = false;
-       }else{
-           xSpeed = 0;
-       }
-       
-       if (movingRight == true){
-           x+=xSpeed;
-           //ySpeed = 0;
-           movingRight = false;
-       }else{
-           xSpeed = 0;
-       }
-        
+        if (movingUp == true) {
+            y -= ySpeed;
+            movingUp = false;
+        } else if (movingDown == true) {
+            y += ySpeed;
+            movingDown = false;
+        } else if (movingLeft == true) {
+            x -= xSpeed;
+            movingLeft = false;
+        } else if (movingRight == true) {
+            x += xSpeed;
+            movingRight = false;
+        } 
+
         
         
        /** 
@@ -196,43 +177,35 @@ public class Player extends Entity{
         int key = e.getKeyCode();
        
         if (key == KeyEvent.VK_LEFT && movingLeft == false) {
-            xSpeed = -1;
             movingLeft = true;
         }
 
         if (key == KeyEvent.VK_RIGHT && movingRight == false) {
-            xSpeed = +1;
             movingRight = true;
         }
 
         if (key == KeyEvent.VK_DOWN && movingDown == false) {
-            ySpeed = +1;
             movingDown = true;
         }
 
         if (key == KeyEvent.VK_UP && movingUp == false) {
             movingUp = true;
-            ySpeed = -1;
         }
 
         if (key == KeyEvent.VK_A && movingA == false) {
             movingA = true;
-            xSpeed = -1;
         }
 
         if (key == KeyEvent.VK_D && movingD == false) {
             movingA = true;
-            xSpeed = +1;
         }
 
         if (key == KeyEvent.VK_W && movingW == false) {
             movingW = true;
-            ySpeed = -1;
         }
 
         if (key == KeyEvent.VK_S && movingS == false) {
             movingS = true;
-            ySpeed = +1;
         }
         
     }
@@ -241,42 +214,34 @@ public class Player extends Entity{
         
         if(key == KeyEvent.VK_LEFT && movingLeft == true){
             movingLeft = false;
-            xSpeed = 0;
         }
         
         if(key == KeyEvent.VK_RIGHT && movingRight == true){
             movingRight = false;
-            xSpeed = 0;
         }
         
         if(key == KeyEvent.VK_DOWN && movingDown == true){
             movingDown = false;
-            ySpeed = 0;
         }
         
         if(key == KeyEvent.VK_UP && movingUp == true){
             movingUp = false;
-            ySpeed = 0;
         }
         
         if(key == KeyEvent.VK_A && movingA == true){
             movingA = false;
-            xSpeed = 0;
         }
         
         if(key == KeyEvent.VK_D && movingD == true){
             movingD = false;
-            xSpeed = 0;
         }
         
         if(key == KeyEvent.VK_W && movingW == true){
             movingW = false;
-            ySpeed = 0;
         }
         
         if(key == KeyEvent.VK_S && movingS == true){
             movingS = false;
-            ySpeed = 0;
         }
         
     }
