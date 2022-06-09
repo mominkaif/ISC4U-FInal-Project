@@ -240,12 +240,10 @@ public class DrawBoard extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            step();
-        }
-
-        private void step() {
             player.move();
         }
+
+   
 
         @Override
         public void run() {
@@ -254,7 +252,7 @@ public class DrawBoard extends JFrame {
             beforeTime = System.currentTimeMillis();
 
             while (true) {
-                step();
+                player.move();
                 repaint();
 
                 timeDiff = System.currentTimeMillis() - beforeTime;
