@@ -169,7 +169,8 @@ public class DrawBoard extends JFrame {
             //gets image for the player
             Image sprite = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/Sprite.png")).getImage();
             //creates player object
-            player = new Player(sprite, 0, 0, 0, 0);
+            player = new Player();
+            player.setImage(sprite);
         }
 
         @Override
