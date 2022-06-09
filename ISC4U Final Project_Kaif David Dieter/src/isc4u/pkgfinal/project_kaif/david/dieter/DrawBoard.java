@@ -29,15 +29,14 @@ import javax.swing.JPanel;
  * @author kaifm
  */
 public class DrawBoard extends JFrame {
-
+ 
     
-
-    //will store active map 
-    public Tile[][] map = new Tile[30][20];
+    //we should be using board.getTile() instead
     
     //array of five boards
-    public static Board[] allBoards = new Board[5];
+    private static Board[] allBoards = new Board[5];
     
+    private int levelNumber;
     /**
      * Primary Constructor
      * @param l - level number
@@ -76,45 +75,41 @@ public class DrawBoard extends JFrame {
      * the allLevels array
      */
     private void createBoardArray() {
-        int tileType = 0;
-        String fileName = "";
+        int tileType;
+        String fileName;
         File f;
+        //local variable to store tiles
+        
+        Image tile;
 
         //run five times for the five levels
         for (int k = 0; k < allBoards.length; k++) {
             
             //change file name based on the level its reading
             fileName = "src/isc4u/pkgfinal/project_kaif/david/dieter/Layout" + (k+1) + ".txt";
-            System.out.println(fileName); //to check if the string is creates correctly
+            System.out.println(fileName); //to check if the right file is being read
 
             try {
+                Tile[][] map = new Tile[30][20];
                 f = new File(fileName);
                 Scanner scan = new Scanner(f);
-                Image tile;
                 for (int y = 0; y < 30; y++) {
                     for (int x = 0; x < 20; x++) {
+                        
                         tileType = scan.nextInt();
                         //sets Image object to the tile image attribute
                         tile = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/"+tileType+".png")).getImage();
-                        if (tileType == 3) {
+                        if (tileType == 3) {//checks if the tile is water
                             map[y][x] = new Tile(false, x, y, tile);
                         } else {
                             map[y][x] = new Tile(true, x, y, tile);
                         }
                     }
                 }
+                //making board object
                 allBoards[k] = new Board(map,null,null);
             } catch (FileNotFoundException ex) {
                 System.out.println("couldn't do the thing");
-            }
-        }
-
-        for (int y = 0; y < 5; y++) {
-            for (int i = 0; i < 30; ++i) {
-                for (int j = 0; j < 20; j++) {
-                    System.out.print(allBoards[y].getTileMap()[i][j].getImage()+ " ");
-                }
-                System.out.println("");
             }
         }
 
@@ -123,6 +118,7 @@ public class DrawBoard extends JFrame {
     public static void playGame(int level) {
         
         DrawBoard board = new DrawBoard(level);
+        
         board.setVisible(true);
         //allBoards[1].playSound();
         
@@ -202,25 +198,10 @@ public class DrawBoard extends JFrame {
             rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 
             g2d.setRenderingHints(rh);
-            for (int i = 0; i < map.length; i++) {
-                for (int j = 0; j < map[i].length; j++) {
+            for (int i = 0; i < 30; i++) {
+                for (int j = 0; j < 20; j++) {
                     //new: changed it to draw straight form the tile's image attriute
-                    g2d.drawImage(map[i][j].getImage(), j * 32, i * 32, null);
-                    /*
-                    if (map[i][j].getImage() == 1) {
-                        g2d.drawImage(dirt, j * 32, i * 32, null);
-                    } else if (map[i][j].getImage() == 2) {
-                        g2d.drawImage(grass, j * 32, i * 32, null);
-                    } else if (map[i][j].getImage() == 3) {
-                        g2d.drawImage(water, j * 32, i * 32, null);
-                    } else if (map[i][j].getImage() == 4) {
-                        g2d.drawImage(lightStone, j * 32, i * 32, null);
-                    } else if (map[i][j].getTexture() == 5) {
-                        g2d.drawImage(darkStone, j * 32, i * 32, null);
-                    }
-                    obsolete^^^
-                    use image attribute instead
-                    */
+                    g2d.drawImage(allBoards[0].getTileMap()[i][j].getImage(), j * 32, i * 32, null);
                     
                 }
             }
