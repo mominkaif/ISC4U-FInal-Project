@@ -135,36 +135,9 @@ public class Player extends Entity{
             x += xSpeed;
             movingRight = false;
         } 
-
         
         
-       /** 
-        if(x>=0){
-            x+=xSpeed;
-        }else{
-            x = 0;
-        }
-        
-        if(x<=19){
-            x+=xSpeed;
-        }else{
-            x = 19;
-        }
-        
-        if(y>=0){
-            y+=ySpeed;
-        }else{
-            y = 0;
-        }
-        
-        if(y<=29){
-            y+=ySpeed;
-        }else{
-            y = 29;
-        }
-        */
-        
-        
+       
             
         
     }
