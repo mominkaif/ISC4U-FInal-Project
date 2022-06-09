@@ -226,10 +226,6 @@ public class DrawBoard extends JFrame {
             step();
         }
 
-        private void step() {
-            player.move();
-        }
-
         @Override
         public void run() {
             long beforeTime, timeDiff, sleep;
@@ -237,7 +233,7 @@ public class DrawBoard extends JFrame {
             beforeTime = System.currentTimeMillis();
 
             while (true) {
-                step();
+                player.move();
                 repaint();
 
                 timeDiff = System.currentTimeMillis() - beforeTime;
