@@ -22,7 +22,7 @@ public class Intro extends javax.swing.JFrame {
     public boolean play = true;
     
     public File s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/sega-playboicarti.wav");
-    public Sound menuSound = new Sound(s, false);
+    public Sound menuSound = new Sound(s, true);
     
     /**
      * Creates new form Intro
