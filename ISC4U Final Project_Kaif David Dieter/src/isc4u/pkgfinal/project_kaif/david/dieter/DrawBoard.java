@@ -244,6 +244,7 @@ public class DrawBoard extends JFrame {
             player.move();
         }
 
+            
    
 
         @Override
@@ -254,6 +255,7 @@ public class DrawBoard extends JFrame {
 
             while (true) {
                 player.move();
+                checkHitbox();
                 repaint();
 
                 timeDiff = System.currentTimeMillis() - beforeTime;
@@ -272,6 +274,13 @@ public class DrawBoard extends JFrame {
                 }
 
                 beforeTime = System.currentTimeMillis();
+            }
+        }
+
+        private void checkHitbox() {
+            if(!allBoards[levelNumber].getTileMap()[player.getYPos()][player.getXPos()].getHitbox()){
+                player.setXPos(10);
+                player.setYPos(29);
             }
         }
 
