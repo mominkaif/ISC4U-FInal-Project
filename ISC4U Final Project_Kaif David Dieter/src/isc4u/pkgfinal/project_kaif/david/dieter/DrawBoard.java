@@ -105,7 +105,7 @@ public class DrawBoard extends JFrame {
                 }
                 allBoards[k] = new Board(map,null,null);
             } catch (FileNotFoundException ex) {
-                System.out.println("ERROR");
+                System.out.println("couldn't do the thing");
             }
         }
 
