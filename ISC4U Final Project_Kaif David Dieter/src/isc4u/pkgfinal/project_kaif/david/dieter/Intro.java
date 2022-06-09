@@ -98,18 +98,7 @@ public class Intro extends javax.swing.JFrame {
         this.setVisible(false);
         
         
-        /*
-        File s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/beach-trap-beat.wav");
-        Sound sound1 = new Sound(s, false);
-        s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/winter-trap-beat.wav");
-        Sound sound2 = new Sound(s, false);
-        s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/choir-type-beat.wav");
-        Sound sound3 = new Sound(s, false);
-        s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/Migos - Walk It Talk It ft. Drake (Instrumental) (Culture 2).wav");
-        Sound sound4 = new Sound(s, false);
-        s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/Plug Walk Instrumental (Best Version).wav");
-        Sound sound5 = new Sound(s, false);
-        */
+      
 
         DrawBoard.playGame(1);
     }//GEN-LAST:event_startActionPerformed
@@ -151,8 +140,7 @@ public class Intro extends javax.swing.JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                //instantiate the main window
-                DrawBoard windowFrame = new DrawBoard(0);
+                
             }
         });
     }
