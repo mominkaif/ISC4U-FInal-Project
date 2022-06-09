@@ -122,16 +122,16 @@ public class Player extends Entity{
 
    
     public void move() {
-        if (movingUp == true) {
+        if (movingUp == true && y > 0) {
             y -= ySpeed;
             movingUp = false;
-        } else if (movingDown == true) {
+        } else if (movingDown == true && y < 29) {
             y += ySpeed;
             movingDown = false;
-        } else if (movingLeft == true) {
+        } else if (movingLeft == true && x > 0) {
             x -= xSpeed;
             movingLeft = false;
-        } else if (movingRight == true) {
+        } else if (movingRight == true && x < 19) {
             x += xSpeed;
             movingRight = false;
         } 
