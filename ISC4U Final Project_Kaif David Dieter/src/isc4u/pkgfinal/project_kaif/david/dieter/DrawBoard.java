@@ -36,7 +36,7 @@ public class DrawBoard extends JFrame {
     //array of five boards
     private static Board[] allBoards = new Board[5];
     
-    private int levelNumber;
+    private static int levelNumber = 1;
     /**
      * Primary Constructor
      * @param l - level number
@@ -133,9 +133,9 @@ public class DrawBoard extends JFrame {
         }
     }
     
-    public static void playGame(int level) {
+    public static void playGame() {
         
-        DrawBoard board = new DrawBoard(level);
+        DrawBoard board = new DrawBoard(levelNumber);
         
         board.setVisible(true);
         //allBoards[1].playSound();
