@@ -1,5 +1,5 @@
-dex-japan.wav
-cometh-walk.wav
-plug-walk-inst.wav
-roddy-rich-the-box.wav
-choir-type-beat.wav
+src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/dex-japan.wav
+src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/cometh-walk.wav
+src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/plug-walk-inst.wav
+src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/roddy-rich-the-box.wav
+src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/choir-type-beat.wav

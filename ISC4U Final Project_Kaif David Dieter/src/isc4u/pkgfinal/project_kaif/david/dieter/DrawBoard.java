@@ -29,28 +29,29 @@ import javax.swing.JPanel;
  * @author kaifm
  */
 public class DrawBoard extends JFrame {
-
+ 
+    
     //we should be using board.getTile() instead
+    
     //array of five boards
     private static Board[] allBoards = new Board[5];
-
+    
     private int levelNumber;
-
     /**
      * Primary Constructor
-     *
      * @param l - level number
      */
     public DrawBoard(int l) {
-
+        
         //method that will create the boards
         createBoardArray();
-
+        
         //method to load images
         //loadImage();
         //unnecesary
         initUI(l);
-
+        System.out.println(allBoards[l].getSoundtrack());
+        allBoards[l].getSoundtrack().play();
     }
 
     private void initUI(int lev) {
@@ -69,7 +70,7 @@ public class DrawBoard extends JFrame {
         setLocationRelativeTo(null);
 
     }
-
+    
     /**
      * This method creates 5 2D arrays (one for each level) and places them into
      * the allLevels array
@@ -78,27 +79,27 @@ public class DrawBoard extends JFrame {
         int tileType;
         String fileName;
         File f;
-        //local variable to store tiles
-
+        Tile[][] map;
         Image tile;
 
         //run five times for the five levels
         for (int k = 0; k < allBoards.length; k++) {
-
+            
             //change file name based on the level its reading
-            fileName = "src/isc4u/pkgfinal/project_kaif/david/dieter/Layout" + (k + 1) + ".txt";
+            fileName = "src/isc4u/pkgfinal/project_kaif/david/dieter/Layout" + (k+1) + ".txt";
             System.out.println(fileName); //to check if the right file is being read
 
             try {
-                Tile[][] map = new Tile[30][20];
+                //first: getting tiles for the board
+                map = new Tile[30][20];
                 f = new File(fileName);
                 Scanner scan = new Scanner(f);
                 for (int y = 0; y < 30; y++) {
                     for (int x = 0; x < 20; x++) {
-
+                        
                         tileType = scan.nextInt();
                         //sets Image object to the tile image attribute
-                        tile = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/" + tileType + ".png")).getImage();
+                        tile = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/"+tileType+".png")).getImage();
                         if (tileType == 3) {//checks if the tile is water
                             map[y][x] = new Tile(false, x, y, tile);
                         } else {
@@ -106,25 +107,41 @@ public class DrawBoard extends JFrame {
                         }
                     }
                 }
+                
                 //making board object
-                allBoards[k] = new Board(map, null, null);
+                allBoards[k] = new Board(map,null,null);
+                setSound(k);
             } catch (FileNotFoundException ex) {
                 System.out.println("couldn't do the thing");
             }
         }
 
     }
-
+    
+    public void setSound(int i){
+        try{
+          
+            //second: getting sounds for the board
+            File f = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/boardsounds.txt");
+            Scanner soundScan = new Scanner(f);
+            File g = new File(soundScan.nextLine());
+            Sound s = new Sound(g, true);
+            allBoards[i].setSoundtrack(s);
+               
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    
     public static void playGame(int level) {
-
+        
         DrawBoard board = new DrawBoard(level);
-
+        
         board.setVisible(true);
         //allBoards[1].playSound();
-
+        
     }
-
-    /*
+/*
     private void loadImage() {
         //load tile images
         dirt = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/1.png")).getImage();
@@ -139,13 +156,14 @@ public class DrawBoard extends JFrame {
     
     this method is obsolete because we are no longer using global variables to store images
     
-     */
+    */
 
     public class DrawingSurface extends JPanel implements ActionListener, Runnable {
 
         private Player player;
-
+        
         //private Timer timer;
+
         private final int DELAY = 10;
 
         private final int DS_HEIGHT = 960;
@@ -169,8 +187,7 @@ public class DrawBoard extends JFrame {
             //gets image for the player
             Image sprite = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/Sprite.png")).getImage();
             //creates player object
-            player = new Player();
-            player.setImage(sprite);
+            player = new Player(sprite, 0, 0, 0, 0);
         }
 
         @Override
@@ -203,7 +220,7 @@ public class DrawBoard extends JFrame {
                 for (int j = 0; j < 20; j++) {
                     //new: changed it to draw straight form the tile's image attriute
                     g2d.drawImage(allBoards[0].getTileMap()[i][j].getImage(), j * 32, i * 32, null);
-
+                    
                 }
             }
             //use image attribute from player class instead
@@ -223,6 +240,10 @@ public class DrawBoard extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            step();
+        }
+
+        private void step() {
             player.move();
         }
 
@@ -233,7 +254,7 @@ public class DrawBoard extends JFrame {
             beforeTime = System.currentTimeMillis();
 
             while (true) {
-                player.move();
+                step();
                 repaint();
 
                 timeDiff = System.currentTimeMillis() - beforeTime;
@@ -259,13 +280,15 @@ public class DrawBoard extends JFrame {
 
             @Override
             public void keyPressed(KeyEvent e) {
-                player.keyPressed(e);
+                    player.keyPressed(e);
 
-            }
+                }
+
+            
 
             @Override
             public void keyReleased(KeyEvent e) {
-                player.keyReleased(e);
+                    player.keyReleased(e);
             }
         }
 
