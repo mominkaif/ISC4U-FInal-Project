@@ -223,7 +223,7 @@ public class DrawBoard extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            step();
+            player.move();
         }
 
         @Override
