@@ -34,29 +34,30 @@ public class DrawBoard extends JFrame {
     //we should be using board.getTile() instead
     
     //array of five boards
-    private static Board[] allBoards = new Board[5];
+    public static Board[] allBoards = new Board[5];
     
-    private int levelNumber;
+    public static int level = 1;
+    
     /**
      * Primary Constructor
      * @param l - level number
      */
-    public DrawBoard(int l) {
+    public DrawBoard() {
         
         //method that will create the boards
         createBoardArray();
         
         //method to load images
         //loadImage();
-        //unnecesary
-        initUI(l);
-        System.out.println(allBoards[l].getSoundtrack());
-        allBoards[l].getSoundtrack().play();
+        //unnecesary]
+        
+        //playing
+        initUI();
     }
 
-    private void initUI(int lev) {
+    private void initUI() {
         //set title of the JFrame
-        setTitle("Pogger Level " + lev);
+        setTitle("Pogger Level " + level);
         //add a custom JPanel to draw on
         add(new DrawingSurface());
         //set the size of the window
@@ -118,7 +119,7 @@ public class DrawBoard extends JFrame {
 
     }
     
-    public void setSound(int i){
+    public static void setSound(int i){
         try{
           
             //second: getting sounds for the board
@@ -133,13 +134,19 @@ public class DrawBoard extends JFrame {
         }
     }
     
-    public static void playGame(int level) {
+    public static void playGame() {
+        System.out.println(allBoards[level].getSoundtrack());
+        allBoards[level].getSoundtrack().play();
         
-        DrawBoard board = new DrawBoard(level);
         
-        board.setVisible(true);
+        
         //allBoards[1].playSound();
         
+    }
+    
+    public static void loadGame(){
+        DrawBoard board = new DrawBoard();
+        board.setVisible(true);
     }
 /*
     private void loadImage() {
@@ -278,7 +285,7 @@ public class DrawBoard extends JFrame {
         }
 
         private void checkHitbox() {
-            if(!allBoards[levelNumber].getTileMap()[player.getYPos()][player.getXPos()].getHitbox()){
+            if(!allBoards[level-1].getTileMap()[player.getYPos()][player.getXPos()].getHitbox()){
                 player.setXPos(10);
                 player.setYPos(29);
             }

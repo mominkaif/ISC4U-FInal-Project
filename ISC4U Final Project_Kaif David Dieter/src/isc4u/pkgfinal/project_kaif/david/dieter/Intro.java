@@ -100,8 +100,8 @@ public class Intro extends javax.swing.JFrame {
         
         
       
-
-        DrawBoard.playGame(1);
+        DrawBoard.loadGame();
+        DrawBoard.playGame();
     }//GEN-LAST:event_startActionPerformed
 
     /**
