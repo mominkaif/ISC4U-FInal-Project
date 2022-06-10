@@ -43,14 +43,6 @@ public class DrawBoard extends JFrame {
      * @param l - level number
      */
     public DrawBoard() {
-        
-        //method that will create the boards
-        createBoardArray();
-        
-        //method to load images
-        //loadImage();
-        //unnecesary]
-        
         //playing
         initUI();
     }
@@ -72,52 +64,7 @@ public class DrawBoard extends JFrame {
 
     }
     
-    /**
-     * This method creates 5 2D arrays (one for each level) and places them into
-     * the allLevels array
-     */
-    private void createBoardArray() {
-        int tileType;
-        String fileName;
-        File f;
-        Tile[][] map;
-        Image tile;
-
-        //run five times for the five levels
-        for (int k = 0; k < allBoards.length; k++) {
-            
-            //change file name based on the level its reading
-            fileName = "src/isc4u/pkgfinal/project_kaif/david/dieter/Layout" + (k+1) + ".txt";
-            System.out.println(fileName); //to check if the right file is being read
-
-            try {
-                //first: getting tiles for the board
-                map = new Tile[30][20];
-                f = new File(fileName);
-                Scanner scan = new Scanner(f);
-                for (int y = 0; y < 30; y++) {
-                    for (int x = 0; x < 20; x++) {
-                        
-                        tileType = scan.nextInt();
-                        //sets Image object to the tile image attribute
-                        tile = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/"+tileType+".png")).getImage();
-                        if (tileType == 3) {//checks if the tile is water
-                            map[y][x] = new Tile(false, x, y, tile);
-                        } else {
-                            map[y][x] = new Tile(true, x, y, tile);
-                        }
-                    }
-                }
-                
-                //making board object
-                allBoards[k] = new Board(map,null,null);
-                setSound(k);
-            } catch (FileNotFoundException ex) {
-                System.out.println("couldn't do the thing");
-            }
-        }
-
-    }
+    
     
     public static void setSound(int i){
         try{
