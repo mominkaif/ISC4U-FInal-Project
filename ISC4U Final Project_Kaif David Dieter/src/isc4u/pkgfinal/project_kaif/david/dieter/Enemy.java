@@ -33,33 +33,14 @@ public class Enemy extends Entity{
      * if it reaches the edge it respawns on the other side of the map
      */
     public void move(){
-        if(x>=0){
-            x+=xSpeed;
-        }else{
-            //move to other side
-            x = 19;
-        }
         
-        if(x<=19){
-            x+=xSpeed;
+        if(xSpeed > 0){
+            x+=1;
+        }else if(xSpeed == 0){
+            x = x;
         }else{
-            //move to other side
-            x = 0;
-        }
-        
-        if(y>=0){
-            y+=ySpeed;
-        }else{
-            //move to other side
-            y = 29;
-        }
-        
-        if(y<=29){
-            y+=ySpeed;
-        }else{
-            //move to other side
-            y = 0;
-        }      
+            x-=1;
+        }     
     }
     
     /**
