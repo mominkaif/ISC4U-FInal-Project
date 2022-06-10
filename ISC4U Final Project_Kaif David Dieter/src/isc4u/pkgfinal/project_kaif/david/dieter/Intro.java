@@ -74,7 +74,7 @@ public class Intro extends javax.swing.JFrame {
                 startActionPerformed(evt);
             }
         });
-        getContentPane().add(start, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 767, -1, -1));
+        getContentPane().add(start, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 660, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
