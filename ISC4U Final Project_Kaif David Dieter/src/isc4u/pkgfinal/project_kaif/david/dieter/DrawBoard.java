@@ -1,6 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/* Drawboard class
  */
 package isc4u.pkgfinal.project_kaif.david.dieter;
 
@@ -35,8 +33,7 @@ public class DrawBoard extends JFrame {
     
     //array of five boards
     public static Board[] allBoards = new Board[5];
-    
-    public static int level = 1;
+    public static int level = 5;
     
     /**
      * Primary Constructor
@@ -82,9 +79,10 @@ public class DrawBoard extends JFrame {
     }
     
     public static void playGame() {
+        DrawBoard board = new DrawBoard();
+        board.setVisible(true);
         System.out.println(allBoards[level].getSoundtrack());
-        allBoards[level].getSoundtrack().play();
-        
+         
         
         
         //allBoards[1].playSound();
@@ -94,23 +92,9 @@ public class DrawBoard extends JFrame {
     public static void loadGame(){
         DrawBoard board = new DrawBoard();
         board.setVisible(true);
+          
     }
-/*
-    private void loadImage() {
-        //load tile images
-        dirt = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/1.png")).getImage();
-        grass = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/2.png")).getImage();
-        water = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/3.png")).getImage();
-        lightStone = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/4.png")).getImage();
-        darkStone = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/5.png")).getImage();
-        //load sprite object image
-        sprite = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/Sprite.png")).getImage();
-        knightIcon = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/knight.png")).getImage();
-    }
-    
-    this method is obsolete because we are no longer using global variables to store images
-    
-    */
+
 
     public class DrawingSurface extends JPanel implements ActionListener, Runnable {
 
@@ -174,7 +158,7 @@ public class DrawBoard extends JFrame {
             for (int i = 0; i < 30; i++) {
                 for (int j = 0; j < 20; j++) {
                     //new: changed it to draw straight form the tile's image attriute
-                    g2d.drawImage(allBoards[0].getTileMap()[i][j].getImage(), j * 32, i * 32, null);
+                    g2d.drawImage(allBoards[level-1].getTileMap()[i][j].getImage(), j * 32, i * 32, null);
                     
                 }
             }
@@ -233,8 +217,15 @@ public class DrawBoard extends JFrame {
 
         private void checkHitbox() {
             if(!allBoards[level-1].getTileMap()[player.getYPos()][player.getXPos()].getHitbox()){
-                player.setXPos(10);
-                player.setYPos(29);
+                //player died
+                System.out.println("player died");
+                player.setXPos(0);
+                player.setYPos(0);
+                this.setVisible(false);
+                remove(this);
+                dispose();
+                level = 1;
+                playGame();
             }
         }
 

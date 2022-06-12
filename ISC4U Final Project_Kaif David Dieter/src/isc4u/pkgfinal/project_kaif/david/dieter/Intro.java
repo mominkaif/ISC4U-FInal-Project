@@ -1,6 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+/* Intro Class
  */
 package isc4u.pkgfinal.project_kaif.david.dieter;
 
@@ -80,7 +78,6 @@ public class Intro extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setText("Enemies will kill you...");
         jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 610, 780));
 
@@ -105,7 +102,7 @@ public class Intro extends javax.swing.JFrame {
         
       
         DrawBoard.loadGame();
-        DrawBoard.playGame();
+        //DrawBoard.playGame();
     }//GEN-LAST:event_startActionPerformed
 
     /**
