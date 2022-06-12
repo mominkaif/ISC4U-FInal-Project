@@ -99,7 +99,7 @@ public class Intro extends javax.swing.JFrame {
         createBoardArray();
         System.out.println("loaded array");
 
-        DrawBoard.loadGame();
+        DrawBoard.loadGame(this);
         //DrawBoard.playGame();
     }//GEN-LAST:event_startActionPerformed
 
