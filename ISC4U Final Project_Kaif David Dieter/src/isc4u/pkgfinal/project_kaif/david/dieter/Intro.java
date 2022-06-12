@@ -3,15 +3,14 @@
 package isc4u.pkgfinal.project_kaif.david.dieter;
 
 import static isc4u.pkgfinal.project_kaif.david.dieter.DrawBoard.allBoards;
-import static isc4u.pkgfinal.project_kaif.david.dieter.DrawBoard.setSound;
 import java.awt.Image;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
-
 
 /**
  *
@@ -20,10 +19,10 @@ import javax.swing.SwingUtilities;
 public class Intro extends javax.swing.JFrame {
 
     private boolean play = true;
-    
+
     private File s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/sega-playboicarti.wav");
     private Sound menuSound = new Sound(s, true);
-    
+
     /**
      * Creates new form Intro
      */
@@ -93,14 +92,13 @@ public class Intro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
-        
+
         menuSound.stop();
         this.setVisible(false);
-        
+
         createBoardArray();
         System.out.println("loaded array");
-        
-      
+
         DrawBoard.loadGame();
         //DrawBoard.playGame();
     }//GEN-LAST:event_startActionPerformed
@@ -142,7 +140,7 @@ public class Intro extends javax.swing.JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                
+
             }
         });
     }
@@ -156,51 +154,127 @@ public class Intro extends javax.swing.JFrame {
     private javax.swing.JButton start;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
-
+    
+    
+    /**
+     * create board array method
+     * loads the board array
+     */
     private void createBoardArray() {
-        int tileType;
-        String fileName;
-        File f;
-        Tile[][] map;
-        Image tile;
-
-        //run five times for the five levels
-        for (int k = 0; k < allBoards.length; k++) {
-            
-            //change file name based on the level its reading
-            fileName = "src/isc4u/pkgfinal/project_kaif/david/dieter/Layout" + (k+1) + ".txt";
-            System.out.println(fileName); //to check if the right file is being read
-
-            try {
-                //first: getting tiles for the board
-                map = new Tile[30][20];
-                f = new File(fileName);
-                Scanner scan = new Scanner(f);
-                for (int y = 0; y < 30; y++) {
-                    for (int x = 0; x < 20; x++) {
-                        
-                        tileType = scan.nextInt();
-                        //sets Image object to the tile image attribute
-                        tile = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/"+tileType+".png")).getImage();
-                        if (tileType == 3) {//checks if the tile is water
-                            map[y][x] = new Tile(false, x, y, tile);
-                        } else {
-                            map[y][x] = new Tile(true, x, y, tile);
-                        }
-                    }
-                }
-                
-                //making board object
-                allBoards[k] = new Board(map,null,null);
-                setSound(k);
-            } catch (FileNotFoundException ex) {
-                System.out.println("couldn't do the thing");
-            }
+        for (int i = 0; i < allBoards.length; i++) {
+            allBoards[i] = new Board(null, null, null);
+            setTiles(i);
+            setSound(i);
+            setEnemies(i);
+            setPlatforms(i);
         }
     }
+    /**
+     * setTiles method
+     * reads from a data file to set the tile map of each board
+     * @param level - level being read
+     */
+    public void setTiles(int level) {
+        Image tile;
+        int tileType;
 
-    
+        //change file name based on the level its reading
+        String fileName = "src/isc4u/pkgfinal/project_kaif/david/dieter/Layout" + (level+1) + ".txt";
+        System.out.println(fileName); //to check if the right file is being read
 
-    
+        try {
+            //first: getting tiles for the board
+            Tile[][] map = new Tile[30][20];
+            File f = new File(fileName);
+            Scanner scan = new Scanner(f);
+            for (int y = 0; y < 30; y++) {
+                for (int x = 0; x < 20; x++) {
+
+                    tileType = scan.nextInt();
+                    //sets Image object to the tile image attribute
+                    tile = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/" + tileType + ".png")).getImage();
+                    if (tileType == 3) {//checks if the tile is water
+                        map[y][x] = new Tile(false, x, y, tile);
+                    } else {
+                        map[y][x] = new Tile(true, x, y, tile);
+                    }
+                }
+            }
+
+            //making board object
+            allBoards[level].setTileMap(map);
+        } catch (FileNotFoundException ex) {
+            System.out.println("couldn't do the thing");
+        }
+
+    }
+    /**
+     * setSound method
+     * reads from a data file to set the sound of each board
+     * @param level - level being read
+     */
+    public void setSound(int level) {
+        try {
+            //second: getting sounds for the board
+            File f = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/boardsounds.txt");
+            Scanner soundScan = new Scanner(f);
+            File g = new File(soundScan.nextLine());
+            Sound s = new Sound(g, true);
+            allBoards[level].setSoundtrack(s);
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    /**
+     * setEnemies method
+     * reads from a data file to add enemies from a data file to a board's entity list
+     * @param level - level being read
+     */
+    private void setEnemies(int level) {
+        try {
+            Scanner scanner = new Scanner("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/Enemies" + level+1 + ".txt");
+            while (scanner.hasNextLine()) {
+                String enemyName = scanner.nextLine();
+                //for a ghost enemy
+
+                Image icon = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/" + enemyName + ".png")).getImage();
+                int x = Integer.parseInt(scanner.nextLine());
+                int y = Integer.parseInt(scanner.nextLine());
+                int xSpeed = Integer.parseInt(scanner.nextLine());
+                int ySpeed = Integer.parseInt(scanner.nextLine());
+                Enemy enemy = new Enemy(icon, x, y, xSpeed, ySpeed);
+
+                allBoards[level].addEntity(enemy);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error!" + e);
+        }
+    }
+    /**
+     * setPlatforms method
+     * reads from a data file to add platforms from a data file to a board's entity list
+     * @param level - level being read
+     */
+    private void setPlatforms(int level) {
+        try {
+            Scanner scanner = new Scanner("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/Platforms" + level + ".txt");
+
+            while (scanner.hasNextLine()) {
+                String platformName = scanner.nextLine();
+                Image icon = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/" + platformName + ".png")).getImage();
+                int x = Integer.parseInt(scanner.nextLine());
+                int y = Integer.parseInt(scanner.nextLine());
+                int xSpeed = Integer.parseInt(scanner.nextLine());
+                int ySpeed = Integer.parseInt(scanner.nextLine());
+                Platform platform = new Platform(icon, x, y, xSpeed, ySpeed);
+
+                allBoards[level].addEntity(platform);
+            }
+        } catch (Exception e) {
+            System.out.println("Error!" + e);
+        }
+    }
 
 }

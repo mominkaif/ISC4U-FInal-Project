@@ -94,8 +94,12 @@ public class Board {
      * @param e - entity
      * @param i - index in the entitylist
      */
-    public void setEntity(Entity e, int i) {
-        entityList.set(i, e);
+    public void setEntityList(ArrayList e) {
+        entityList = e;
+    }
+    
+    public void addEntity(Entity e){
+        entityList.add(e);
     }
 /*
     public void doDrawing(int level) {

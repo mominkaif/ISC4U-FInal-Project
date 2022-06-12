@@ -28,16 +28,15 @@ import javax.swing.JPanel;
  * @author kaifm
  */
 public class DrawBoard extends JFrame {
- 
-    
+
     //we should be using board.getTile() instead
-    
     //array of five boards
     public static Board[] allBoards = new Board[5];
-    public static int level = 5;
-    
+    public static int level = 1;
+
     /**
      * Primary Constructor
+     *
      * @param l - level number
      */
     public DrawBoard() {
@@ -63,58 +62,28 @@ public class DrawBoard extends JFrame {
     }
     
     
+
     
-    public static void setSound(int i){
-        try{
-          
-            //second: getting sounds for the board
-            File f = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/boardsounds.txt");
-            Scanner soundScan = new Scanner(f);
-            File g = new File(soundScan.nextLine());
-            Sound s = new Sound(g, true);
-            allBoards[i].setSoundtrack(s);
-               
-        }catch(Exception e){
-            System.out.println(e);
-        }
-    }
-    
+
     public static void playGame() {
         DrawBoard board = new DrawBoard();
         board.setVisible(true);
         System.out.println(allBoards[level].getSoundtrack());
-         
-        
-        
+
         //allBoards[1].playSound();
-        
-    }
-    
-    public static void loadGame(){
-        DrawBoard board = new DrawBoard();
-        board.setVisible(true);
-          
     }
 
+    public static void loadGame() {
+        DrawBoard board = new DrawBoard();
+        board.setVisible(true);
+
+    }
 
     public class DrawingSurface extends JPanel implements ActionListener, Runnable {
 
         private Player player;
-        
-        private ArrayList<Enemy> enemies1 = new ArrayList();
-        private ArrayList<Enemy> enemies2 = new ArrayList();
-        private ArrayList<Enemy> enemies3 = new ArrayList();
-        private ArrayList<Enemy> enemies4 = new ArrayList();
-        private ArrayList<Enemy> enemies5 = new ArrayList();
-        
-        private ArrayList<Platform> platforms1 = new ArrayList();
-        private ArrayList<Platform> platforms2 = new ArrayList();
-        private ArrayList<Platform> platforms3 = new ArrayList();
-        private ArrayList<Platform> platforms4 = new ArrayList();
-        private ArrayList<Platform> platforms5 = new ArrayList();
-        
-        //private Timer timer;
 
+        //private Timer timer;
         private final int DELAY = 10;
 
         private final int DS_HEIGHT = 960;
@@ -171,8 +140,8 @@ public class DrawBoard extends JFrame {
             for (int i = 0; i < 30; i++) {
                 for (int j = 0; j < 20; j++) {
                     //new: changed it to draw straight form the tile's image attriute
-                    g2d.drawImage(allBoards[level-1].getTileMap()[i][j].getImage(), j * 32, i * 32, null);
-                    
+                    g2d.drawImage(allBoards[level - 1].getTileMap()[i][j].getImage(), j * 32, i * 32, null);
+
                 }
             }
             //use image attribute from player class instead
@@ -194,9 +163,6 @@ public class DrawBoard extends JFrame {
         public void actionPerformed(ActionEvent e) {
             player.move();
         }
-
-            
-   
 
         @Override
         public void run() {
@@ -229,7 +195,7 @@ public class DrawBoard extends JFrame {
         }
 
         private void checkHitbox() {
-            if(!allBoards[level-1].getTileMap()[player.getYPos()][player.getXPos()].getHitbox()){
+            if (!allBoards[level - 1].getTileMap()[player.getYPos()][player.getXPos()].getHitbox()) {
                 //player died
                 System.out.println("player died");
                 player.setXPos(0);
@@ -241,71 +207,18 @@ public class DrawBoard extends JFrame {
                 playGame();
             }
         }
-        private void loadEnemies(InputStream file, int whichLevel){
-	    try {
-                Scanner scanner = new Scanner(file);
-                int numEnemies = Integer.parseInt(scanner.nextLine());
-                for (int i = 0; i < numEnemies; i++) {
-                    String enemyName = scanner.nextLine();
-                    //for a ghost enemy
-                    if (enemyName.equals("ghost")) {
-                        Image ghost = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/ghost.png")).getImage();
-                        int diffAttributes = Integer.parseInt(scanner.nextLine());
-                        Enemy enemy = new Enemy(ghost, diffAttributes, diffAttributes, diffAttributes, diffAttributes);
-                        
-                        switch (whichLevel) {
-                            case 1 -> enemies1.add(enemy);
-                            case 2 -> enemies2.add(enemy);
-                            case 3 -> enemies3.add(enemy);
-                            case 4 -> enemies4.add(enemy);
-                            case 5 -> enemies5.add(enemy);
-                        }
-                    } else {
-                        Image knight = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/knight.png")).getImage();
-                        int diffAttributes = Integer.parseInt(scanner.nextLine());
-                        Enemy enemy = new Enemy(knight, diffAttributes, diffAttributes, diffAttributes, diffAttributes);
-                        
-                        switch (whichLevel) {
-                            case 1 -> enemies1.add(enemy);
-                            case 2 -> enemies2.add(enemy);
-                            case 3 -> enemies3.add(enemy);
-                            case 4 -> enemies4.add(enemy);
-                            case 5 -> enemies5.add(enemy);
-                        }
-                    }
-                }
-            } catch (Exception e) {
-                System.out.println("Error!" + e);
-            }
-        }
-
-    private void loadPlatforms(InputStream file, int whichLevel){
-        try{
-		Scanner scanner = new Scanner(file);
-		int numPlatforms = Integer.parseInt(scanner.nextLine());
-		for(int i = 0; i < numPlatforms; i++){
-			Image log = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/log.png")).getImage();
-			int diffAttributes = Integer.parseInt(scanner.nextLine());
-                        Platform platforms = new Platform(log, diffAttributes, diffAttributes, diffAttributes, diffAttributes);
-		}
-	} catch(Exception e){
-		System.out.println("Error!" + e);
-	}
-    }
 
         private class TAdapter extends KeyAdapter {
 
             @Override
             public void keyPressed(KeyEvent e) {
-                    player.keyPressed(e);
+                player.keyPressed(e);
 
-                }
-
-            
+            }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                    player.keyReleased(e);
+                player.keyReleased(e);
             }
         }
 
