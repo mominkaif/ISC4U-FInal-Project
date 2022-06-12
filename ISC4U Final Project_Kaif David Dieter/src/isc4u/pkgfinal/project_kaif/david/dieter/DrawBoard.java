@@ -33,6 +33,8 @@ public class DrawBoard extends JFrame {
     //array of five boards
     public static Board[] allBoards = new Board[5];
     public static int level = 1;
+    
+    public static Intro intro;
 
     /**
      * Primary Constructor
@@ -73,7 +75,8 @@ public class DrawBoard extends JFrame {
         //allBoards[1].playSound();
     }
 
-    public static void loadGame() {
+    public static void loadGame(JFrame intro) {
+        DrawBoard.intro = (Intro) intro;
         DrawBoard board = new DrawBoard();
         board.setVisible(true);
 
