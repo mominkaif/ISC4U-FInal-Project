@@ -73,13 +73,6 @@ public class DrawBoard extends JFrame {
         //allBoards[1].playSound();
     }
 
-    public static void loadGame(JFrame intro) {
-        DrawBoard.intro = (Intro) intro;
-        DrawBoard board = new DrawBoard();
-        board.setVisible(true);
-        allBoards[level - 1].getSoundtrack().play();
-    }
-
     public class DrawingSurface extends JPanel implements ActionListener, Runnable {
 
         private Player player;
