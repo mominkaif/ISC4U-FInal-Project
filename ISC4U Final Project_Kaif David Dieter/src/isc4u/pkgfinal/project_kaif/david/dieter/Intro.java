@@ -23,8 +23,8 @@ import javax.swing.SwingUtilities;
  */
 public class Intro extends javax.swing.JFrame {
     //menu theme
-    private File s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/sega-playboicarti.wav");
-    private Sound menuSound = new Sound(s, true);
+    File s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/sega-playboicarti.wav");
+    Sound menuSound = new Sound(s, true);
     //intro variable will be sent to the victory page
     private Intro intro = this;
 
@@ -33,6 +33,7 @@ public class Intro extends javax.swing.JFrame {
      */
     public Intro() {
         initComponents();
+        
         background.setIcon(new ImageIcon("src/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/introBack.png"));
         menuSound.play();
         setLocationRelativeTo(null);
