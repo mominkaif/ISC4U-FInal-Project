@@ -67,13 +67,13 @@ public class Intro extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 230, 50));
 
         start.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 48)); // NOI18N
-        start.setText("PLAY");
+        start.setText("PLAY.");
         start.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startActionPerformed(evt);
             }
         });
-        getContentPane().add(start, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 660, -1, -1));
+        getContentPane().add(start, new org.netbeans.lib.awtextra.AbsoluteConstraints(234, 660, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);

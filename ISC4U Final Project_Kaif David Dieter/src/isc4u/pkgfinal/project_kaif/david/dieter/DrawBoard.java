@@ -32,7 +32,7 @@ public class DrawBoard extends JFrame {
     //we should be using board.getTile() instead
     //array of five boards
     public static Board[] allBoards = new Board[5];
-    public static int level = 1;
+    public static int level = 4;
     
     public static Intro intro;
 
@@ -176,6 +176,7 @@ public class DrawBoard extends JFrame {
             while (true) {
                 player.move();
                 checkHitbox();
+                checkWin();
                 repaint();
 
                 timeDiff = System.currentTimeMillis() - beforeTime;
@@ -196,17 +197,29 @@ public class DrawBoard extends JFrame {
                 beforeTime = System.currentTimeMillis();
             }
         }
-
+        
         private void checkHitbox() {
             if (!allBoards[level - 1].getTileMap()[player.getYPos()][player.getXPos()].getHitbox()) {
                 //player died
                 System.out.println("player died");
-                player.setXPos(0);
-                player.setYPos(0);
+                player = null;
                 this.setVisible(false);
                 remove(this);
                 dispose();
                 level = 1;
+                playGame();
+            }
+        }
+        
+        
+        private void checkWin(){
+            if (player.getYPos() == 0) {
+                System.out.println("won stage "+level);
+                player = null;
+                this.setVisible(false);
+                remove(this);
+                dispose();
+                level += 1;
                 playGame();
             }
         }
