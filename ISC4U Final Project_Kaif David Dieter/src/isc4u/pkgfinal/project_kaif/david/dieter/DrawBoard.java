@@ -70,8 +70,8 @@ public class DrawBoard extends JFrame {
     public static void playGame() {
         DrawBoard board = new DrawBoard();
         board.setVisible(true);
-        System.out.println(allBoards[level].getSoundtrack());
-
+        
+        allBoards[level-1].getSoundtrack().play();
         //allBoards[1].playSound();
     }
 
@@ -79,7 +79,7 @@ public class DrawBoard extends JFrame {
         DrawBoard.intro = (Intro) intro;
         DrawBoard board = new DrawBoard();
         board.setVisible(true);
-
+        allBoards[level-1].getSoundtrack().play();
     }
 
     public class DrawingSurface extends JPanel implements ActionListener, Runnable {
@@ -206,6 +206,7 @@ public class DrawBoard extends JFrame {
                 this.setVisible(false);
                 remove(this);
                 dispose();
+                allBoards[level-1].getSoundtrack().stop();
                 level = 1;
                 playGame();
             }
@@ -219,6 +220,7 @@ public class DrawBoard extends JFrame {
                 this.setVisible(false);
                 remove(this);
                 dispose();
+                allBoards[level-1].getSoundtrack().stop();
                 level += 1;
                 playGame();
             }

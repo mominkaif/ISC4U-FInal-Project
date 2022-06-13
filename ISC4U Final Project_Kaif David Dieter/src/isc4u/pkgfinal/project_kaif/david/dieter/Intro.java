@@ -216,11 +216,20 @@ public class Intro extends javax.swing.JFrame {
     public void setSound(int level) {
         try {
             //second: getting sounds for the board
+            
             File f = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/boardsounds.txt");
             Scanner soundScan = new Scanner(f);
+            for (int i = 0; i < level; i++) {
+                //will skip lines so that the next line is the right song for the level
+                soundScan.nextLine();
+            }
+            //will now set the file and create sound object
             File g = new File(soundScan.nextLine());
             Sound s = new Sound(g, true);
+            //sets the soundtrack of the board object
+            System.out.println(s);
             allBoards[level].setSoundtrack(s);
+            
 
         } catch (Exception e) {
             System.out.println(e);
