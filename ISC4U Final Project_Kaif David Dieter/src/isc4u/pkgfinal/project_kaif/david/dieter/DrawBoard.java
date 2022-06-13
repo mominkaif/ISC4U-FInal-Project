@@ -32,7 +32,7 @@ public class DrawBoard extends JFrame {
     //we should be using board.getTile() instead
     //array of five boards
     public static Board[] allBoards = new Board[5];
-    public static int level = 4;
+    public static int level = 2;
 
     public static JFrame intro;
 
