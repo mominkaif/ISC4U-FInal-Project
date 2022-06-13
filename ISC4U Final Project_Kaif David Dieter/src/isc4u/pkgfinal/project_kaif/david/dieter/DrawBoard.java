@@ -1,4 +1,8 @@
-/* Drawboard class
+/* 
+ * DrawBoard class - Draws the boards
+ * Attributes: null
+ * June 13, 2022
+ * David, Dieter, Kaif
  */
 package isc4u.pkgfinal.project_kaif.david.dieter;
 

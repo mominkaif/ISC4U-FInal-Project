@@ -1,4 +1,8 @@
-/* Enemy class
+/* 
+ * Enemy class - creates enemy objects
+ * Attributes: image of enemy, location, x and y speed
+ * June 13, 2022
+ * David, Dieter, Kaif
  */
 package isc4u.pkgfinal.project_kaif.david.dieter;
 

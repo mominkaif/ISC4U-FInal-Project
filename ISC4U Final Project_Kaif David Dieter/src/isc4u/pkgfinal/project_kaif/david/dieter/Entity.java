@@ -1,4 +1,8 @@
-/* abstract entity
+/* 
+ * Entity class - creates entity objects
+ * Attributes: image, location, x and y speed
+ * June 13, 2022
+ * David, Dieter, Kaif
  */
 package isc4u.pkgfinal.project_kaif.david.dieter;
 

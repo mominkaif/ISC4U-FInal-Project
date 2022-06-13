@@ -1,4 +1,8 @@
-/* Board class
+/* 
+ * Board class - creates board objects
+ * Attributes: 2D array for the map, music and a list of entities
+ * June 13, 2022
+ * David, Dieter, Kaif
  */
 package isc4u.pkgfinal.project_kaif.david.dieter;
 
