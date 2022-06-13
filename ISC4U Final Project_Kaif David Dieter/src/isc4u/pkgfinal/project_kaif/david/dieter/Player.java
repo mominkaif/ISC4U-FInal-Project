@@ -1,4 +1,8 @@
-/* Player Class
+/* 
+ * Player class - creates player object
+ * Attributes: image, location, x and y speed
+ * June 13, 2022
+ * David, Dieter, Kaif
  */
 package isc4u.pkgfinal.project_kaif.david.dieter;
 
