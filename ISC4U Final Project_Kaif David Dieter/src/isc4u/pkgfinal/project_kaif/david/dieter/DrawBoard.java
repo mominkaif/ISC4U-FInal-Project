@@ -33,7 +33,7 @@ public class DrawBoard extends JFrame {
     //array of five boards
     public static Board[] allBoards = new Board[5];
     public static int level = 4;
-    
+
     public static Intro intro;
 
     /**
@@ -62,16 +62,14 @@ public class DrawBoard extends JFrame {
         setLocationRelativeTo(null);
 
     }
-    
-    
-
-    
 
     public static void playGame() {
-        DrawBoard board = new DrawBoard();
-        board.setVisible(true);
-        
-        allBoards[level-1].getSoundtrack().play();
+        if (level <= 5) {
+            DrawBoard board = new DrawBoard();
+            board.setVisible(true);
+
+            allBoards[level - 1].getSoundtrack().play();
+        }
         //allBoards[1].playSound();
     }
 
@@ -79,7 +77,7 @@ public class DrawBoard extends JFrame {
         DrawBoard.intro = (Intro) intro;
         DrawBoard board = new DrawBoard();
         board.setVisible(true);
-        allBoards[level-1].getSoundtrack().play();
+        allBoards[level - 1].getSoundtrack().play();
     }
 
     public class DrawingSurface extends JPanel implements ActionListener, Runnable {
@@ -197,7 +195,7 @@ public class DrawBoard extends JFrame {
                 beforeTime = System.currentTimeMillis();
             }
         }
-        
+
         private void checkHitbox() {
             if (!allBoards[level - 1].getTileMap()[player.getYPos()][player.getXPos()].getHitbox()) {
                 //player died
@@ -206,21 +204,20 @@ public class DrawBoard extends JFrame {
                 this.setVisible(false);
                 remove(this);
                 dispose();
-                allBoards[level-1].getSoundtrack().stop();
+                allBoards[level - 1].getSoundtrack().stop();
                 level = 1;
                 playGame();
             }
         }
-        
-        
-        private void checkWin(){
+
+        private void checkWin() {
             if (player.getYPos() == 0) {
-                System.out.println("won stage "+level);
+                System.out.println("won stage " + level);
                 player = null;
                 this.setVisible(false);
                 remove(this);
                 dispose();
-                allBoards[level-1].getSoundtrack().stop();
+                allBoards[level - 1].getSoundtrack().stop();
                 level += 1;
                 playGame();
             }
