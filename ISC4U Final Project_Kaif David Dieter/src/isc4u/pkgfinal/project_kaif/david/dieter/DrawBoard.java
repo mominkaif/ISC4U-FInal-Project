@@ -34,7 +34,7 @@ public class DrawBoard extends JFrame {
     public static Board[] allBoards = new Board[5];
     public static int level = 4;
 
-    public static Intro intro;
+    public static JFrame intro;
 
     /**
      * Primary Constructor
@@ -71,6 +71,10 @@ public class DrawBoard extends JFrame {
             allBoards[level - 1].getSoundtrack().play();
         }
         //allBoards[1].playSound();
+    }
+    
+    public static void getIntroInstance(Intro jframe){
+        intro = jframe;
     }
 
     public class DrawingSurface extends JPanel implements ActionListener, Runnable {
