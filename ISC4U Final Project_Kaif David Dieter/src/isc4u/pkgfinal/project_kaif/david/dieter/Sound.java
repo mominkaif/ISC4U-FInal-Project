@@ -1,5 +1,10 @@
-/* Sound class
+/* 
+ * Sound class - creates sound object
+ * Attributes: file for the sound and boolean loop
+ * June 13, 2022
+ * David, Dieter, Kaif
  */
+
 package isc4u.pkgfinal.project_kaif.david.dieter;
 
 import java.io.File;
