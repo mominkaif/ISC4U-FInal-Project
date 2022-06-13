@@ -104,16 +104,21 @@ public class Player extends Entity{
                 || ySpeed == (other).getYSpeed();
     }
 
-    @Override
     /**
-     * 
+     * clone method
+     * @return - cloned object
      */
+    @Override
     public Entity clone() {
         Entity p2;
         p2 = new Player(image, x, y, xSpeed, ySpeed);
         return p2;
     }
 
+    /**
+     * toString method
+     * @return - a string representation of the object
+     */
     @Override
     public String toString() {
         return "\nX Position: " + x + "\nY Position: " + y + "\nX Speed: " + 
@@ -121,6 +126,10 @@ public class Player extends Entity{
     }
 
    
+    /**
+     * Move method
+     * moves the player based on key input
+     */
     public void move() {
         if (movingUp == true && y > 0) {
             y -= ySpeed;
