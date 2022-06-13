@@ -19,9 +19,12 @@ import javax.swing.SwingUtilities;
 public class Intro extends javax.swing.JFrame {
 
     private boolean play = true;
+    
 
     private File s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/sega-playboicarti.wav");
     private Sound menuSound = new Sound(s, true);
+    
+    private Intro intro = this;
 
     /**
      * Creates new form Intro
@@ -99,7 +102,7 @@ public class Intro extends javax.swing.JFrame {
         createBoardArray();
         System.out.println("loaded array");
 
-        DrawBoard.loadGame(this);
+        DrawBoard.playGame();
         //DrawBoard.playGame();
     }//GEN-LAST:event_startActionPerformed
 
