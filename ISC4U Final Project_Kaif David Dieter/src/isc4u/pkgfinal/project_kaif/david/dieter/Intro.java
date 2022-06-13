@@ -1,4 +1,9 @@
-/* Intro Class
+/* 
+Intro Class - displays the menu for the game
+Also loads the information for the boards from data files
+June 13, 2022
+David, Dieter, Kaif
+
  */
 package isc4u.pkgfinal.project_kaif.david.dieter;
 
