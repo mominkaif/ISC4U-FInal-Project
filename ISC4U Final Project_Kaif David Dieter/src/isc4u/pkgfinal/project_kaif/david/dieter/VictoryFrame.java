@@ -4,12 +4,12 @@
  */
 package isc4u.pkgfinal.project_kaif.david.dieter;
 //import class var from drawBoard (instance of Intro class Jframe)
-import static isc4u.pkgfinal.project_kaif.david.dieter.DrawBoard.intro;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -23,16 +23,16 @@ import javax.swing.JOptionPane;
  */
 public class VictoryFrame extends JFrame implements ActionListener{
     private ArrayList <SavedData> saves = new ArrayList <>();
-    private int score, level;
+    private int score;
     private JButton homeBtn, searchBtn;
     private TextArea textA;
+    private Intro intro;
     
     private FileOutputStream out;
     
-    public VictoryFrame(Intro i, ArrayList<SavedData> saves, int numDeaths, int level){
+    public VictoryFrame(Intro i, ArrayList<SavedData> saves, int numDeaths){
         this.saves = saves;
         this.score = numDeaths;
-        this.level = level;
         initUI();
         intro = i;
         
@@ -72,7 +72,7 @@ public class VictoryFrame extends JFrame implements ActionListener{
         int highIndex = saves.size() - 1; //rightmost index
         descendingQuickSort(saves, lowIndex, highIndex);
         
-        writeToFile(saves, level); //write sorted array to save file
+        writeToFile(saves); //write sorted array to save file
         
         String highScores = "Highscores: "; //start of string
         //loop through array ten times to get ten best scores
@@ -91,6 +91,8 @@ public class VictoryFrame extends JFrame implements ActionListener{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null); //center jframe with other windows
+        File s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/migos-gang-gang.wav");
+        Sound menuSound = new Sound(s, true);
         
     }
     @Override
@@ -110,7 +112,8 @@ public class VictoryFrame extends JFrame implements ActionListener{
         }
     }
 
-    private void writeToFile(ArrayList <SavedData> arrayList, int level) {
+    private void writeToFile(ArrayList <SavedData> arrayList) {
+        
     }
 
     private int linearSearchNames(ArrayList <SavedData> arrayList) {
