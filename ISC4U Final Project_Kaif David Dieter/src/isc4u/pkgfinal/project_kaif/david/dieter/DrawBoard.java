@@ -36,9 +36,9 @@ public class DrawBoard extends JFrame {
     //we should be using board.getTile() instead
     //array of five boards
     public static Board[] allBoards = new Board[5];
-    public static int level = 2;
+    public static int level = 4;
 
-    public static JFrame intro;
+    private Intro intro;
 
     /**
      * Primary Constructor
@@ -67,18 +67,24 @@ public class DrawBoard extends JFrame {
 
     }
 
-    public static void playGame() {
+    public void playGame() {
         if (level <= 5) {
             DrawBoard board = new DrawBoard();
             board.setVisible(true);
 
             allBoards[level - 1].getSoundtrack().play();
+        }else{
+            startVictory();
         }
         //allBoards[1].playSound();
     }
     
-    public static void getIntroInstance(Intro jframe){
-        intro = jframe;
+    private void startVictory(){
+        VictoryFrame v = new VictoryFrame(intro,null,0);
+    }
+    
+    public void getIntroInstance(Intro intro){
+        this.intro = intro;
     }
 
     public class DrawingSurface extends JPanel implements ActionListener, Runnable {
@@ -176,6 +182,7 @@ public class DrawBoard extends JFrame {
                 player.move();
                 checkHitbox();
                 checkWin();
+                
                 repaint();
 
                 timeDiff = System.currentTimeMillis() - beforeTime;
