@@ -38,7 +38,7 @@ public class DrawBoard extends JFrame {
     public static Board[] allBoards = new Board[5];
     public static int level = 4;
 
-    private Intro intro;
+    public static Intro intro;
 
     /**
      * Primary Constructor
@@ -83,8 +83,8 @@ public class DrawBoard extends JFrame {
         VictoryFrame v = new VictoryFrame(intro,null,0);
     }
     
-    public void getIntroInstance(Intro intro){
-        this.intro = intro;
+    public static void getIntroInstance(Intro i){
+        intro = i;
     }
 
     public class DrawingSurface extends JPanel implements ActionListener, Runnable {
@@ -94,8 +94,8 @@ public class DrawBoard extends JFrame {
         //private Timer timer;
         private final int DELAY = 10;
 
-        private final int DS_HEIGHT = 960;
-        private final int DS_WIDTH = 640;
+        public final int DS_HEIGHT = 960;
+        public final int DS_WIDTH = 640;
 
         private final int X_INITIAL = DS_WIDTH / 2;
         private final int Y_INITIAL = DS_HEIGHT - 50;
