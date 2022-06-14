@@ -1,6 +1,8 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * VictoryFrame class, asks user for their username, sends their score to be sorted
+ * via quickSort, then writes new arrayList of savedData into textfile. Displays results
+ * in a text field with buttons to search for a username or go back home
+ * 
  */
 package isc4u.pkgfinal.project_kaif.david.dieter;
 //import class var from drawBoard (instance of Intro class)
@@ -25,14 +27,21 @@ import javax.swing.JOptionPane;
  * @author David
  */
 public class VictoryFrame extends JFrame implements ActionListener, Serializable{
-    private ArrayList <SavedData> saves = new ArrayList <>();
-    private int score;
-    private JButton homeBtn, searchBtn;
-    private TextArea textA;
-    private Intro intro;
+    //encapsulate variables
+    private ArrayList <SavedData> saves = new ArrayList <>(); //for savedData
+    private int score; //score of user
+    private JButton homeBtn, searchBtn; //buttons
+    private TextArea textA; //textArea to display results
+    private Intro intro; //Intro jframe window
     
-    private FileOutputStream out;
-    
+    private FileOutputStream out; //output for writing to file
+    /**
+     * Primary constructor
+     * @param i - Intro jframe 
+     * @param saves - arraylist of data of previous scores and names
+     * @param numDeaths - new score (numDeaths)
+     * @throws IOException - in/out error
+     */
     public VictoryFrame(Intro i, ArrayList<SavedData> saves, int numDeaths) throws IOException{
         this.saves = saves;
         this.score = numDeaths;
@@ -40,6 +49,11 @@ public class VictoryFrame extends JFrame implements ActionListener, Serializable
         intro = i;
         
     }
+    /**
+     * initUI method, makes buttons and textAreas, calls quicksort to sort arrayList
+     * writes newly sorted arrayList into text file
+     * @throws IOException - in/out error
+     */
     private void initUI() throws IOException {
         //for the home btn
         Image homeButton = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/homeButton.png")).getImage();
@@ -94,7 +108,9 @@ public class VictoryFrame extends JFrame implements ActionListener, Serializable
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null); //center jframe with other windows
+        //file for sounds
         File s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/migos-gang-gang.wav");
+        //instantiate Sound object
         Sound menuSound = new Sound(s, true);
         
     }
@@ -131,16 +147,23 @@ public class VictoryFrame extends JFrame implements ActionListener, Serializable
      * @throws IOException - in/out operation fails
      */
     private void writeToFile(ArrayList <SavedData> arrayList) throws FileNotFoundException, IOException{
-        //file in folder saves is to be written to
-        out = new FileOutputStream(System.getProperty("user.dir") + "/save/saves.txt");
-        String string = "" + arrayList.size(); //string that is written to file
-        //adds all contents of arrayList to string
-        for (int i = 0; i < arrayList.size(); i++) {
-            string += "\n" + arrayList.get(i).getScore() + " " + arrayList.get(i).getName();
+        try{
+            //file in folder "saves" is to be written to
+            out = new FileOutputStream(System.getProperty("user.dir") + "/save/saves.txt");
+            String string = ""; //string that is written to file
+            //adds all contents of arrayList to string
+            for (int i = 0; i < arrayList.size(); i++) {
+                if(i != 0){
+                    string+="\n";
+                }
+                string += arrayList.get(i).getScore() + "\n" + arrayList.get(i).getName();
+            }
+
+            out.write(string.getBytes()); //write string to external files
+            out.close(); //close writer 
+        } catch(IOException e){
+            System.out.println("Error!" + e);
         }
-        
-        out.write(string.getBytes()); //write string to external files
-        out.close(); //close writer 
     }
     /**
      * linear search algorithm, ask the user for what username to find 
