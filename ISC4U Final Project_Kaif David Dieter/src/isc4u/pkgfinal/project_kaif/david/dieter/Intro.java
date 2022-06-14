@@ -57,12 +57,12 @@ public class Intro extends javax.swing.JFrame {
 
         title = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        btnCredits = new javax.swing.JButton();
         start = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        btnCredits = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -76,6 +76,15 @@ public class Intro extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("WASD/Arrow keys to move.");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 230, 50));
+
+        btnCredits.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 48)); // NOI18N
+        btnCredits.setText("CREDITS.");
+        btnCredits.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreditsActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCredits, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 750, -1, -1));
 
         start.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 48)); // NOI18N
         start.setText("PLAY.");
@@ -98,15 +107,6 @@ public class Intro extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 130, 40));
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, -1, -1));
-
-        btnCredits.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 48)); // NOI18N
-        btnCredits.setText("CREDITS.");
-        btnCredits.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreditsActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnCredits, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 750, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
