@@ -67,7 +67,7 @@ public class DrawBoard extends JFrame {
 
     }
 
-    public void playGame() {
+    public static void playGame() {
         if (level <= 5) {
             DrawBoard board = new DrawBoard();
             board.setVisible(true);
@@ -79,7 +79,7 @@ public class DrawBoard extends JFrame {
         //allBoards[1].playSound();
     }
     
-    private void startVictory(){
+    private static void startVictory(){
         VictoryFrame v = new VictoryFrame(intro,null,0);
     }
     

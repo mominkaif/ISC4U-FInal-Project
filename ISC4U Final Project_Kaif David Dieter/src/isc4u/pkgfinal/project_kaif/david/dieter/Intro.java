@@ -26,7 +26,7 @@ public class Intro extends javax.swing.JFrame {
     File s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/sega-playboicarti.wav");
     Sound menuSound = new Sound(s, true);
     //intro variable will be sent to the victory page
-    public static Intro intro = this;
+    public Intro intro = this;
     public static Credits credits;
     /**
      * Creates new form Intro
@@ -37,6 +37,10 @@ public class Intro extends javax.swing.JFrame {
         background.setIcon(new ImageIcon("src/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/introBack.png"));
         menuSound.play();
         setLocationRelativeTo(null);
+    }
+    
+    public Intro getIntro(){
+        return this;
     }
 
     /**
