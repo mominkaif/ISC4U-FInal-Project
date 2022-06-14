@@ -18,9 +18,12 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -67,7 +70,7 @@ public class DrawBoard extends JFrame {
 
     }
 
-    public static void playGame() {
+    public static void playGame() throws IOException {
         if (level <= 5) {
             DrawBoard board = new DrawBoard();
             board.setVisible(true);
@@ -79,7 +82,7 @@ public class DrawBoard extends JFrame {
         //allBoards[1].playSound();
     }
     
-    private static void startVictory(){
+    private static void startVictory() throws IOException{
         VictoryFrame v = new VictoryFrame(intro,null,0);
     }
     
@@ -204,34 +207,39 @@ public class DrawBoard extends JFrame {
 
             while (true) {
                 
-                player.move();
-                moveEntities();
-                
-                checkHitbox();
-                checkWin();
-                
-                repaint();
-
-                timeDiff = System.currentTimeMillis() - beforeTime;
-                sleep = DELAY - timeDiff;
-
-                if (sleep < 0) {
-                    sleep = 2;
-                }
-
                 try {
-                    Thread.sleep(sleep);
-                } catch (InterruptedException e) {
-                    String msg = String.format("Thread Interrupted: %'s", e.getMessage());
-
-                    JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
+                    
+                    player.move();
+                    moveEntities();
+                    
+                    checkHitbox();
+                    checkWin();
+                    
+                    repaint();
+                    
+                    timeDiff = System.currentTimeMillis() - beforeTime;
+                    sleep = DELAY - timeDiff;
+                    
+                    if (sleep < 0) {
+                        sleep = 2;
+                    }
+                    
+                    try {
+                        Thread.sleep(sleep);
+                    } catch (InterruptedException e) {
+                        String msg = String.format("Thread Interrupted: %'s", e.getMessage());
+                        
+                        JOptionPane.showMessageDialog(this, msg, "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    
+                    beforeTime = System.currentTimeMillis();
+                } catch (IOException ex) {
+                    Logger.getLogger(DrawBoard.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-                beforeTime = System.currentTimeMillis();
             }
         }
 
-        private void checkHitbox() {
+        private void checkHitbox() throws IOException {
             if (!allBoards[level - 1].getTileMap()[player.getYPos()][player.getXPos()].getHitbox()) {
                 //player died
                 System.out.println("player died");
@@ -245,7 +253,7 @@ public class DrawBoard extends JFrame {
             }
         }
 
-        private void checkWin() {
+        private void checkWin() throws IOException {
             if (player.getYPos() == 0) {
                 System.out.println("won stage " + level);
                 player = null;
