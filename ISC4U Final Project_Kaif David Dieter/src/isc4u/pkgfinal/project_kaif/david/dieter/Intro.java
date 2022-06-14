@@ -30,7 +30,7 @@ public class Intro extends javax.swing.JFrame {
     Sound menuSound = new Sound(s, true);
     //intro variable will be sent to the victory page
     public Intro intro = this;
-    public static Credits credits;
+    private Credits credits;
     /**
      * Creates new form Intro
      */
@@ -136,11 +136,10 @@ public class Intro extends javax.swing.JFrame {
         menuSound.stop();
         //sets the intro frame invisible
         this.setVisible(false);
-        if(credits != null){
-            credits.setVisible(true);
-        } else{
+        if(credits == null){
             credits = new Credits(this);
         }
+        credits.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCreditsActionPerformed
 
