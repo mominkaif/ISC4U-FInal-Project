@@ -98,6 +98,11 @@ public class Intro extends javax.swing.JFrame {
 
         btnCredits.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 48)); // NOI18N
         btnCredits.setText("CREDITS.");
+        btnCredits.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreditsActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCredits, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 750, -1, -1));
 
         pack();
@@ -118,7 +123,8 @@ public class Intro extends javax.swing.JFrame {
         DrawBoard.getIntroInstance(this);
     }//GEN-LAST:event_startActionPerformed
 
-    private void btnCreditsActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnCreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreditsActionPerformed
+        // TODO add your handling code here:
         //user presses the start button
         menuSound.stop();
         //sets the intro frame invisible
@@ -129,8 +135,8 @@ public class Intro extends javax.swing.JFrame {
             credits = new Credits(this);
         }
         this.dispose();
-        
-    }
+    }//GEN-LAST:event_btnCreditsActionPerformed
+
     /**
      * @param args the command line arguments
      */
