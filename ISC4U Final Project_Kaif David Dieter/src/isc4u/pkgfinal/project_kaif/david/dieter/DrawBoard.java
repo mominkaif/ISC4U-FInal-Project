@@ -41,8 +41,15 @@ public class DrawBoard extends JFrame {
     //array of five boards
     public static Board[] allBoards = new Board[5];
     public static int level = 4;
-
+    //intro class variable, is needed for when we call victoryFrame
     public static Intro intro;
+    //arrayList of saves for the scores
+    private static ArrayList <SavedData> saves = new ArrayList<>();
+    //input stream for reading file
+    private static FileInputStream in;
+    //private class variable for score, nested class can still access
+    private static int score = 0;
+
 
     /**
      * Primary Constructor
@@ -96,8 +103,37 @@ public class DrawBoard extends JFrame {
      * @throws IOException 
      */
     private static void startVictory() throws IOException{
-        VictoryFrame v = new VictoryFrame(intro,null,0);
+        readDataFile(); //invoke readDataFile() method so arrayList is updated
+        VictoryFrame v = new VictoryFrame(intro,saves,score);
     }
+    /**
+     * readDataFile() method, tries to reference file from user directory called "saves.txt"
+     * reads every score and the user name, creates savedData object and adds to arrayList
+     * @throws IOException - in/out error
+     */
+    private static void readDataFile() throws IOException {
+        //declare variables 
+        int gameScore;
+        String userName;
+        SavedData save;
+        //try to reference file and read the attributes of SavedData objs into objects
+        //that get stored in arrayList
+        try {
+            in = new FileInputStream(System.getProperty("user.dir") + "/save/saves.txt");
+            Scanner scanner = new Scanner(in);
+            while (scanner.hasNextLine()) {
+                gameScore = Integer.parseInt(scanner.nextLine());
+                userName = scanner.nextLine();
+                save = new SavedData(gameScore, userName);
+                saves.add(save);
+            }
+        //otherwise print error
+        } catch (IOException e) {
+            System.out.println("error " + e);
+        }
+
+    }
+    
     /**
      * gets an instance of the intro from the intro class
      * @param i - intro
@@ -105,28 +141,34 @@ public class DrawBoard extends JFrame {
     public static void getIntroInstance(Intro i){
         intro = i;
     }
-
+    /**
+     * DrawingSurface class, where the actual drawing is done, implements the actionListener
+     * and runnable interfaces to help with repainting every frame, has doDrawing method
+     * where we draw entities and the player after they have both moved
+     * uses thread to help with animating game
+     * contains checkHitbox() and checkWin() method that will determine how the 
+     * game proceeds
+     */
     public class DrawingSurface extends JPanel implements ActionListener, Runnable {
-
+        //encapsulate attributes and class variables
         private Player player;
 
-        //private Timer timer;
+        //num of ms between each frame
         private final int DELAY = 10;
-
+        //dimensions of drawingSurface
         public final int DS_HEIGHT = 960;
         public final int DS_WIDTH = 640;
-
-        private final int X_INITIAL = DS_WIDTH / 2;
-        private final int Y_INITIAL = DS_HEIGHT - 50;
-
+        //Thread for animating
         private Thread animator;
-
-        private boolean moving = false;
         
-        private FileInputStream in;
+        
+        
+        
 
-        private ArrayList <SavedData> saves = new ArrayList<>();
-
+        
+        /**
+         * DrawingSUrface constructor calls initDrawingSurface() for jpanel init
+         */
         public DrawingSurface() {
             initDrawingSurface();
         }
@@ -146,11 +188,15 @@ public class DrawBoard extends JFrame {
         }
 
         @Override
+        /**
+         * addNotify() method
+         * helps connect awt with native windowing world
+         */
         public void addNotify() {
-            super.addNotify();
+            super.addNotify(); //calls super
 
-            animator = new Thread(this);
-            animator.start();
+            animator = new Thread(this); //instantiates Thread
+            animator.start(); //starts animating
 
         }
 
@@ -223,13 +269,18 @@ public class DrawBoard extends JFrame {
 
 
         @Override
+        /**
+         * run method that gets called once with while loop inside that calls
+         * repaint and player.move()
+         */
         public void run() {
+            //declare as long
             long beforeTime, timeDiff, sleep;
-            
+            //start time
             beforeTime = System.currentTimeMillis();
 
             while (true) {
-                
+                //needs multiple try and catch for IO exceptions 
                 try {
                     //moves the player and entities
                     player.move();
@@ -239,16 +290,17 @@ public class DrawBoard extends JFrame {
                     checkWin();
                     //redraws the map
                     repaint();
-                    
+                    //so our game runs at a constant pace
                     timeDiff = System.currentTimeMillis() - beforeTime;
                     sleep = DELAY - timeDiff;
-                    
+                    //if the time difference is less than 0 set to 2
                     if (sleep < 0) {
                         sleep = 2;
                     }
-                    
+                    //try so thread stops working for "sleep" ms
                     try {
                         Thread.sleep(sleep);
+                    //if thread is interrupted by other threads or other complications
                     } catch (InterruptedException e) {
                         String msg = String.format("Thread Interrupted: %'s", e.getMessage());
                         
@@ -256,6 +308,7 @@ public class DrawBoard extends JFrame {
                     }
                     
                     beforeTime = System.currentTimeMillis();
+                //catch IO exception
                 } catch (IOException ex) {
                     Logger.getLogger(DrawBoard.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -281,8 +334,10 @@ public class DrawBoard extends JFrame {
                 allBoards[level - 1].getSoundtrack().stop();
                 //sets level back to 1
                 level = 1;
+                score++;
                 //starts the game over
                 playGame();
+                
             }
         }
         /**
@@ -303,41 +358,33 @@ public class DrawBoard extends JFrame {
                 allBoards[level - 1].getSoundtrack().stop();
                 //advances to the next level
                 level += 1;
+                
                 //plays the game
                 playGame();
             }
         }
-        
-        private void readDataFile() throws IOException{
-            int gameScore;
-            String userName;
-            SavedData save;
-            try{
-                in = new FileInputStream(System.getProperty("user.dir") + "/save/saves.txt");
-                Scanner scanner = new Scanner(in);
-                while(scanner.hasNextLine()){
-                    gameScore = Integer.parseInt(scanner.nextLine());
-                    userName = scanner.nextLine();
-                    save = new SavedData(gameScore, userName);
-                    saves.add(save);
-                    
-                }
-            } catch(IOException e){
-                System.out.println("error " + e);
-            }
-            
-            
-        }
 
+        /**
+         * TAdapter class extends KeyAdapter super class, keypressed and released methods
+         * depending on what event user completes
+         */
         private class TAdapter extends KeyAdapter {
 
             @Override
+            /**
+             * keyPressed method
+             * invokes player.move() method and sends keycode
+             */
             public void keyPressed(KeyEvent e) {
                 player.keyPressed(e);
 
             }
 
             @Override
+            /**
+             * keyReleased method
+             * invokes player.released() method that sends keycode
+             */
             public void keyReleased(KeyEvent e) {
                 player.keyReleased(e);
             }
