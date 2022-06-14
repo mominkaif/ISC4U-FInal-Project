@@ -50,10 +50,11 @@ public class Credits extends javax.swing.JFrame {
         lblSystemsAnalyst.setToolTipText("");
 
         lblLeadProgrammers1.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 24)); // NOI18N
-        lblLeadProgrammers1.setText("Dieter Whittingham, David Xu, Kaif Momin");
+        lblLeadProgrammers1.setText("Dieter Whittingham");
+        lblLeadProgrammers1.setToolTipText("");
 
         lblLeadProgrammers2.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 36)); // NOI18N
-        lblLeadProgrammers2.setText("Lead Programmers:");
+        lblLeadProgrammers2.setText("Lead Programmer");
         lblLeadProgrammers2.setToolTipText("");
 
         lblProjectManager1.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 24)); // NOI18N
@@ -78,7 +79,8 @@ public class Credits extends javax.swing.JFrame {
         lblTechnicalWriter2.setToolTipText("");
 
         lblTechnicalWriter3.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 24)); // NOI18N
-        lblTechnicalWriter3.setText("Dieter Whittingham");
+        lblTechnicalWriter3.setText("Kaif Momin");
+        lblTechnicalWriter3.setToolTipText("");
 
         btnBack.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 36)); // NOI18N
         btnBack.setText("BACK.");
@@ -105,7 +107,7 @@ public class Credits extends javax.swing.JFrame {
                     .addComponent(lblProjectManager)
                     .addComponent(lblProjectManager1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTechnicalWriter1))
-                .addGap(0, 103, Short.MAX_VALUE))
+                .addGap(0, 219, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
