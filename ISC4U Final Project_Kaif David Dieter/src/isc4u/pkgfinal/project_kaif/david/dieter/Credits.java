@@ -19,7 +19,7 @@ public class Credits extends javax.swing.JFrame {
         intro = i;
         initComponents();
         setSize(960, 640); //same size as others
-        setLocationRelativeTo(intro); //same location on screen
+        setLocationRelativeTo(null); //same location on screen
     }
 
     /**
