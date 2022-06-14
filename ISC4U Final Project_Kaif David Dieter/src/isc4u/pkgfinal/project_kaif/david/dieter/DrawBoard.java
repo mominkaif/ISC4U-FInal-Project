@@ -190,10 +190,10 @@ public class DrawBoard extends JFrame {
             ArrayList<Entity> entityList = allBoards[level-1].getEntityList();
             for(Entity entity: entityList){
                 //sets previous hitbox true
-                allBoards[level].getTileMap()[entity.getXPos()][entity.getYPos()].setHitbox(true);
+                //allBoards[level-1].getTileMap()[entity.getXPos()][entity.getYPos()].setHitbox(true);
                 entity.move();
                 //sets new hitbox false
-                allBoards[level].getTileMap()[entity.getXPos()][entity.getYPos()].setHitbox(false);
+                //allBoards[level-1].getTileMap()[entity.getXPos()][entity.getYPos()].setHitbox(false);
             }
 
         }

@@ -46,10 +46,10 @@ public class Enemy extends Entity{
             x-=1;
         } 
         
-        if (x > 20) {
+        if (x >= 19) {
             x = 0;
-        }else if (x < 0) {
-            x = 20;
+        }else if (x <= 0) {
+            x = 19;
         }
     }
     
