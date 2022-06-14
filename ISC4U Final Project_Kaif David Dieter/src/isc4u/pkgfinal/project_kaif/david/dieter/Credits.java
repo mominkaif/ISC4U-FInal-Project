@@ -1,6 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+/* 
+ * Credits class - Draws the credits screen
+ * Attributes: intro
+ * June 13, 2022
+ * David, Dieter, Kaif
  */
 package isc4u.pkgfinal.project_kaif.david.dieter;
 
