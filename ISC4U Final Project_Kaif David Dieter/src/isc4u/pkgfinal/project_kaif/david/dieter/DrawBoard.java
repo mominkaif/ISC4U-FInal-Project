@@ -53,7 +53,10 @@ public class DrawBoard extends JFrame {
         //playing
         initUI();
     }
-
+    /**
+     * initializes the ui
+     * uses drawing surface class
+     */
     private void initUI() {
         //set title of the JFrame
         setTitle("Pogger Level " + level);
@@ -70,23 +73,35 @@ public class DrawBoard extends JFrame {
         setLocationRelativeTo(null);
 
     }
-
+    /**
+     * plays the game from a specific stage
+     * @throws IOException 
+     */
     public static void playGame() throws IOException {
         if (level <= 5) {
+            //checks if the current level is 1-5
+            //creates a new drawboard object
             DrawBoard board = new DrawBoard();
             board.setVisible(true);
-
+            //plays the soundtrack
             allBoards[level - 1].getSoundtrack().play();
         }else{
+            //if level is not 1-5 it will start victory sequence
             startVictory();
         }
         //allBoards[1].playSound();
     }
-    
+    /**
+     * uses victory frame class to start victory sequence
+     * @throws IOException 
+     */
     private static void startVictory() throws IOException{
         VictoryFrame v = new VictoryFrame(intro,null,0);
     }
-    
+    /**
+     * gets an instance of the intro from the intro class
+     * @param i - intro
+     */
     public static void getIntroInstance(Intro i){
         intro = i;
     }
@@ -115,7 +130,10 @@ public class DrawBoard extends JFrame {
         public DrawingSurface() {
             initDrawingSurface();
         }
-
+        /**
+         * initializes the drawing surface
+         * creates player object
+         */
         private void initDrawingSurface() {
             addKeyListener(new TAdapter());
             setFocusable(true);
@@ -153,6 +171,7 @@ public class DrawBoard extends JFrame {
             rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 
             g2d.setRenderingHints(rh);
+            //nested for loops draw each tile on the map
             for (int i = 0; i < 30; i++) {
                 for (int j = 0; j < 20; j++) {
                     //new: changed it to draw straight form the tile's image attriute
@@ -163,7 +182,6 @@ public class DrawBoard extends JFrame {
             //drawing the player
             g2d.drawImage(player.getImage(), player.getXPos() * 32, player.getYPos() * 32, this);
             //drawing all entities
-            
             ArrayList<Entity> entityList = allBoards[level-1].getEntityList();
             for(Entity entity: entityList){
                 g2d.drawImage(entity.getImage(), entity.getXPos() * 32, entity.getYPos() * 32, this);
@@ -207,19 +225,19 @@ public class DrawBoard extends JFrame {
         @Override
         public void run() {
             long beforeTime, timeDiff, sleep;
-
+            
             beforeTime = System.currentTimeMillis();
 
             while (true) {
                 
                 try {
-                    
+                    //moves the player and entities
                     player.move();
                     moveEntities();
-                    
+                    //checks the player's hitbox for death or win
                     checkHitbox();
                     checkWin();
-                    
+                    //redraws the map
                     repaint();
                     
                     timeDiff = System.currentTimeMillis() - beforeTime;
@@ -243,30 +261,49 @@ public class DrawBoard extends JFrame {
                 }
             }
         }
-
+        /**
+         * checks if the player dies
+         * if they die it starts the game over at level 1
+         * @throws IOException 
+         */
         private void checkHitbox() throws IOException {
+            //player is currently standing on a tile with hitbox false
             if (!allBoards[level - 1].getTileMap()[player.getYPos()][player.getXPos()].getHitbox()) {
                 //player died
                 System.out.println("player died");
+                //gets rid of old player object
                 player = null;
+                //gets rid of the frame
                 this.setVisible(false);
                 remove(this);
                 dispose();
+                //stops the music
                 allBoards[level - 1].getSoundtrack().stop();
+                //sets level back to 1
                 level = 1;
+                //starts the game over
                 playGame();
             }
         }
-
+        /**
+         * checks if the player has beaten a level
+         * @throws IOException 
+         */
         private void checkWin() throws IOException {
             if (player.getYPos() == 0) {
+                //player reached the top of the map
                 System.out.println("won stage " + level);
+                //gets rid of player object
                 player = null;
+                //gets rid of frame
                 this.setVisible(false);
                 remove(this);
                 dispose();
+                //stops music
                 allBoards[level - 1].getSoundtrack().stop();
+                //advances to the next level
                 level += 1;
+                //plays the game
                 playGame();
             }
         }
