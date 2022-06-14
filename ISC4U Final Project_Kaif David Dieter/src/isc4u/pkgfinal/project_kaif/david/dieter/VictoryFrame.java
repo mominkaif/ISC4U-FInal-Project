@@ -10,7 +10,10 @@ import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,7 +24,7 @@ import javax.swing.JOptionPane;
  *
  * @author David
  */
-public class VictoryFrame extends JFrame implements ActionListener{
+public class VictoryFrame extends JFrame implements ActionListener, Serializable{
     private ArrayList <SavedData> saves = new ArrayList <>();
     private int score;
     private JButton homeBtn, searchBtn;
@@ -30,14 +33,14 @@ public class VictoryFrame extends JFrame implements ActionListener{
     
     private FileOutputStream out;
     
-    public VictoryFrame(Intro i, ArrayList<SavedData> saves, int numDeaths){
+    public VictoryFrame(Intro i, ArrayList<SavedData> saves, int numDeaths) throws IOException{
         this.saves = saves;
         this.score = numDeaths;
         initUI();
         intro = i;
         
     }
-    private void initUI() {
+    private void initUI() throws IOException {
         //for the home btn
         Image homeButton = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/homeButton.png")).getImage();
         Image newHomeBtn = homeButton.getScaledInstance(250, 250, Image.SCALE_FAST); //scale it to same width and height and do it fast
@@ -70,7 +73,7 @@ public class VictoryFrame extends JFrame implements ActionListener{
       
         int lowIndex = 0; //left Index is always 0
         int highIndex = saves.size() - 1; //rightmost index
-        descendingQuickSort(saves, lowIndex, highIndex);
+        descendingQuickSort(saves, lowIndex, highIndex); //call quickSort method
         
         writeToFile(saves); //write sorted array to save file
         
@@ -96,26 +99,55 @@ public class VictoryFrame extends JFrame implements ActionListener{
         
     }
     @Override
+    /**
+     * actionPerformed method
+     * param - e - user does something
+     */
     public  void actionPerformed(ActionEvent e) {
+        //if user wants to go to intro jframe
         if(e.getSource() == homeBtn){
-            intro.setVisible(true);
+            intro.setVisible(true); //set jframe to true
+            //remove and dispose this window
             remove(this);
             this.dispose();
         }
+        //if user wants to use search btn
         if(e.getSource() == searchBtn){
+            //assign target index to linearSearch method
             int targetIndex = linearSearchNames(saves);
+            //if that method returned -1, nothing was found
             if (targetIndex == -1){
                 textA.setText("Username not found!");
+            //otherwise it was found, set textA to message
             } else {
                 textA.setText(saves.get(targetIndex).getName() + "best score yet is: " + saves.get(targetIndex).getScore());
             }
         }
     }
-
-    private void writeToFile(ArrayList <SavedData> arrayList) {
+    /**
+     * writeToFile method, writes arrayList of saved scores to file
+     * @param arrayList - arrayList of saved scores
+     * @throws FileNotFoundException - if file was not found
+     * @throws IOException - in/out operation fails
+     */
+    private void writeToFile(ArrayList <SavedData> arrayList) throws FileNotFoundException, IOException{
+        //file in folder saves is to be written to
+        out = new FileOutputStream(System.getProperty("user.dir") + "/save/saves.txt");
+        String string = "" + arrayList.size(); //string that is written to file
+        //adds all contents of arrayList to string
+        for (int i = 0; i < arrayList.size(); i++) {
+            string += "\n" + arrayList.get(i).getScore() + " " + arrayList.get(i).getName();
+        }
         
+        out.write(string.getBytes()); //write string to external files
+        out.close(); //close writer 
     }
-
+    /**
+     * linear search algorithm, ask the user for what username to find 
+     * and searches for said username in arrayList
+     * @param arrayList - arrayList of scores and corresponding names
+     * @return - 1 if found, -1 if not found
+     */
     private int linearSearchNames(ArrayList <SavedData> arrayList) {
         //ask for the userName
         String userName = JOptionPane.showInputDialog("Enter the username you are looking for: ");
@@ -155,7 +187,6 @@ public class VictoryFrame extends JFrame implements ActionListener{
         //assign pointers
         int leftPointer = lowIndex;
         int rightPointer = highIndex;
-        int arrayListScoreIndex = arrayList.get(leftPointer).getScore();
         //assign the pivot to around middle of array
         int pivot = arrayList.get((highIndex + lowIndex) / 2).getScore();
         //while rightPointer is larger than the leftPointer, the array has not
@@ -174,8 +205,8 @@ public class VictoryFrame extends JFrame implements ActionListener{
             //now that the array at rightPointer is less than pivot and array at leftPointer is 
             //more than the pivot, swap the pointers
             if (leftPointer <= rightPointer) {
-                temp = arrayListScoreIndex;
-                arrayList.get(leftPointer).setScore(arrayListScoreIndex);
+                temp = arrayList.get(leftPointer).getScore();;
+                arrayList.get(leftPointer).setScore(arrayList.get(rightPointer).getScore());
                 arrayList.get(rightPointer).setScore(temp);
                 //increase and decrease pointers so they can move onto the next
                 //element to swap in the while loop
