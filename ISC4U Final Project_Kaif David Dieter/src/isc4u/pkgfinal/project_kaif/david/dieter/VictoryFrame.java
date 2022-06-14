@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package isc4u.pkgfinal.project_kaif.david.dieter;
-//import class var from drawBoard (instance of Intro class Jframe)
+//import class var from drawBoard (instance of Intro class)
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.TextArea;
