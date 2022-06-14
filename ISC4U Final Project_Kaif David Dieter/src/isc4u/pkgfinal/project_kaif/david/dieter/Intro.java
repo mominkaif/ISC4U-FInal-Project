@@ -26,8 +26,8 @@ public class Intro extends javax.swing.JFrame {
     File s = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Sounds/sega-playboicarti.wav");
     Sound menuSound = new Sound(s, true);
     //intro variable will be sent to the victory page
-    private Intro intro = this;
-
+    public static Intro intro = this;
+    public static Credits credits;
     /**
      * Creates new form Intro
      */
@@ -55,6 +55,7 @@ public class Intro extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        btnCredits = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -91,6 +92,10 @@ public class Intro extends javax.swing.JFrame {
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, -1, -1));
 
+        btnCredits.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 48)); // NOI18N
+        btnCredits.setText("CREDITS.");
+        getContentPane().add(btnCredits, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 750, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -104,8 +109,24 @@ public class Intro extends javax.swing.JFrame {
         System.out.println("loaded array");
         //plays the game
         DrawBoard.playGame();
+        //sends instance of Intro class so other classes can set this frame 
+        //to visible
+        DrawBoard.getIntroInstance(this);
     }//GEN-LAST:event_startActionPerformed
 
+    private void btnCreditsActionPerformed(java.awt.event.ActionEvent evt) {
+        //user presses the start button
+        menuSound.stop();
+        //sets the intro frame invisible
+        this.setVisible(false);
+        if(credits != null){
+            credits.setVisible(true);
+        } else{
+            credits = new Credits(this);
+        }
+        this.dispose();
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -150,6 +171,7 @@ public class Intro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
+    private javax.swing.JButton btnCredits;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
