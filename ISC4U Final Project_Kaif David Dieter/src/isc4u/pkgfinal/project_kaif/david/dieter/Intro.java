@@ -11,9 +11,12 @@ import static isc4u.pkgfinal.project_kaif.david.dieter.DrawBoard.allBoards;
 import java.awt.Image;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
@@ -116,8 +119,12 @@ public class Intro extends javax.swing.JFrame {
         //loads the board array 
         createBoardArray();
         System.out.println("loaded array");
-        //plays the game
-        DrawBoard.playGame();
+        try {
+            //plays the game
+            DrawBoard.playGame();
+        } catch (IOException ex) {
+            Logger.getLogger(Intro.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //sends instance of Intro class so other classes can set this frame 
         //to visible
         DrawBoard.getIntroInstance(this);
