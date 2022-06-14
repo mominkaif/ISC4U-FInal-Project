@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -106,6 +107,10 @@ public class DrawBoard extends JFrame {
         private Thread animator;
 
         private boolean moving = false;
+        
+        private FileInputStream in;
+
+        private ArrayList <SavedData> saves = new ArrayList<>();
 
         public DrawingSurface() {
             initDrawingSurface();
@@ -264,6 +269,27 @@ public class DrawBoard extends JFrame {
                 level += 1;
                 playGame();
             }
+        }
+        
+        private void readDataFile() throws IOException{
+            int gameScore;
+            String userName;
+            SavedData save;
+            try{
+                in = new FileInputStream(System.getProperty("user.dir") + "/save/saves.txt");
+                Scanner scanner = new Scanner(in);
+                while(scanner.hasNextLine()){
+                    gameScore = Integer.parseInt(scanner.nextLine());
+                    userName = scanner.nextLine();
+                    save = new SavedData(gameScore, userName);
+                    saves.add(save);
+                    
+                }
+            } catch(IOException e){
+                System.out.println("error " + e);
+            }
+            
+            
         }
 
         private class TAdapter extends KeyAdapter {
