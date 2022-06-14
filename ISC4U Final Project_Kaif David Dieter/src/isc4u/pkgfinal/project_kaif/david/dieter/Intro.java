@@ -275,22 +275,34 @@ public class Intro extends javax.swing.JFrame {
     private void setEnemies(int level) {
         try {
             //reads from file
-            Scanner scanner = new Scanner("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/Enemies" + level+1 + ".txt");
+            
+            File f = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Enemies" + (level+1) + ".txt");
+            Scanner scanner = new Scanner(f);
+            ArrayList <Entity> a = new ArrayList();
+            Image icon;
+            int x, y, xSpeed, ySpeed;
             while (scanner.hasNextLine()) {
                 //while loop continues until there are no more enemies left
                 //gets filename of the imageicon
                 String enemyName = scanner.nextLine();
-                Image icon = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/" + enemyName + ".png")).getImage();
+                
+                icon = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/" + enemyName + ".png")).getImage();
                 //gets the rest of the enemy's attributes
-                int x = Integer.parseInt(scanner.nextLine());
-                int y = Integer.parseInt(scanner.nextLine());
-                int xSpeed = Integer.parseInt(scanner.nextLine());
-                int ySpeed = Integer.parseInt(scanner.nextLine());
+                x = Integer.parseInt(scanner.nextLine());
+                y = Integer.parseInt(scanner.nextLine());
+                xSpeed = Integer.parseInt(scanner.nextLine());
+                ySpeed = Integer.parseInt(scanner.nextLine());
                 //creates a new enemy object
                 Enemy enemy = new Enemy(icon, x, y, xSpeed, ySpeed);
+                //for some reason the object is created with y position 0 no matter what so I have to set the y position again
+                enemy.setYPos(y);
                 //adds it to the allboards array
-                allBoards[level].addEntity(enemy);
+                
+                a.add(enemy);
+                
+                System.out.println("added enemies to entity list "+level);
             }
+            allBoards[level].setEntityList(a);
 
         } catch (Exception e) {
             System.out.println("Error!" + e);
@@ -304,22 +316,30 @@ public class Intro extends javax.swing.JFrame {
     private void setPlatforms(int level) {
         try {
             //reads from file
-            Scanner scanner = new Scanner("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/Platforms" + level + ".txt");
-
+            File f = new File("src/isc4u/pkgfinal/project_kaif/david/dieter/Platforms" + (level+1) + ".txt");
+            Scanner scanner = new Scanner(f);
+            Image icon;
+            ArrayList <Entity> a = new ArrayList();
+            int x, y, xSpeed, ySpeed;
             while (scanner.hasNextLine()) {
                 //while loop continues until there are no more platforms left
                 String platformName = scanner.nextLine();
-                Image icon = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/" + platformName + ".png")).getImage();
+                icon = new ImageIcon(this.getClass().getResource("/isc4u/pkgfinal/project_kaif/david/dieter/Tiles/" + platformName + ".png")).getImage();
                 //gets all the attributes of the platform from the data file
-                int x = Integer.parseInt(scanner.nextLine());
-                int y = Integer.parseInt(scanner.nextLine());
-                int xSpeed = Integer.parseInt(scanner.nextLine());
-                int ySpeed = Integer.parseInt(scanner.nextLine());
+                x = Integer.parseInt(scanner.nextLine());
+                y = Integer.parseInt(scanner.nextLine());
+                
+                xSpeed = Integer.parseInt(scanner.nextLine());
+                ySpeed = Integer.parseInt(scanner.nextLine());
                 //creates a new platform object
                 Platform platform = new Platform(icon, x, y, xSpeed, ySpeed);
+                platform.setYPos(y);
                 //adds it to the board's array list
-                allBoards[level].addEntity(platform);
+                a.add(platform);
+                
+                System.out.println("added platforms to entity list "+level);
             }
+            allBoards[level].setEntityList(a);
         } catch (Exception e) {
             System.out.println("Error!" + e);
         }

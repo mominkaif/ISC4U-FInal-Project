@@ -152,8 +152,16 @@ public class DrawBoard extends JFrame {
 
                 }
             }
-            //use image attribute from player class instead
+            //drawing the player
             g2d.drawImage(player.getImage(), player.getXPos() * 32, player.getYPos() * 32, this);
+            //drawing all entities
+            
+            ArrayList<Entity> entityList = allBoards[level-1].getEntityList();
+            for(Entity entity: entityList){
+                g2d.drawImage(entity.getImage(), entity.getXPos() * 32, entity.getYPos() * 32, this);
+            }
+            
+            
         }
 
         @Override
@@ -171,6 +179,22 @@ public class DrawBoard extends JFrame {
         public void actionPerformed(ActionEvent e) {
             player.move();
         }
+        /**
+         * moves all entities and updates the hitboxes of the map
+         * uses the entity list array
+         */
+        public void moveEntities(){
+            ArrayList<Entity> entityList = allBoards[level-1].getEntityList();
+            for(Entity entity: entityList){
+                //sets previous hitbox true
+                allBoards[level].getTileMap()[entity.getXPos()][entity.getYPos()].setHitbox(true);
+                entity.move();
+                //sets new hitbox false
+                allBoards[level].getTileMap()[entity.getXPos()][entity.getYPos()].setHitbox(false);
+            }
+
+        }
+
 
         @Override
         public void run() {
@@ -179,7 +203,10 @@ public class DrawBoard extends JFrame {
             beforeTime = System.currentTimeMillis();
 
             while (true) {
+                
                 player.move();
+                moveEntities();
+                
                 checkHitbox();
                 checkWin();
                 

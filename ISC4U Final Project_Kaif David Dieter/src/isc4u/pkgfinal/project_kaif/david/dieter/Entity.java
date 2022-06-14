@@ -26,8 +26,8 @@ public abstract class Entity {
         image = null;
         x = 10;
         y = 29;
-        xSpeed = 1;
-        ySpeed = 1; 
+        xSpeed = 0;
+        ySpeed = 0; 
     }
     /**
      * entity constructor
