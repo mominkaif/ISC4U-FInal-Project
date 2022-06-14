@@ -121,6 +121,7 @@ public class DrawBoard extends JFrame {
         try {
             in = new FileInputStream(System.getProperty("user.dir") + "/save/saves.txt");
             Scanner scanner = new Scanner(in);
+            //while file has a next line
             while (scanner.hasNextLine()) {
                 gameScore = Integer.parseInt(scanner.nextLine());
                 userName = scanner.nextLine();
